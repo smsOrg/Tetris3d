@@ -1,10 +1,60 @@
 package org.sms.tetris3d.players;
 
+import com.trippleit.android.tetris3d.shapes.IShape;
+
 /**
  * Created by hsh on 2016. 11. 16..
  */
 
 public class User implements  UserDefaultBehavior {
+
+
+    protected IShape currentObject=null,nextObject=null;
+
+    private  int currentObjectX, currentObjectY, currentObjectZ;
+
+    public  int getCurrentObjectX() {
+        return currentObjectX;
+    }
+
+    public  void setCurrentObjectX(int currentObjectX) {
+        this.currentObjectX = currentObjectX;
+    }
+
+    public  int getCurrentObjectY() {
+        return currentObjectY;
+    }
+
+    public  void setCurrentObjectY(int currentObjectY) {
+        this.currentObjectY = currentObjectY;
+    }
+
+    public  int getCurrentObjectZ() {
+        return currentObjectZ;
+    }
+
+    public  void setCurrentObjectZ(int currentObjectZ) {
+        this.currentObjectZ = currentObjectZ;
+    }
+
+
+    public  IShape getNextObject(){
+        return nextObject;
+    }
+
+    public  void setCurrentObject(IShape currentObject){
+        this.currentObject = currentObject;
+    }
+
+    public  void setNextObject(IShape nextObject){
+        this.nextObject = nextObject;
+    }
+
+    public IShape getCurrentObject(){
+        return currentObject;
+    }
+
+
     @Override
     public void onSwipeRight() {
 
