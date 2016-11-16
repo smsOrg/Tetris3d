@@ -38,14 +38,11 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
             super.removeRange(start>0?start:1,end>0?end:1);
         }
     };
-    public ArrayList<User> getPlayers(){
+    public static ArrayList<User> getPlayers(){
         return players;
     }
-
-    public void init(){
-        players.add(new DeviceUser());
-    }
     public static void init(Context _c) {
+        players.add(new DeviceUser());
         gameHeight = 10;
         gridSize = 5;
         gStatus = GAME_STATUS.START;
