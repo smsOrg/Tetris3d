@@ -6,7 +6,7 @@ import com.trippleit.android.tetris3d.shapes.IShape;
  * Created by hsh on 2016. 11. 16..
  */
 
-public class User implements  UserDefaultBehavior {
+public abstract class User implements  UserDefaultBehavior {
 
 
     protected IShape currentObject=null,nextObject=null;
