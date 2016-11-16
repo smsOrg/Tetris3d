@@ -1,12 +1,16 @@
 #오픈소스 17팀 개요
 ##조원
-황세현 : 소스코드 추가 및 수정, xml 혹은 gui 배치담당
-김세훈 : 이미지 생성관리, 앱 테스터
-이민수 : 소스코드 추가 및 수정, 로직 담당, 문서화
+<ol>
+<li>황세현 : 소스코드 추가 및 수정, xml 혹은 gui 배치담당</li>
+<li>김세훈 : 이미지 생성관리, 앱 테스터</li>
+<li>이민수 : 소스코드 추가 및 수정, 로직 담당, 문서화</li>
+</ol>
 ##프로젝트 개요
 오픈소스를 이용한 안드로이드 3d 테트리스 구현
 ##프로젝트 목표
 어떠한 블록도 게임상에서 지정해놓은 높이까지 쌓이지 않으면서 3차원 직육면체의 지면에 수평한 단층(면)을 3차원 블록으로 채워나가면 테트리스를 진행 시키도록 하고 기존에 구현이 덜된 3d테트리스 오픈소스를 응용하고 조합하여 제대로 된 3d 테트리스 제작한다.
 ##프로젝트 구현과정
-https://github.com/kdomic/android-3d-tetris/tree/master/src/com/trippleit/android/tetris3d 를 기본 틀로 설정
-게임에 필요한 ui 개선 및 추가
+<ol>
+<li>https://github.com/kdomic/android-3d-tetris/tree/master/src/com/trippleit/android/tetris3d 를 기본 틀로 설정</li>
+<li>게임에 필요한 ui 개선 및 추가</li>
+<ol>
