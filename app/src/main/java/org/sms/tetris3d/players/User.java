@@ -9,6 +9,9 @@ import java.util.*;
 
 public abstract class User implements  UserDefaultBehavior {
 
+    protected User(){
+        super();
+    }
 
     protected IShape currentObject=null,nextObject=null;
 
