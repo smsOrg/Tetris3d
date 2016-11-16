@@ -15,4 +15,4 @@
 
 ##Program Feature
 * You can play tetris as real 3D Tetris
-* By playing game ,You will change block between current block and next block
+* By playing game ,You will be able to change block between current block and next block
