@@ -2,8 +2,7 @@ package com.trippleit.android.tetris3d;
 
 import java.util.ArrayList;
 import com.trippleit.android.tetris3d.users.*;
-import com.trippleit.android.tetris3d.interfaces.OnRemoveLayer;
-import com.trippleit.android.tetris3d.shapes.IShape;
+import org.sms.tetris3d.interfaces.OnRemoveLayer;
 
 import android.content.Context;
 import android.util.Log;
@@ -177,7 +176,7 @@ public static boolean isSupportCameraDrag(){
 		GameStatus.gridSize = gridSize;
 	}
 
-	public static int getAvailableZPos(final User who){
+	/*public static int getAvailableZPos(final User who){
 		int result=0;
 		for (int i = 0; i <= who.getCurrentObjectZ(); i++) {
 			boolean isExist = false;
@@ -196,7 +195,7 @@ public static boolean isSupportCameraDrag(){
 			}
 		}
 		return result;
-	}
+	}*/
 
 	public static int getGameHeight() {
 		return gameHeight;
