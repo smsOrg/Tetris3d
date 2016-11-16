@@ -6,7 +6,7 @@ import org.sms.tetris3d.players.*;
  * Created by hsh on 2016. 11. 16..
  */
 
-public class GameStatus {
+public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     protected static final  ArrayList<User> players = new ArrayList<User>(){
         @Override
         public User remove(int idx){
