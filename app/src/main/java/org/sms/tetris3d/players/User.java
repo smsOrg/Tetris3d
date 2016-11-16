@@ -1,7 +1,10 @@
 package org.sms.tetris3d.players;
 
+import org.sms.tetris3d.GameStatus;
 import com.trippleit.android.tetris3d.shapes.IShape;
 import java.util.*;
+
+import javax.microedition.khronos.opengles.GL10;
 
 /**
  * Created by hsh on 2016. 11. 16..
@@ -115,6 +118,19 @@ public abstract class User implements  UserDefaultBehavior {
         }
     }
 
+    public static void printCurrentObject(GL10 gl, User who){
+        gl.glPushMatrix();
+        gl.glTranslatef(who.getCurrentObjectX(),who. getCurrentObjectY(), who.getCurrentObjectZ());
+        who.getCurrentObject().draw(gl);
+        gl.glPopMatrix();
+    }
+
+    public static void printAbstractObject(GL10 gl, User who){
+        gl.glPushMatrix();
+        gl.glTranslatef(who.getCurrentObjectX(), who.getCurrentObjectY(), GameStatus.getAvailableZPos(who));
+        who.getCurrentObject().drawLineBone(gl);
+        gl.glPopMatrix();
+    }
     @Override
     public boolean setCurrentObjectPositionDown() {
         return false;
