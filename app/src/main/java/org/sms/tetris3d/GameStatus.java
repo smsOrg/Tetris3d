@@ -2,8 +2,13 @@ package org.sms.tetris3d;
 
 import android.content.Context;
 
+import com.trippleit.android.tetris3d.users.*;
+
 import java.util.ArrayList;
 import org.sms.tetris3d.players.*;
+import org.sms.tetris3d.players.DeviceUser;
+import org.sms.tetris3d.players.User;
+
 /**
  * Created by hsh on 2016. 11. 16..
  */
@@ -40,6 +45,26 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     };
     public static ArrayList<User> getPlayers(){
         return players;
+    }
+    public static int getAvailableZPos(final org.sms.tetris3d.players.User who){
+        int result=0;
+        for (int i = 0; i <= who.getCurrentObjectZ(); i++) {
+            boolean isExist = false;
+            for(int j =0;!isExist&&j<who.getCurrentObject().getObjectMatrix().length;j++){
+                for(int k =0;!isExist&&k<who.getCurrentObject().getObjectMatrix()[j].length;k++) {
+                    for (int l = 0;!isExist&&l<who.getCurrentObject().getObjectMatrix()[j][k].length;l++) {
+                        final boolean isValid = (j + who.getCurrentObjectX()) < com.trippleit.android.tetris3d.GameStatus.getGameBoolMatrix().length && (k + who.getCurrentObjectY()) < com.trippleit.android.tetris3d.GameStatus.getGameBoolMatrix()[0].length&&(l + i) < com.trippleit.android.tetris3d.GameStatus.getGameBoolMatrix()[0][0].length;
+                        if (who.getCurrentObject().getObjectMatrix()[j][k][l] && isValid && com.trippleit.android.tetris3d.GameStatus.getGameBoolMatrix()[j + who.getCurrentObjectX()][k + who.getCurrentObjectY()][i+l]) {
+                            isExist = true;
+                        }
+                    }
+                }
+            }
+            if(isExist){
+                result = i+1;
+            }
+        }
+        return result;
     }
     public static void init(Context _c) {
         players.add(new DeviceUser());
