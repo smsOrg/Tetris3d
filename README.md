@@ -1,16 +1,18 @@
-#오픈소스 17팀 개요
-##조원
-<ol>
-<li>황세현 : Adding and confirm sourcecode, xml or GUI placement</li>
-<li>김세훈 : Managementing images, App testing</li>
-<li>이민수 : Adding and confirm sourcecode, Logic part, Documentation</li>
-</ol>
-##Project Outline
- Android 3D Tetris developing using OpenSource
-##Project Goal
-Do not stack up to the set height, a three-dimensional rectangular block is used to fill a horizontal fault plane with a three-dimensional block. Combine uncompleted 3d-tetris games to create the perfect 3d-tetris game.
-##Project Develop Process
-<ol>
-<li>Set basic frame https://github.com/kdomic/android-3d-tetris/tree/master/src/com/trippleit/android/tetris3d</li>
-<li>Improving and Adding UI</li>
-<ol>
+#3D tetris On Android
+## 3D tetris Project
+* 3D tetris Project is targeted on Android.
+* This Project will be supported android device has latest version.
+* To implement Game, using OpenGl Library.
+* UI of this Project will be google material design.
+
+##Project Purpose
+> To play tetris Game on Android as sensationally tetris 
+
+##Program Language
+* Java
+* OpenGl API with Java
+* XML with android namespace
+
+##Program Feature
+* You can play tetris as real 3D Tetris
+* By playing game ,You will change block between current block and next block
