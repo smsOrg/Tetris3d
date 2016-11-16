@@ -1,12 +1,12 @@
 #3D tetris On Android
 ## 3D tetris Project
 * 3D tetris Project is targeted on Android.
-* This Project will be supported android device has latest version.
+* This Project will be supported android device has latest version of android.
 * To implement Game, using OpenGl Library.
-* UI of this Project will be google material design.
+* UI of this Project will be using google material design.
 
 ##Project Purpose
-> To play tetris Game on Android as sensationally tetris 
+> To play tetris Game on Android as sensational tetris 
 
 ##Program Language
 * Java
