@@ -1,6 +1,7 @@
 package org.sms.tetris3d.players;
 
 import com.trippleit.android.tetris3d.shapes.IShape;
+import java.util.*;
 
 /**
  * Created by hsh on 2016. 11. 16..
@@ -55,6 +56,20 @@ public abstract class User implements  UserDefaultBehavior {
     }
 
 
+    public  void setCurrentPosition(int x, int y, int z) {
+        currentObjectX = x;
+        currentObjectY = y;
+        currentObjectZ = z;
+    }
+
+    public static int randInt(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
+
+
+
     @Override
     public void onSwipeRight() {
 
@@ -92,7 +107,9 @@ public abstract class User implements  UserDefaultBehavior {
 
     @Override
     public void rotate(int axis) {
-
+        if(getCurrentObject()!=null){
+            getCurrentObject().rotate(axis);
+        }
     }
 
     @Override
