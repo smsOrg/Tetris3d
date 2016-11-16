@@ -5,4 +5,8 @@ package org.sms.tetris3d.players;
  */
 
 public class AnotherUser extends User {
+    @Override
+    public AnotherUser myIdentity(){
+        return this;
+    }
 }

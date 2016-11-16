@@ -49,4 +49,7 @@ public class User implements  UserDefaultBehavior {
     public boolean setCurrentObjectPositionDown() {
         return false;
     }
+    protected User myIdentity(){
+        return this;
+    }
 }

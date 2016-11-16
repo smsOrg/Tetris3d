@@ -5,4 +5,8 @@ package org.sms.tetris3d.players;
  */
 
 public class Computer extends User {
+    @Override
+    public Computer myIdentity(){
+        return this;
+    }
 }
