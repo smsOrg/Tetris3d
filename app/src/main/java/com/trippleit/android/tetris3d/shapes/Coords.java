@@ -1,7 +1,5 @@
 package com.trippleit.android.tetris3d.shapes;
 
-import com.trippleit.android.tetris3d.users.User;
-
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
@@ -41,26 +39,13 @@ public class Coords extends AbstractDraw implements IShape {
 	}
 
 	@Override
-	public User getUser() {
-		return null;
-	}
-
-	@Override
-	public void setUser(User usr) {
-
-	}
-
-	@Override
 	public void draw(GL10 gl) {
 		gl.glPushMatrix();
 		gl.glTranslatef(-0.05f, -0.05f, 0f);
 		drawLines(gl, vertexBuffer, indexBuffer, indices, colorBuffer);
 		gl.glPopMatrix();
 	}
-	@Override
-	public void drawLineBone(GL10 gl){
 
-	}
 	@Override
 	public boolean[][][] getObjectMatrix() {
 		return null;
