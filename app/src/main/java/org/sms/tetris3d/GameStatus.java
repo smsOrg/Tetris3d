@@ -1,5 +1,7 @@
 package org.sms.tetris3d;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import org.sms.tetris3d.players.*;
 /**
@@ -39,7 +41,20 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     public ArrayList<User> getPlayers(){
         return players;
     }
+
     public void init(){
         players.add(new DeviceUser());
+    }
+    public static void init(Context _c) {
+        gameHeight = 10;
+        gridSize = 5;
+        gStatus = GAME_STATUS.START;
+        restartGameBoolMatrix();
+        setCamera(-65, 10);
+        start=true;
+        end = false;
+        startX = 2;
+        startY = 2;
+        dropFast = false;
     }
 }

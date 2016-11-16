@@ -10,24 +10,24 @@ import android.util.Log;
 
 public class GameStatus {
 
-	private static float cameraR, cameraH;
-	private static float cameraX, cameraY, cameraZ;
-	private static long remove_line_count=0l;
-	private static int gameHeight;
-	private static int gridSize;
-	private static int startX, startY;
+	protected static float cameraR, cameraH;
+	protected static float cameraX, cameraY, cameraZ;
+	protected static long remove_line_count=0l;
+	protected static int gameHeight;
+	protected static int gridSize;
+	protected static int startX, startY;
 	protected static OnRemoveLayer orol = null;
-	//private static IShape currentObject,nextObject;
-//	private static int currentObjectX, currentObjectY, currentObjectZ;
+	//protected static IShape currentObject,nextObject;
+//	protected static int currentObjectX, currentObjectY, currentObjectZ;
 
-	private static boolean gameBoolMatrix[][][];
-	private static String gameColorMatrix[][][];
+	protected static boolean gameBoolMatrix[][][];
+	protected static String gameColorMatrix[][][];
 
-	private static boolean dropFast;
-	private static boolean end;
+	protected static boolean dropFast;
+	protected static boolean end;
 	protected static boolean start=true;
 	public enum GAME_STATUS {END,START,PAUSE,ONGOING};
-	private static GAME_STATUS gStatus  = GAME_STATUS.START;
+	protected static GAME_STATUS gStatus  = GAME_STATUS.START;
 	public enum PLAYER_STATUS{
 		DISCONNECT,CONNECT,MOVE_BLOCK,ROTATE_BLOCK,PUT_BLOCK,SWIPE_BLOCK,NEW_SHAPE
 	}
@@ -84,7 +84,7 @@ public class GameStatus {
 		calculateCamera();
 	}
 
-	private static void calculateCamera() {
+	protected static void calculateCamera() {
 		GameStatus.cameraX = 15 * (float) Math.cos(Math
 				.toRadians(GameStatus.cameraR));
 		GameStatus.cameraY = 15 * (float) Math.sin(Math
@@ -142,7 +142,7 @@ public static boolean isSupportCameraDrag(){
 		gameBoolMatrix[x][y][z] = true;
 	}
 
-	private static void restartGameBoolMatrix() {
+	protected static void restartGameBoolMatrix() {
 		remove_line_count=0;
 		int objectBuffer = 5;
 		gameBoolMatrix = new boolean[gridSize][gridSize][gameHeight
@@ -267,7 +267,7 @@ public static boolean isSupportCameraDrag(){
 		return false;
 	}
 
-	private static void removeRows(ArrayList<Integer> rowsToRemove) {
+	protected static void removeRows(ArrayList<Integer> rowsToRemove) {
 		for (Integer x : rowsToRemove) {
 			for (int k = x; k < gameHeight; k++)
 				for (int i = 0; i < gridSize; i++)
