@@ -151,26 +151,26 @@ public abstract class User implements  UserDefaultBehavior {
         }
         return false;
     }
-
     @Override
     public void onSwipeRight() {
-
+        moveX(false);
     }
 
     @Override
     public void onSwipeLeft() {
-
+        moveX(true);
     }
 
     @Override
     public void onSwipeTop() {
-
+        moveY(false);
     }
 
     @Override
     public void onSwipeBottom() {
-
+        moveY(true);
     }
+
     @Override
     public void moveX(boolean oppo) {
         if(currentObject!=null){
