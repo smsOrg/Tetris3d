@@ -223,7 +223,17 @@ public abstract class User implements  UserDefaultBehavior {
     }
 
     @Override
-    public boolean swipeBlock(boolean fix) {
+    public  boolean swipeBlock(final boolean fixCurrentObjectPos){
+        if(isAvailableSwipeBlock()) {
+            IShape tmp = getNextObject();
+            setNextObject(getCurrentObject());
+            setCurrentObject(tmp);
+            if (getCurrentObject() == tmp) {
+                if (fixCurrentObjectPos) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
