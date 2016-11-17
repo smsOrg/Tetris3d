@@ -1,7 +1,16 @@
 package org.sms.tetris3d.players;
 
 import org.sms.tetris3d.GameStatus;
+
+import com.trippleit.android.tetris3d.shapes.Cube;
 import com.trippleit.android.tetris3d.shapes.IShape;
+import com.trippleit.android.tetris3d.shapes.ObjectC;
+import com.trippleit.android.tetris3d.shapes.ObjectI;
+import com.trippleit.android.tetris3d.shapes.ObjectL;
+import com.trippleit.android.tetris3d.shapes.ObjectS;
+import com.trippleit.android.tetris3d.shapes.ObjectT;
+import com.trippleit.android.tetris3d.shapes.ObjectZ;
+
 import java.util.*;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -182,7 +191,36 @@ public abstract class User implements  UserDefaultBehavior {
             }
         }
     }
+    protected IShape chooseObject(int shapeId) {
+        switch (shapeId) {
+            case 0:
+            case 'C':
+            case 'c':
+                return new ObjectC(myIdentity());
+            case 1:
+            case 'I':
+            case 'i':
+                return new ObjectI(myIdentity());
+            case 2:
+            case 'L':
+            case 'l':
+                return new ObjectL(myIdentity());
+            case 3:
+            case 'S':
+            case 's':
+                return new ObjectS(myIdentity());
+            case 4:
+            case 'T':
+            case 't':
+                return new ObjectT(myIdentity());
+            case 5:
+            case 'Z':
+            case 'z':
+                return new ObjectZ(myIdentity());
+        }
 
+        return new Cube(myIdentity());
+    }
     @Override
     public void moveY(boolean oppo) {
         if(currentObject!=null){
