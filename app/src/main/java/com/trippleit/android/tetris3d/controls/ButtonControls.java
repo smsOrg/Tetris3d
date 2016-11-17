@@ -1,7 +1,7 @@
 package com.trippleit.android.tetris3d.controls;
 
-import com.trippleit.android.tetris3d.GameStatus;
-
+import org.sms.tetris3d.GameStatus;
+import com.example.hsh.myapplication.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -24,7 +24,7 @@ public class ButtonControls extends Activity implements OnTouchListener {
 
 		switch (v.getId()) {
 
-		case com.trippleit.android.tetris3d.R.id.btnUp:
+		case R.id.btnUp:
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
 				if (mHandler_up != null)
@@ -40,7 +40,7 @@ public class ButtonControls extends Activity implements OnTouchListener {
 				break;
 			}
 			break;
-		case com.trippleit.android.tetris3d.R.id.btnDown:
+		case R.id.btnDown:
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
 				if (mHandler_down != null)
@@ -56,7 +56,7 @@ public class ButtonControls extends Activity implements OnTouchListener {
 				break;
 			}
 			break;
-		case com.trippleit.android.tetris3d.R.id.btnLeft:
+		case R.id.btnLeft:
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
 				if (mHandler_left != null)
@@ -72,7 +72,7 @@ public class ButtonControls extends Activity implements OnTouchListener {
 				break;
 			}
 			break;
-		case com.trippleit.android.tetris3d.R.id.btnRight:
+		case R.id.btnRight:
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
 				if (mHandler_right != null)

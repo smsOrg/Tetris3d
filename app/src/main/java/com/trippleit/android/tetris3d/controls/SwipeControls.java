@@ -1,10 +1,11 @@
 package com.trippleit.android.tetris3d.controls;
 
-import com.trippleit.android.tetris3d.GameStatus;
+import org.sms.tetris3d.GameStatus;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
@@ -15,22 +16,22 @@ public class SwipeControls implements OnTouchListener {
 
 	public void onSwipeRight() {
 		//Log.d("Kruno", "" + isMultiTouch);
-		GameStatus.setCurrentXPositionPos();
+		GameStatus.getPlayers().get(0).setCurrentXPositionPos();
 	}
 
 	public void onSwipeLeft() {
 		//Log.d("Kruno", "" + isMultiTouch);
-		GameStatus.setCurrentXPositionNeg();
+		GameStatus.getPlayers().get(0).setCurrentXPositionNeg();
 	}
 
 	public void onSwipeTop() {
 		//Log.d("Kruno", "" + isMultiTouch);
-		GameStatus.setCurrentYPositionPos();
+		GameStatus.getPlayers().get(0).setCurrentYPositionPos();
 	}
 
 	public void onSwipeBottom() {
 		//Log.d("Kruno", "" + isMultiTouch);
-		GameStatus.setCurrentYPositionNeg();
+		GameStatus.getPlayers().get(0).setCurrentYPositionNeg();
 	}
 
 	private boolean isMultiTouch = false;
@@ -38,15 +39,22 @@ public class SwipeControls implements OnTouchListener {
 	private float x1 = 0, y1 = 0;
 	private float x2 = 0, y2 = 0;
 	private long time = 0;
-
+	private  VelocityTracker vt =null;
+	MotionEvent tmpevent = null;
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
+		if(vt==null){
+			vt = VelocityTracker.obtain();
+		}
+
+			vt.addMovement(event);
 
 		int action = event.getAction() & MotionEvent.ACTION_MASK;
 
 		switch (action) {
 			case MotionEvent.ACTION_DOWN: {
+
 				// Log.d("Kruno", "Action Down1");
 				x1 = event.getX();
 				y1 = event.getY();
@@ -55,6 +63,24 @@ public class SwipeControls implements OnTouchListener {
 				break;
 			}
 			case MotionEvent.ACTION_MOVE: {
+				if(GameStatus.isSupportCameraDrag()) {
+
+
+					vt.computeCurrentVelocity(100, 3);
+					float vx = -1 * vt.getXVelocity();
+					float vy = vt.getYVelocity();
+					float vv = (float) Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
+					final float deltaXAngle = vv / vx;
+					final float deltaYAngle = (vv) / (vy * (float) Math.sqrt(vv));
+					if (!Float.isNaN(deltaXAngle)) {
+						GameStatus.setCameraR((GameStatus.getCameraR() + deltaXAngle) % 360);
+					}
+					android.util.Log.e("tracking", GameStatus.getCameraR() + "");
+					if (!Float.isNaN(deltaYAngle)) {
+						GameStatus.setCameraH(GameStatus.getCameraH() + deltaYAngle);
+					}
+				}
+
 				// Log.d("Kruno", "Action Move");
 				break;
 			}
@@ -64,7 +90,7 @@ public class SwipeControls implements OnTouchListener {
 				isMultiTouch = true;
 				fingersCount = event.getPointerCount();
 				if (fingersCount == 3)
-					GameStatus.getCurrentObject().rotate('z');
+					GameStatus.getPlayers().get(0).getCurrentObject().rotate('z');
 				break;
 			}
 			case MotionEvent.ACTION_POINTER_UP: {
@@ -74,7 +100,11 @@ public class SwipeControls implements OnTouchListener {
 			}
 			case MotionEvent.ACTION_UP: {
 				//Log.d("RG", "diffX: " + ((System.currentTimeMillis() - time)<90));
-				
+				if(vt!=null) {
+					vt.recycle();
+					vt=null;
+					tmpevent=null;
+				}
 				if((System.currentTimeMillis() - time)<90){
 					GameStatus.setDropFast();
 					return true;
@@ -113,16 +143,16 @@ public class SwipeControls implements OnTouchListener {
 			case 2:
 				switch (detectDirection(xFirst, yFirst, xSecond, ySecond)) {
 					case 1:
-						GameStatus.getCurrentObject().rotate('x');
+						GameStatus.getPlayers().get(0).getCurrentObject().rotate('x');
 						break;
 					case 2:
-						GameStatus.getCurrentObject().rotate('x');
+						GameStatus.getPlayers().get(0).getCurrentObject().rotate('x');
 						break;
 					case 3:
-						GameStatus.getCurrentObject().rotate('y');
+						GameStatus.getPlayers().get(0).getCurrentObject().rotate('y');
 						break;
 					case 4:
-						GameStatus.getCurrentObject().rotate('y');
+						GameStatus.getPlayers().get(0).getCurrentObject().rotate('y');
 						break;
 				}
 				break;
