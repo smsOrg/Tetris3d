@@ -195,6 +195,33 @@ public abstract class User implements  UserDefaultBehavior {
         }
     }
 
+    public  boolean isAvailableSwipeBlock(){
+        if(getNextObject()!=null){
+            for(int i =0;i<getNextObject().getObjectMatrix().length;i++){
+                for(int j=0;j<getNextObject().getObjectMatrix()[i].length;j++){
+                    for(int k=0;k<getNextObject().getObjectMatrix()[i][j].length;k++){
+                        final int bX = i+getCurrentObjectX();
+                        final int bY=j+getCurrentObjectY();
+                        final int bZ=k+getCurrentObjectZ();
+                        final boolean isValid= bX<GameStatus.getGameBoolMatrix().length && bY<GameStatus.getGameBoolMatrix()[0].length&&bZ<GameStatus.getGameBoolMatrix()[0][0].length;
+
+                        if(isValid&&getNextObject().getObjectMatrix()[i][j][k]&&GameStatus.getGameBoolMatrix()[bX][bY][bZ]){
+                            return false;
+                        }
+                        else if(!isValid&&getNextObject().getObjectMatrix()[i][j][k]){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            return false;
+        }
+
+        return true;
+    }
+
     @Override
     public boolean swipeBlock(boolean fix) {
         return false;
