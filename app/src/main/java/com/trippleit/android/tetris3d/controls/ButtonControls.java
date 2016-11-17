@@ -1,7 +1,6 @@
 package com.trippleit.android.tetris3d.controls;
 
-import org.sms.tetris3d.GameStatus;
-import com.example.hsh.myapplication.R;
+import org.sms.tetris3d.*;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;

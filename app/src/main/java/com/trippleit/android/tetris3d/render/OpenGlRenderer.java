@@ -37,7 +37,9 @@ public class OpenGlRenderer extends AbstractOpenGlRenderer {
 			removeFullRows();
 			printAllObjects(gl);
 			//printCurrentObject(gl);
-			for(User usr:GameStatus.getPlayers()) {
+			//for(User usr:GameStatus.getPlayers()) {
+			for(int i = GameStatus.getPlayers().size()-1;i>=0;i--){
+				User usr = GameStatus.getPlayers().get(i);
 				if (!GameStatus.isEnd()&&usr.getNextObject()!=null) {
 					//printAbstractObject(gl);
 					User.printAbstractObject(gl,usr);
