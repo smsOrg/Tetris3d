@@ -171,15 +171,28 @@ public abstract class User implements  UserDefaultBehavior {
     public void onSwipeBottom() {
 
     }
-
     @Override
-    public void moveX(boolean opposite) {
-
+    public void moveX(boolean oppo) {
+        if(currentObject!=null){
+            if(oppo){
+                this.setCurrentXPositionNeg();
+            }
+            else{
+                this.setCurrentXPositionPos();
+            }
+        }
     }
 
     @Override
-    public void moveY(boolean opposite) {
-
+    public void moveY(boolean oppo) {
+        if(currentObject!=null){
+            if(oppo){
+                this.setCurrentYPositionNeg();
+            }
+            else{
+                this.setCurrentYPositionPos();
+            }
+        }
     }
 
     @Override
@@ -209,7 +222,25 @@ public abstract class User implements  UserDefaultBehavior {
     }
     @Override
     public boolean setCurrentObjectPositionDown() {
-        return false;
+        if (currentObjectZ <= 0  || currentObject==null) {
+            return false;
+        }
+
+        for (int i = 0; i < currentObject.getObjectMatrix().length; i++)
+            for (int j = 0; j < currentObject.getObjectMatrix().length; j++)
+                for (int k = 0; k < currentObject.getObjectMatrix().length; k++)
+                    if (currentObject.getObjectMatrix()[i][j][k] == true)
+                        if (GameStatus.getGameBoolMatrix()[i + currentObjectX][j
+                                + currentObjectY][currentObjectZ - 1] == true) {
+                            if (k != 0)
+                                currentObjectZ--; // ukoliko kolizija nije na
+                            // prvoj razini treba
+                            // dopustiti još jedan drop
+                            return false;
+                        }
+
+        currentObjectZ--;
+        return true;
     }
     protected User myIdentity(){
         return this;
