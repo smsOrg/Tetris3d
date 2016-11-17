@@ -1,5 +1,7 @@
 package com.trippleit.android.tetris3d.shapes;
 
+import com.trippleit.android.tetris3d.users.User;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -71,7 +73,10 @@ public class Grid extends AbstractDraw implements IShape {
 
 		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 	}
+	@Override
+	public void drawLineBone(GL10 gl){
 
+	}
 	@Override
 	public boolean[][][] getObjectMatrix() {
 		// TODO Auto-generated method stub
@@ -104,5 +109,13 @@ public class Grid extends AbstractDraw implements IShape {
 
 	}
 
+	@Override
+	public User getUser() {
+		return null;
+	}
+
+	@Override
+	public void setUser(User usr) {
+	}
 }
 

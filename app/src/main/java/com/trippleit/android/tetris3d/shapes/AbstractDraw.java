@@ -8,12 +8,13 @@ import java.nio.ShortBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 import com.trippleit.android.tetris3d.GameStatus;
+import com.trippleit.android.tetris3d.users.User;
 
 public abstract class AbstractDraw {
-
+	protected User usr=null;
 	public void drawObject(GL10 gl, boolean objectMatrix[][][], String color) {
 		gl.glPushMatrix();
-		Cube c = new Cube(color);
+		Cube c = new Cube(color,null);
 		for (int i = 0; i < objectMatrix.length; i++)
 			for (int j = 0; j < objectMatrix.length; j++)
 				for (int k = 0; k < objectMatrix.length; k++)
@@ -25,7 +26,20 @@ public abstract class AbstractDraw {
 					}
 		gl.glPopMatrix();
 	}
-
+	public void drawObjectBone(GL10 gl, boolean objectMatrix[][][], String color) {
+		gl.glPushMatrix();
+		Cube c = new Cube(color,null);
+		for (int i = 0; i < objectMatrix.length; i++)
+			for (int j = 0; j < objectMatrix.length; j++)
+				for (int k = 0; k < objectMatrix.length; k++)
+					if (objectMatrix[i][j][k] == true) {
+						gl.glPushMatrix();
+						gl.glTranslatef(i, j, k);
+						c.drawLineBone(gl);
+						gl.glPopMatrix();
+					}
+		gl.glPopMatrix();
+	}
 	public boolean[][] rot(boolean[][] a) {
 		boolean rotatedMatrix[][] = new boolean[a.length][a.length];
 		for (int i = 0; i < a.length; i++)
@@ -33,9 +47,22 @@ public abstract class AbstractDraw {
 				rotatedMatrix[a.length - (j + 1)][i] = a[i][j];
 		return rotatedMatrix;
 	}
-
-	public boolean[][][] rotateX(boolean objectMatrix[][][]) {
-		if(GameStatus.getCurrentObjectX()+GameStatus.getCurrentObject().getZsize()>=GameStatus.getGridSize()){
+	public boolean isAvailableRotatedMatrix(final boolean rotatedMatrix[][][], User who){
+		for(int i =0;i<rotatedMatrix.length;i++){
+			for(int j = 0; j<rotatedMatrix[i].length;j++){
+				for(int k =0;k<rotatedMatrix[i][j].length;k++){
+					final boolean isValid = (i + who.getCurrentObjectX()) < GameStatus.getGameBoolMatrix().length && (j + who.getCurrentObjectY()) < GameStatus.getGameBoolMatrix()[0].length&&(k + who.getCurrentObjectZ()) < GameStatus.getGameBoolMatrix()[0][0].length;
+					final boolean[][][] gbm = GameStatus.getGameBoolMatrix();
+					if(isValid&&rotatedMatrix[i][j][k]&&gbm[i+who.getCurrentObjectX()][j+who.getCurrentObjectY()][k+who.getCurrentObjectZ()]){
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+	public boolean[][][] rotateX(boolean objectMatrix[][][],User who) {
+		if(who.getCurrentObjectX()+who.getCurrentObject().getZsize()>=GameStatus.getGridSize()){
 			return objectMatrix;
 		}
 		boolean rotatedMatrix[][][] = createFalsMatrix(objectMatrix.length);
@@ -49,11 +76,15 @@ public abstract class AbstractDraw {
 				for (int k = 0; k < objectMatrix.length; k++)
 					rotatedMatrix[i][j][k] = temp[i][k];
 		}
-		return align(rotatedMatrix);
+		rotatedMatrix = align(rotatedMatrix);
+		if(!isAvailableRotatedMatrix(rotatedMatrix,who)){
+			return objectMatrix;
+		}else
+			return rotatedMatrix;
 	}
 
-	public boolean[][][] rotateY(boolean objectMatrix[][][]) {
-		if(GameStatus.getCurrentObjectY()+GameStatus.getCurrentObject().getZsize()>=GameStatus.getGridSize()){
+	public boolean[][][] rotateY(boolean objectMatrix[][][],User who) {
+		if(who.getCurrentObjectY()+who.getCurrentObject().getZsize()>=GameStatus.getGridSize()){
 			return objectMatrix;
 		}
 		boolean rotatedMatrix[][][] = createFalsMatrix(objectMatrix.length);
@@ -67,14 +98,18 @@ public abstract class AbstractDraw {
 				for (int k = 0; k < objectMatrix.length; k++)
 					rotatedMatrix[i][j][k] = temp[j][k];
 		}
-		return align(rotatedMatrix);
+		rotatedMatrix = align(rotatedMatrix);
+		if(!isAvailableRotatedMatrix(rotatedMatrix,who)){
+			return objectMatrix;
+		}else
+			return rotatedMatrix;
 	}
 
-	public boolean[][][] rotateZ(boolean objectMatrix[][][]) {
-		if(GameStatus.getCurrentObjectY()+GameStatus.getCurrentObject().getXsize()>GameStatus.getGridSize()){
+	public boolean[][][] rotateZ(boolean objectMatrix[][][],User who) {
+		if(who.getCurrentObjectY()+who.getCurrentObject().getXsize()>GameStatus.getGridSize()){
 			return objectMatrix;
 		}
-		if(GameStatus.getCurrentObjectX()+GameStatus.getCurrentObject().getYsize()>GameStatus.getGridSize()){
+		if(who.getCurrentObjectX()+who.getCurrentObject().getYsize()>GameStatus.getGridSize()){
 			return objectMatrix;
 		}				
 		boolean rotatedMatrix[][][] = createFalsMatrix(objectMatrix.length);
@@ -88,7 +123,11 @@ public abstract class AbstractDraw {
 				for (int j = 0; j < objectMatrix.length; j++)
 					rotatedMatrix[i][j][k] = temp[i][j];
 		}
-		return align(rotatedMatrix);
+		rotatedMatrix = align(rotatedMatrix);
+		if(!isAvailableRotatedMatrix(rotatedMatrix,who)){
+			return objectMatrix;
+		}else
+			return rotatedMatrix;
 	}
 
 	public boolean[][][] align(boolean rotatedMatrix[][][]) {
@@ -217,7 +256,8 @@ public abstract class AbstractDraw {
 		gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
 		gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
 		gl.glColorPointer(4, GL10.GL_FLOAT, 0, colorBuffer);
-
+		//gl.glColorPointer();
+		//gl.glColor
 		gl.glDrawElements(GL10.GL_TRIANGLES, indices.length,
 				GL10.GL_UNSIGNED_SHORT, indexBuffer);
 
@@ -246,7 +286,8 @@ public abstract class AbstractDraw {
 
 	public FloatBuffer floatToFloatBuffer(float[] vertices) {
 		FloatBuffer vertexBuffer;
-		ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);
+		ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * Float.SIZE);
+
 		vbb.order(ByteOrder.nativeOrder());
 		vertexBuffer = vbb.asFloatBuffer();
 		vertexBuffer.put(vertices);
@@ -272,9 +313,10 @@ public abstract class AbstractDraw {
 
 		for (int i = 0; i < colorArrayLength; i += 4) {
 			colors[i] = cR;
+			//colors[i]=0;
 			colors[i + 1] = cG;
 			colors[i + 2] = cB;
-			colors[i + 3] = 1.0f;
+			colors[i + 3] = 0f;
 		}
 		return colors;
 	}
