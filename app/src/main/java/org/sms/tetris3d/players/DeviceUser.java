@@ -9,4 +9,5 @@ public class DeviceUser extends User {
     protected DeviceUser myIdentity(){
         return this;
     }
+    public DeviceUser(){super();}
 }

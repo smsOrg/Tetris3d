@@ -9,4 +9,5 @@ public class AnotherUser extends User {
     public AnotherUser myIdentity(){
         return this;
     }
+    public AnotherUser(){super();}
 }
