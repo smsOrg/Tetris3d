@@ -7,8 +7,8 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.trippleit.android.tetris3d.GameStatus;
-import com.trippleit.android.tetris3d.users.User;
+import org.sms.tetris3d.GameStatus;
+import org.sms.tetris3d.players.User;
 
 public abstract class AbstractDraw {
 	protected User usr=null;

@@ -1,6 +1,6 @@
 package com.trippleit.android.tetris3d.shapes;
 
-import com.trippleit.android.tetris3d.users.User;
+import org.sms.tetris3d.players.User;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -18,12 +18,10 @@ public class ObjectC extends AbstractDraw implements IShape {
 		objectMatrix[1][1][0] = true;
 		setUser(usr);
 	}
-
 	@Override
 	public User getUser() {
 		return usr;
 	}
-
 	@Override
 	public void setUser(User usr) {
 		this.usr = usr;

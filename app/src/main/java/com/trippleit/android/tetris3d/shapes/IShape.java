@@ -1,7 +1,7 @@
 package com.trippleit.android.tetris3d.shapes;
 
 import javax.microedition.khronos.opengles.GL10;
-import com.trippleit.android.tetris3d.users.User;
+import org.sms.tetris3d.players.User;
 public interface IShape {
 	public User getUser();
 	public void setUser(User usr);
