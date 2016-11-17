@@ -18,7 +18,7 @@ public class DeviceUser extends User {
     public com.trippleit.android.tetris3d.shapes.IShape chooseObject(int rand){
         return super.chooseObject(rand);
     }
-    public void newShpe() {
+    public void newShape() {
         int objNum = randInt(0, 5);
         setCurrentObject(getNextObject()!=null?getNextObject():chooseObject(objNum));
         objNum = randInt(0, 5);
@@ -34,7 +34,7 @@ public class DeviceUser extends User {
         if (!ret) {
             savePositionToBoolMatrix();
             if (GameStatus.checkEnd() == false) {
-                newShpe();
+                newShape();
             }
         }
     }

@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/camera_up.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/camera_up.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/splash.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/splash.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/camera_right.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/camera_right.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/camera_left.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/camera_left.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/instructions.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/instructions.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_launcher.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/start.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/start.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/camera_down.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/camera_down.png"
+    }
+]

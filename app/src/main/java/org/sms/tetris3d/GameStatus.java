@@ -2,7 +2,7 @@ package org.sms.tetris3d;
 
 import android.content.Context;
 
-import com.trippleit.android.tetris3d.users.*;
+import org.sms.tetris3d.players.*;
 
 import java.util.ArrayList;
 import org.sms.tetris3d.players.*;
