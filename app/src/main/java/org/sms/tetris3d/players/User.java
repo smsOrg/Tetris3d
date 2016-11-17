@@ -220,6 +220,21 @@ public abstract class User implements  UserDefaultBehavior {
         who.getCurrentObject().drawLineBone(gl);
         gl.glPopMatrix();
     }
+
+    public  void savePositionToBoolMatrix() {
+        for (int i = 0; i < currentObject.getObjectMatrix().length; i++)
+            for (int j = 0; j < currentObject.getObjectMatrix().length; j++)
+                for (int k = 0; k < currentObject.getObjectMatrix().length
+                        && k < GameStatus.getGameHeight(); k++)
+                    if ((k + currentObjectZ) < GameStatus.getGameHeight()
+                            && currentObject.getObjectMatrix()[i][j][k] == true) {
+                        GameStatus.getGameBoolMatrix()[i + currentObjectX][j + currentObjectY][k
+                                + currentObjectZ] = true;
+                        GameStatus.getGameColorMatrix()[i + currentObjectX][j + currentObjectY][k
+                                + currentObjectZ] = currentObject.getColor();
+                    }
+    }
+
     @Override
     public boolean setCurrentObjectPositionDown() {
         if (currentObjectZ <= 0  || currentObject==null) {
