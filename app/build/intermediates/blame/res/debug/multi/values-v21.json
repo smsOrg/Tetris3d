@@ -8,18 +8,18 @@
                     "startColumn": 4,
                     "startOffset": 55,
                     "endLine": 7,
-                    "endColumn": 16,
-                    "endOffset": 371
+                    "endColumn": 12,
+                    "endOffset": 351
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/values-v21/styles.xml",
                     "position": {
-                        "startLine": 1,
-                        "startColumn": 12,
-                        "startOffset": 24,
-                        "endLine": 6,
-                        "endColumn": 16,
-                        "endOffset": 340
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 17,
+                        "endLine": 7,
+                        "endColumn": 12,
+                        "endOffset": 313
                     }
                 }
             },
@@ -27,9 +27,9 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 376,
+                    "startOffset": 356,
                     "endColumn": 90,
-                    "endOffset": 462
+                    "endOffset": 442
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -46,9 +46,9 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 467,
+                    "startOffset": 447,
                     "endColumn": 102,
-                    "endOffset": 565
+                    "endOffset": 545
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -65,9 +65,9 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 570,
+                    "startOffset": 550,
                     "endColumn": 102,
-                    "endOffset": 668
+                    "endOffset": 648
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -84,9 +84,9 @@
                 "to": {
                     "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 673,
+                    "startOffset": 653,
                     "endColumn": 104,
-                    "endOffset": 773
+                    "endOffset": 753
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -103,9 +103,9 @@
                 "to": {
                     "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 778,
+                    "startOffset": 758,
                     "endColumn": 106,
-                    "endOffset": 880
+                    "endOffset": 860
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -122,9 +122,9 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 885,
+                    "startOffset": 865,
                     "endColumn": 108,
-                    "endOffset": 989
+                    "endOffset": 969
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -141,9 +141,9 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 994,
+                    "startOffset": 974,
                     "endColumn": 108,
-                    "endOffset": 1098
+                    "endOffset": 1078
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -160,9 +160,9 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 1103,
+                    "startOffset": 1083,
                     "endColumn": 108,
-                    "endOffset": 1207
+                    "endOffset": 1187
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -179,9 +179,9 @@
                 "to": {
                     "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 1212,
+                    "startOffset": 1192,
                     "endColumn": 108,
-                    "endOffset": 1316
+                    "endOffset": 1296
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -198,9 +198,9 @@
                 "to": {
                     "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 1321,
+                    "startOffset": 1301,
                     "endColumn": 108,
-                    "endOffset": 1425
+                    "endOffset": 1405
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -217,9 +217,9 @@
                 "to": {
                     "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 1430,
+                    "startOffset": 1410,
                     "endColumn": 106,
-                    "endOffset": 1532
+                    "endOffset": 1512
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -236,9 +236,9 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1537,
+                    "startOffset": 1517,
                     "endColumn": 102,
-                    "endOffset": 1635
+                    "endOffset": 1615
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -255,9 +255,9 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 1640,
+                    "startOffset": 1620,
                     "endColumn": 118,
-                    "endOffset": 1754
+                    "endOffset": 1734
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -274,10 +274,10 @@
                 "to": {
                     "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 1759,
+                    "startOffset": 1739,
                     "endLine": 22,
                     "endColumn": 12,
-                    "endOffset": 1909
+                    "endOffset": 1889
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -295,10 +295,10 @@
                 "to": {
                     "startLine": 23,
                     "startColumn": 4,
-                    "startOffset": 1914,
+                    "startOffset": 1894,
                     "endLine": 24,
                     "endColumn": 12,
-                    "endOffset": 2064
+                    "endOffset": 2044
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -316,9 +316,9 @@
                 "to": {
                     "startLine": 25,
                     "startColumn": 4,
-                    "startOffset": 2069,
+                    "startOffset": 2049,
                     "endColumn": 104,
-                    "endOffset": 2169
+                    "endOffset": 2149
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -335,9 +335,9 @@
                 "to": {
                     "startLine": 26,
                     "startColumn": 4,
-                    "startOffset": 2174,
+                    "startOffset": 2154,
                     "endColumn": 120,
-                    "endOffset": 2290
+                    "endOffset": 2270
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -354,9 +354,9 @@
                 "to": {
                     "startLine": 27,
                     "startColumn": 4,
-                    "startOffset": 2295,
+                    "startOffset": 2275,
                     "endColumn": 100,
-                    "endOffset": 2391
+                    "endOffset": 2371
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -373,10 +373,10 @@
                 "to": {
                     "startLine": 28,
                     "startColumn": 4,
-                    "startOffset": 2396,
+                    "startOffset": 2376,
                     "endLine": 29,
                     "endColumn": 12,
-                    "endOffset": 2538
+                    "endOffset": 2518
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -394,10 +394,10 @@
                 "to": {
                     "startLine": 30,
                     "startColumn": 4,
-                    "startOffset": 2543,
+                    "startOffset": 2523,
                     "endLine": 31,
                     "endColumn": 12,
-                    "endOffset": 2679
+                    "endOffset": 2659
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -415,9 +415,9 @@
                 "to": {
                     "startLine": 32,
                     "startColumn": 4,
-                    "startOffset": 2684,
+                    "startOffset": 2664,
                     "endColumn": 102,
-                    "endOffset": 2782
+                    "endOffset": 2762
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -434,9 +434,9 @@
                 "to": {
                     "startLine": 33,
                     "startColumn": 4,
-                    "startOffset": 2787,
+                    "startOffset": 2767,
                     "endColumn": 118,
-                    "endOffset": 2901
+                    "endOffset": 2881
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -453,9 +453,9 @@
                 "to": {
                     "startLine": 34,
                     "startColumn": 4,
-                    "startOffset": 2906,
+                    "startOffset": 2886,
                     "endColumn": 106,
-                    "endOffset": 3008
+                    "endOffset": 2988
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -472,9 +472,9 @@
                 "to": {
                     "startLine": 35,
                     "startColumn": 4,
-                    "startOffset": 3013,
+                    "startOffset": 2993,
                     "endColumn": 102,
-                    "endOffset": 3111
+                    "endOffset": 3091
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -491,10 +491,10 @@
                 "to": {
                     "startLine": 36,
                     "startColumn": 4,
-                    "startOffset": 3116,
+                    "startOffset": 3096,
                     "endLine": 37,
                     "endColumn": 12,
-                    "endOffset": 3266
+                    "endOffset": 3246
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -512,10 +512,10 @@
                 "to": {
                     "startLine": 38,
                     "startColumn": 4,
-                    "startOffset": 3271,
+                    "startOffset": 3251,
                     "endLine": 39,
                     "endColumn": 12,
-                    "endOffset": 3437
+                    "endOffset": 3417
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -533,10 +533,10 @@
                 "to": {
                     "startLine": 40,
                     "startColumn": 4,
-                    "startOffset": 3442,
+                    "startOffset": 3422,
                     "endLine": 41,
                     "endColumn": 12,
-                    "endOffset": 3586
+                    "endOffset": 3566
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -554,10 +554,10 @@
                 "to": {
                     "startLine": 42,
                     "startColumn": 4,
-                    "startOffset": 3591,
+                    "startOffset": 3571,
                     "endLine": 43,
                     "endColumn": 12,
-                    "endOffset": 3751
+                    "endOffset": 3731
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -575,10 +575,10 @@
                 "to": {
                     "startLine": 44,
                     "startColumn": 4,
-                    "startOffset": 3756,
+                    "startOffset": 3736,
                     "endLine": 45,
                     "endColumn": 12,
-                    "endOffset": 3908
+                    "endOffset": 3888
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -596,10 +596,10 @@
                 "to": {
                     "startLine": 46,
                     "startColumn": 4,
-                    "startOffset": 3913,
+                    "startOffset": 3893,
                     "endLine": 47,
                     "endColumn": 12,
-                    "endOffset": 4059
+                    "endOffset": 4039
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -617,9 +617,9 @@
                 "to": {
                     "startLine": 48,
                     "startColumn": 4,
-                    "startOffset": 4064,
+                    "startOffset": 4044,
                     "endColumn": 118,
-                    "endOffset": 4178
+                    "endOffset": 4158
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -636,10 +636,10 @@
                 "to": {
                     "startLine": 49,
                     "startColumn": 4,
-                    "startOffset": 4183,
+                    "startOffset": 4163,
                     "endLine": 53,
                     "endColumn": 12,
-                    "endOffset": 4550
+                    "endOffset": 4530
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -657,10 +657,10 @@
                 "to": {
                     "startLine": 54,
                     "startColumn": 4,
-                    "startOffset": 4555,
+                    "startOffset": 4535,
                     "endLine": 55,
                     "endColumn": 12,
-                    "endOffset": 4699
+                    "endOffset": 4679
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -678,10 +678,10 @@
                 "to": {
                     "startLine": 56,
                     "startColumn": 4,
-                    "startOffset": 4704,
+                    "startOffset": 4684,
                     "endLine": 57,
                     "endColumn": 12,
-                    "endOffset": 4848
+                    "endOffset": 4828
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -699,9 +699,9 @@
                 "to": {
                     "startLine": 58,
                     "startColumn": 4,
-                    "startOffset": 4853,
+                    "startOffset": 4833,
                     "endColumn": 111,
-                    "endOffset": 4960
+                    "endOffset": 4940
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -718,9 +718,9 @@
                 "to": {
                     "startLine": 59,
                     "startColumn": 4,
-                    "startOffset": 4965,
+                    "startOffset": 4945,
                     "endColumn": 146,
-                    "endOffset": 5107
+                    "endOffset": 5087
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -737,10 +737,10 @@
                 "to": {
                     "startLine": 60,
                     "startColumn": 4,
-                    "startOffset": 5112,
+                    "startOffset": 5092,
                     "endLine": 61,
                     "endColumn": 12,
-                    "endOffset": 5260
+                    "endOffset": 5240
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -758,10 +758,10 @@
                 "to": {
                     "startLine": 62,
                     "startColumn": 4,
-                    "startOffset": 5265,
+                    "startOffset": 5245,
                     "endLine": 63,
                     "endColumn": 12,
-                    "endOffset": 5407
+                    "endOffset": 5387
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -779,9 +779,9 @@
                 "to": {
                     "startLine": 64,
                     "startColumn": 4,
-                    "startOffset": 5412,
+                    "startOffset": 5392,
                     "endColumn": 74,
-                    "endOffset": 5482
+                    "endOffset": 5462
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -798,9 +798,9 @@
                 "to": {
                     "startLine": 65,
                     "startColumn": 4,
-                    "startOffset": 5487,
+                    "startOffset": 5467,
                     "endColumn": 88,
-                    "endOffset": 5571
+                    "endOffset": 5551
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -817,9 +817,9 @@
                 "to": {
                     "startLine": 66,
                     "startColumn": 4,
-                    "startOffset": 5576,
+                    "startOffset": 5556,
                     "endColumn": 86,
-                    "endOffset": 5658
+                    "endOffset": 5638
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -836,9 +836,9 @@
                 "to": {
                     "startLine": 67,
                     "startColumn": 4,
-                    "startOffset": 5663,
+                    "startOffset": 5643,
                     "endColumn": 100,
-                    "endOffset": 5759
+                    "endOffset": 5739
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -855,9 +855,9 @@
                 "to": {
                     "startLine": 68,
                     "startColumn": 4,
-                    "startOffset": 5764,
+                    "startOffset": 5744,
                     "endColumn": 102,
-                    "endOffset": 5862
+                    "endOffset": 5842
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -874,10 +874,10 @@
                 "to": {
                     "startLine": 69,
                     "startColumn": 4,
-                    "startOffset": 5867,
+                    "startOffset": 5847,
                     "endLine": 112,
                     "endColumn": 12,
-                    "endOffset": 8930
+                    "endOffset": 8910
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -895,10 +895,10 @@
                 "to": {
                     "startLine": 113,
                     "startColumn": 4,
-                    "startOffset": 8935,
+                    "startOffset": 8915,
                     "endLine": 115,
                     "endColumn": 12,
-                    "endOffset": 9116
+                    "endOffset": 9096
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -916,10 +916,10 @@
                 "to": {
                     "startLine": 116,
                     "startColumn": 4,
-                    "startOffset": 9121,
+                    "startOffset": 9101,
                     "endLine": 159,
                     "endColumn": 12,
-                    "endOffset": 12196
+                    "endOffset": 12176
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -937,10 +937,10 @@
                 "to": {
                     "startLine": 160,
                     "startColumn": 4,
-                    "startOffset": 12201,
+                    "startOffset": 12181,
                     "endLine": 162,
                     "endColumn": 12,
-                    "endOffset": 12394
+                    "endOffset": 12374
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -958,10 +958,10 @@
                 "to": {
                     "startLine": 163,
                     "startColumn": 4,
-                    "startOffset": 12399,
+                    "startOffset": 12379,
                     "endLine": 165,
                     "endColumn": 12,
-                    "endOffset": 12594
+                    "endOffset": 12574
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -979,10 +979,10 @@
                 "to": {
                     "startLine": 166,
                     "startColumn": 4,
-                    "startOffset": 12599,
+                    "startOffset": 12579,
                     "endLine": 167,
                     "endColumn": 12,
-                    "endOffset": 12717
+                    "endOffset": 12697
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1000,10 +1000,10 @@
                 "to": {
                     "startLine": 168,
                     "startColumn": 4,
-                    "startOffset": 12722,
+                    "startOffset": 12702,
                     "endLine": 169,
                     "endColumn": 12,
-                    "endOffset": 12840
+                    "endOffset": 12820
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1021,10 +1021,10 @@
                 "to": {
                     "startLine": 170,
                     "startColumn": 4,
-                    "startOffset": 12845,
+                    "startOffset": 12825,
                     "endLine": 171,
                     "endColumn": 12,
-                    "endOffset": 12953
+                    "endOffset": 12933
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1042,10 +1042,10 @@
                 "to": {
                     "startLine": 172,
                     "startColumn": 4,
-                    "startOffset": 12958,
+                    "startOffset": 12938,
                     "endLine": 174,
                     "endColumn": 12,
-                    "endOffset": 13136
+                    "endOffset": 13116
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1063,10 +1063,10 @@
                 "to": {
                     "startLine": 175,
                     "startColumn": 4,
-                    "startOffset": 13141,
+                    "startOffset": 13121,
                     "endLine": 176,
                     "endColumn": 12,
-                    "endOffset": 13267
+                    "endOffset": 13247
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1084,10 +1084,10 @@
                 "to": {
                     "startLine": 177,
                     "startColumn": 4,
-                    "startOffset": 13272,
+                    "startOffset": 13252,
                     "endLine": 179,
                     "endColumn": 12,
-                    "endOffset": 13468
+                    "endOffset": 13448
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1105,9 +1105,9 @@
                 "to": {
                     "startLine": 180,
                     "startColumn": 4,
-                    "startOffset": 13473,
+                    "startOffset": 13453,
                     "endColumn": 88,
-                    "endOffset": 13557
+                    "endOffset": 13537
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1124,9 +1124,9 @@
                 "to": {
                     "startLine": 181,
                     "startColumn": 4,
-                    "startOffset": 13562,
+                    "startOffset": 13542,
                     "endColumn": 110,
-                    "endOffset": 13668
+                    "endOffset": 13648
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1143,10 +1143,10 @@
                 "to": {
                     "startLine": 182,
                     "startColumn": 4,
-                    "startOffset": 13673,
+                    "startOffset": 13653,
                     "endLine": 184,
                     "endColumn": 12,
-                    "endOffset": 13901
+                    "endOffset": 13881
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1164,9 +1164,9 @@
                 "to": {
                     "startLine": 185,
                     "startColumn": 4,
-                    "startOffset": 13906,
+                    "startOffset": 13886,
                     "endColumn": 100,
-                    "endOffset": 14002
+                    "endOffset": 13982
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1183,9 +1183,9 @@
                 "to": {
                     "startLine": 186,
                     "startColumn": 4,
-                    "startOffset": 14007,
+                    "startOffset": 13987,
                     "endColumn": 94,
-                    "endOffset": 14097
+                    "endOffset": 14077
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1202,9 +1202,9 @@
                 "to": {
                     "startLine": 187,
                     "startColumn": 4,
-                    "startOffset": 14102,
+                    "startOffset": 14082,
                     "endColumn": 122,
-                    "endOffset": 14220
+                    "endOffset": 14200
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1221,9 +1221,9 @@
                 "to": {
                     "startLine": 188,
                     "startColumn": 4,
-                    "startOffset": 14225,
+                    "startOffset": 14205,
                     "endColumn": 128,
-                    "endOffset": 14349
+                    "endOffset": 14329
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1240,9 +1240,9 @@
                 "to": {
                     "startLine": 189,
                     "startColumn": 4,
-                    "startOffset": 14354,
+                    "startOffset": 14334,
                     "endColumn": 116,
-                    "endOffset": 14466
+                    "endOffset": 14446
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1259,10 +1259,10 @@
                 "to": {
                     "startLine": 190,
                     "startColumn": 4,
-                    "startOffset": 14471,
+                    "startOffset": 14451,
                     "endLine": 192,
                     "endColumn": 12,
-                    "endOffset": 14643
+                    "endOffset": 14623
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1280,9 +1280,9 @@
                 "to": {
                     "startLine": 193,
                     "startColumn": 4,
-                    "startOffset": 14648,
+                    "startOffset": 14628,
                     "endColumn": 98,
-                    "endOffset": 14742
+                    "endOffset": 14722
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1299,10 +1299,10 @@
                 "to": {
                     "startLine": 194,
                     "startColumn": 4,
-                    "startOffset": 14747,
+                    "startOffset": 14727,
                     "endLine": 195,
                     "endColumn": 12,
-                    "endOffset": 14877
+                    "endOffset": 14857
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1320,10 +1320,10 @@
                 "to": {
                     "startLine": 196,
                     "startColumn": 4,
-                    "startOffset": 14882,
+                    "startOffset": 14862,
                     "endLine": 197,
                     "endColumn": 12,
-                    "endOffset": 15020
+                    "endOffset": 15000
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1341,10 +1341,10 @@
                 "to": {
                     "startLine": 198,
                     "startColumn": 4,
-                    "startOffset": 15025,
+                    "startOffset": 15005,
                     "endLine": 199,
                     "endColumn": 12,
-                    "endOffset": 15155
+                    "endOffset": 15135
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1362,10 +1362,10 @@
                 "to": {
                     "startLine": 200,
                     "startColumn": 4,
-                    "startOffset": 15160,
+                    "startOffset": 15140,
                     "endLine": 201,
                     "endColumn": 12,
-                    "endOffset": 15274
+                    "endOffset": 15254
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1383,10 +1383,10 @@
                 "to": {
                     "startLine": 202,
                     "startColumn": 4,
-                    "startOffset": 15279,
+                    "startOffset": 15259,
                     "endLine": 205,
                     "endColumn": 12,
-                    "endOffset": 15475
+                    "endOffset": 15455
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1404,10 +1404,10 @@
                 "to": {
                     "startLine": 206,
                     "startColumn": 4,
-                    "startOffset": 15480,
+                    "startOffset": 15460,
                     "endLine": 207,
                     "endColumn": 12,
-                    "endOffset": 15594
+                    "endOffset": 15574
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1425,9 +1425,9 @@
                 "to": {
                     "startLine": 208,
                     "startColumn": 4,
-                    "startOffset": 15599,
+                    "startOffset": 15579,
                     "endColumn": 92,
-                    "endOffset": 15687
+                    "endOffset": 15667
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1444,9 +1444,9 @@
                 "to": {
                     "startLine": 209,
                     "startColumn": 4,
-                    "startOffset": 15692,
+                    "startOffset": 15672,
                     "endColumn": 110,
-                    "endOffset": 15798
+                    "endOffset": 15778
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1463,9 +1463,9 @@
                 "to": {
                     "startLine": 210,
                     "startColumn": 4,
-                    "startOffset": 15803,
+                    "startOffset": 15783,
                     "endColumn": 55,
-                    "endOffset": 15854
+                    "endOffset": 15834
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1482,10 +1482,10 @@
                 "to": {
                     "startLine": 211,
                     "startColumn": 4,
-                    "startOffset": 15859,
+                    "startOffset": 15839,
                     "endLine": 212,
                     "endColumn": 12,
-                    "endOffset": 15961
+                    "endOffset": 15941
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1503,10 +1503,10 @@
                 "to": {
                     "startLine": 213,
                     "startColumn": 4,
-                    "startOffset": 15966,
+                    "startOffset": 15946,
                     "endLine": 216,
                     "endColumn": 12,
-                    "endOffset": 16156
+                    "endOffset": 16136
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1524,10 +1524,10 @@
                 "to": {
                     "startLine": 217,
                     "startColumn": 4,
-                    "startOffset": 16161,
+                    "startOffset": 16141,
                     "endLine": 218,
                     "endColumn": 12,
-                    "endOffset": 16267
+                    "endOffset": 16247
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1545,10 +1545,10 @@
                 "to": {
                     "startLine": 219,
                     "startColumn": 4,
-                    "startOffset": 16272,
+                    "startOffset": 16252,
                     "endLine": 220,
                     "endColumn": 12,
-                    "endOffset": 16400
+                    "endOffset": 16380
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1566,9 +1566,9 @@
                 "to": {
                     "startLine": 221,
                     "startColumn": 4,
-                    "startOffset": 16405,
+                    "startOffset": 16385,
                     "endColumn": 94,
-                    "endOffset": 16495
+                    "endOffset": 16475
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1585,9 +1585,9 @@
                 "to": {
                     "startLine": 222,
                     "startColumn": 4,
-                    "startOffset": 16500,
+                    "startOffset": 16480,
                     "endColumn": 90,
-                    "endOffset": 16586
+                    "endOffset": 16566
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1604,9 +1604,9 @@
                 "to": {
                     "startLine": 223,
                     "startColumn": 4,
-                    "startOffset": 16591,
+                    "startOffset": 16571,
                     "endColumn": 90,
-                    "endOffset": 16677
+                    "endOffset": 16657
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1623,9 +1623,9 @@
                 "to": {
                     "startLine": 224,
                     "startColumn": 4,
-                    "startOffset": 16682,
+                    "startOffset": 16662,
                     "endColumn": 116,
-                    "endOffset": 16794
+                    "endOffset": 16774
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1642,10 +1642,10 @@
                 "to": {
                     "startLine": 225,
                     "startColumn": 4,
-                    "startOffset": 16799,
+                    "startOffset": 16779,
                     "endLine": 226,
                     "endColumn": 12,
-                    "endOffset": 16933
+                    "endOffset": 16913
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1663,10 +1663,10 @@
                 "to": {
                     "startLine": 227,
                     "startColumn": 4,
-                    "startOffset": 16938,
+                    "startOffset": 16918,
                     "endLine": 236,
                     "endColumn": 12,
-                    "endOffset": 17446
+                    "endOffset": 17426
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1684,10 +1684,10 @@
                 "to": {
                     "startLine": 237,
                     "startColumn": 4,
-                    "startOffset": 17451,
+                    "startOffset": 17431,
                     "endLine": 246,
                     "endColumn": 12,
-                    "endOffset": 17971
+                    "endOffset": 17951
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1705,10 +1705,10 @@
                 "to": {
                     "startLine": 247,
                     "startColumn": 4,
-                    "startOffset": 17976,
+                    "startOffset": 17956,
                     "endLine": 256,
                     "endColumn": 12,
-                    "endOffset": 18651
+                    "endOffset": 18631
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1726,9 +1726,9 @@
                 "to": {
                     "startLine": 257,
                     "startColumn": 4,
-                    "startOffset": 18656,
+                    "startOffset": 18636,
                     "endColumn": 56,
-                    "endOffset": 18708
+                    "endOffset": 18688
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1745,9 +1745,9 @@
                 "to": {
                     "startLine": 258,
                     "startColumn": 4,
-                    "startOffset": 18713,
+                    "startOffset": 18693,
                     "endColumn": 57,
-                    "endOffset": 18766
+                    "endOffset": 18746
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/values-v21/values-v21.xml",
@@ -1764,10 +1764,10 @@
                 "to": {
                     "startLine": 259,
                     "startColumn": 4,
-                    "startOffset": 18771,
+                    "startOffset": 18751,
                     "endLine": 261,
                     "endColumn": 12,
-                    "endOffset": 18960
+                    "endOffset": 18940
                 },
                 "from": {
                     "file": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/res/values-v21/values-v21.xml",

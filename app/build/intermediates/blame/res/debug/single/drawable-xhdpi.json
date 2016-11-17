@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-xhdpi/camera_up.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-xhdpi/camera_up.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-xhdpi/camera_down.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-xhdpi/camera_down.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-xhdpi/camera_right.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-xhdpi/camera_right.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-xhdpi/camera_left.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-xhdpi/camera_left.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_launcher.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+    }
+]

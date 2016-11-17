@@ -1,6 +1,6 @@
 package com.trippleit.android.tetris3d.shapes;
 
-import com.trippleit.android.tetris3d.users.User;
+import org.sms.tetris3d.players.User;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
