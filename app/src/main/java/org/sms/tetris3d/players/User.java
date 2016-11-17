@@ -74,7 +74,83 @@ public abstract class User implements  UserDefaultBehavior {
         return randomNum;
     }
 
+    public boolean setCurrentXPositionPos() {
+        if (GameStatus.isEnd())
+            return false;
+        // +1 zato što se želi pomaknuti objekt;
+        // -1 zato što je nulto indeksiranje pa objekt treba smanjizi za 1
+        if (currentObjectX + currentObject.getXsize() - 1 + 1 < GameStatus.getGridSize()) {
+            if (isAvailable(1))
+                currentObjectX++;
+            return true;
+        }
+        return false;
+    }
 
+    public  boolean setCurrentXPositionNeg() {
+        if (GameStatus.isEnd())
+            return false;
+        if (currentObjectX - 1 >= 0) {
+            if (isAvailable(2))
+                currentObjectX--;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setCurrentYPositionPos() {
+        if (GameStatus.isEnd())
+            return false;
+        // +1 zato što se želi pomaknuti objekt;
+        // -1 zato što je nulto indeksiranje pa objekt treba smanjizi za 1
+        if (currentObjectY + currentObject.getYsize() - 1 + 1 < GameStatus.getGridSize()) {
+            if (isAvailable(3))
+                currentObjectY++;
+            return true;
+        }
+        return false;
+    }
+    public  boolean isAvailable(int direction) {
+
+        for (int i = 0; i < currentObject.getObjectMatrix().length; i++)
+            for (int j = 0; j < currentObject.getObjectMatrix().length; j++)
+                for (int k = 0; k < currentObject.getObjectMatrix().length; k++)
+                    if (currentObject.getObjectMatrix()[i][j][k] == true)
+                        switch (direction) {
+                            case 1:
+                                if (GameStatus.getGameBoolMatrix()[i + currentObjectX + 1][j
+                                        + currentObjectY][k + currentObjectZ] == true)
+                                    return false;
+                                break;
+                            case 2:
+                                if (GameStatus.getGameBoolMatrix()[i + currentObjectX - 1][j
+                                        + currentObjectY][k + currentObjectZ] == true)
+                                    return false;
+                                break;
+                            case 3:
+                                if (GameStatus.getGameBoolMatrix()[i + currentObjectX][j
+                                        + currentObjectY + 1][k + currentObjectZ] == true)
+                                    return false;
+                                break;
+                            case 4:
+                                if (GameStatus.getGameBoolMatrix()[i + currentObjectX][j
+                                        + currentObjectY - 1][k + currentObjectZ] == true)
+                                    return false;
+                                break;
+                        }
+        return true;
+    }
+
+    public boolean setCurrentYPositionNeg() {
+        if (GameStatus.isEnd())
+            return false;
+        if (currentObjectY - 1 >= 0) {
+            if (isAvailable(4))
+                currentObjectY--;
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void onSwipeRight() {
