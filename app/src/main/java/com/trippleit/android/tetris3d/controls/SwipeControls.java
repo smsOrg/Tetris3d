@@ -40,7 +40,7 @@ public class SwipeControls implements OnTouchListener {
 	private float x2 = 0, y2 = 0;
 	private long time = 0;
 	private  VelocityTracker vt =null;
-	enum ZOOM_STATE{Zoom,None,Freeze}
+	enum ZOOM_STATE{Zoom,None,Freeze_Screen}
 	ZOOM_STATE zs = ZOOM_STATE.None;
 
 	MotionEvent tmpevent = null;
@@ -82,23 +82,36 @@ public class SwipeControls implements OnTouchListener {
 
 			case MotionEvent.ACTION_POINTER_DOWN: {
 				// Log.d("Kruno", "Pointer Down");
+				fingersCount = event.getPointerCount();
+				if (fingersCount == 3) {
+					if(zs!=ZOOM_STATE.Freeze_Screen) {
+						zs = ZOOM_STATE.Freeze_Screen;
+					}else{
+						zs = ZOOM_STATE.Zoom;
+					}
+				}
+				else if(fingersCount==2){
 				zs = ZOOM_STATE.Zoom;
 				newDist = spacing(event);
-				oldDist = spacing(event);
+				oldDist = spacing(event);}
 				isMultiTouch = true;
-				fingersCount = event.getPointerCount();
-				if (fingersCount == 3)
-					GameStatus.getPlayers().get(0).getCurrentObject().rotate('z');
+
+					//GameStatus.getPlayers().get(0).getCurrentObject().rotate('z');
 				break;
 			}
 			case MotionEvent.ACTION_POINTER_UP: {
 				// Log.d("Kruno", "Pointer up");
-				zs=ZOOM_STATE.None;
-				 fingersCount = event.getPointerCount();
+
+				fingersCount = event.getPointerCount();
+			if(zs!=ZOOM_STATE.Freeze_Screen) {
+					zs = ZOOM_STATE.None;
+				}
+
 				break;
 			}
 			case MotionEvent.ACTION_UP: {
-zs=ZOOM_STATE.None;
+				if(zs!=ZOOM_STATE.Freeze_Screen)
+				zs=ZOOM_STATE.None;
 				//Log.d("RG", "diffX: " + ((System.currentTimeMillis() - time)<90));
 				if(vt!=null) {
 					vt.recycle();
@@ -124,23 +137,24 @@ zs=ZOOM_STATE.None;
 			case MotionEvent.ACTION_MOVE: {
 				if(GameStatus.isSupportCameraDrag()) {
 
-					if(zs!=ZOOM_STATE.Zoom){
+					if(zs==ZOOM_STATE.None){
 						vt.computeCurrentVelocity(1000, 3);
 						float vx = -1 * vt.getXVelocity();
 						float vy = vt.getYVelocity();
 						float vv = (float) Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
-						final float deltaXAngle = vx / 4;//vv / vx;
-						final float deltaYAngle = vy / 8;//(vv) / (vy * (float) Math.sqrt(vv));
+						final float deltaXAngle = vx / 3;//vv / vx;
+						final float deltaYAngle = vy / 5;//(vv) / (vy * (float) Math.sqrt(vv));
 						if (!Float.isNaN(deltaXAngle)) {
 
 							GameStatus.setCameraR((GameStatus.getCameraR() + deltaXAngle) % 360);
 						}
 						android.util.Log.e("tracking", GameStatus.getCameraR() + "");
 						if (!Float.isNaN(deltaYAngle)) {
+							//GameStatus.setCameraHR((GameStatus.getCameraHR() + deltaYAngle) % 360);
 							GameStatus.setCameraH(GameStatus.getCameraH() + deltaYAngle);
 						}
 					}
-					else {
+					else if(zs==ZOOM_STATE.Zoom){
 						newDist = spacing(event);
 						if (newDist - oldDist > 20) { // zoom in
 

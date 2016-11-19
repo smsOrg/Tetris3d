@@ -67,9 +67,14 @@ public abstract class User implements  UserDefaultBehavior {
     }
 
     public IShape getCurrentObject(){
-        return currentObject;
+
+        return currentObject!=null? currentObject:(currentObject=chooseObject(randInt(0,5)));
     }
 
+    public void allClearData(){
+        currentObject=nextObject=null;
+
+    }
 
     public  void setCurrentPosition(int x, int y, int z) {
         currentObjectX = x;
@@ -120,33 +125,34 @@ public abstract class User implements  UserDefaultBehavior {
         return false;
     }
     public  boolean isAvailable(int direction) {
-
-        for (int i = 0; i < currentObject.getObjectMatrix().length; i++)
-            for (int j = 0; j < currentObject.getObjectMatrix().length; j++)
-                for (int k = 0; k < currentObject.getObjectMatrix().length; k++)
-                    if (currentObject.getObjectMatrix()[i][j][k] == true)
-                        switch (direction) {
-                            case 1:
-                                if (GameStatus.getGameBoolMatrix()[i + currentObjectX + 1][j
-                                        + currentObjectY][k + currentObjectZ] == true)
-                                    return false;
-                                break;
-                            case 2:
-                                if (GameStatus.getGameBoolMatrix()[i + currentObjectX - 1][j
-                                        + currentObjectY][k + currentObjectZ] == true)
-                                    return false;
-                                break;
-                            case 3:
-                                if (GameStatus.getGameBoolMatrix()[i + currentObjectX][j
-                                        + currentObjectY + 1][k + currentObjectZ] == true)
-                                    return false;
-                                break;
-                            case 4:
-                                if (GameStatus.getGameBoolMatrix()[i + currentObjectX][j
-                                        + currentObjectY - 1][k + currentObjectZ] == true)
-                                    return false;
-                                break;
-                        }
+        synchronized (GameStatus.getGameBoolMatrix()) {
+            for (int i = 0; i < currentObject.getObjectMatrix().length; i++)
+                for (int j = 0; j < currentObject.getObjectMatrix().length; j++)
+                    for (int k = 0; k < currentObject.getObjectMatrix().length; k++)
+                        if (currentObject.getObjectMatrix()[i][j][k] == true)
+                            switch (direction) {
+                                case 1:
+                                    if (GameStatus.getGameBoolMatrix()[i + currentObjectX + 1][j
+                                            + currentObjectY][k + currentObjectZ] == true)
+                                        return false;
+                                    break;
+                                case 2:
+                                    if (GameStatus.getGameBoolMatrix()[i + currentObjectX - 1][j
+                                            + currentObjectY][k + currentObjectZ] == true)
+                                        return false;
+                                    break;
+                                case 3:
+                                    if (GameStatus.getGameBoolMatrix()[i + currentObjectX][j
+                                            + currentObjectY + 1][k + currentObjectZ] == true)
+                                        return false;
+                                    break;
+                                case 4:
+                                    if (GameStatus.getGameBoolMatrix()[i + currentObjectX][j
+                                            + currentObjectY - 1][k + currentObjectZ] == true)
+                                        return false;
+                                    break;
+                            }
+        }
         return true;
     }
 
@@ -191,7 +197,7 @@ public abstract class User implements  UserDefaultBehavior {
             }
         }
     }
-    protected IShape chooseObject(int shapeId) {
+    public IShape chooseObject(int shapeId) {
         switch (shapeId) {
             case 0:
             case 'C':
@@ -234,29 +240,28 @@ public abstract class User implements  UserDefaultBehavior {
     }
 
     public  boolean isAvailableSwipeBlock(){
-        if(getNextObject()!=null){
-            for(int i =0;i<getNextObject().getObjectMatrix().length;i++){
-                for(int j=0;j<getNextObject().getObjectMatrix()[i].length;j++){
-                    for(int k=0;k<getNextObject().getObjectMatrix()[i][j].length;k++){
-                        final int bX = i+getCurrentObjectX();
-                        final int bY=j+getCurrentObjectY();
-                        final int bZ=k+getCurrentObjectZ();
-                        final boolean isValid= bX<GameStatus.getGameBoolMatrix().length && bY<GameStatus.getGameBoolMatrix()[0].length&&bZ<GameStatus.getGameBoolMatrix()[0][0].length;
+        synchronized (GameStatus.getGameBoolMatrix()) {
+            if (getNextObject() != null) {
+                for (int i = 0; i < getNextObject().getObjectMatrix().length; i++) {
+                    for (int j = 0; j < getNextObject().getObjectMatrix()[i].length; j++) {
+                        for (int k = 0; k < getNextObject().getObjectMatrix()[i][j].length; k++) {
+                            final int bX = i + getCurrentObjectX();
+                            final int bY = j + getCurrentObjectY();
+                            final int bZ = k + getCurrentObjectZ();
+                            final boolean isValid = bX < GameStatus.getGameBoolMatrix().length && bY < GameStatus.getGameBoolMatrix()[0].length && bZ < GameStatus.getGameBoolMatrix()[0][0].length;
 
-                        if(isValid&&getNextObject().getObjectMatrix()[i][j][k]&&GameStatus.getGameBoolMatrix()[bX][bY][bZ]){
-                            return false;
-                        }
-                        else if(!isValid&&getNextObject().getObjectMatrix()[i][j][k]){
-                            return false;
+                            if (isValid && getNextObject().getObjectMatrix()[i][j][k] && GameStatus.getGameBoolMatrix()[bX][bY][bZ]) {
+                                return false;
+                            } else if (!isValid && getNextObject().getObjectMatrix()[i][j][k]) {
+                                return false;
+                            }
                         }
                     }
                 }
+            } else {
+                return false;
             }
         }
-        else{
-            return false;
-        }
-
         return true;
     }
 
@@ -295,19 +300,71 @@ public abstract class User implements  UserDefaultBehavior {
         who.getCurrentObject().drawLineBone(gl);
         gl.glPopMatrix();
     }
+    public static boolean checkOverlayPlayerBlock2(User pivot,User usr){
 
-    public  void savePositionToBoolMatrix() {
-        for (int i = 0; i < currentObject.getObjectMatrix().length; i++)
-            for (int j = 0; j < currentObject.getObjectMatrix().length; j++)
-                for (int k = 0; k < currentObject.getObjectMatrix().length
-                        && k < GameStatus.getGameHeight(); k++)
-                    if ((k + currentObjectZ) < GameStatus.getGameHeight()
-                            && currentObject.getObjectMatrix()[i][j][k] == true) {
-                        GameStatus.getGameBoolMatrix()[i + currentObjectX][j + currentObjectY][k
-                                + currentObjectZ] = true;
-                        GameStatus.getGameColorMatrix()[i + currentObjectX][j + currentObjectY][k
-                                + currentObjectZ] = currentObject.getColor();
+            if(!usr.equals(pivot)){
+                boolean[][][] pivotMatrix = pivot.getCurrentObject().getObjectMatrix();
+                boolean[][][] mat = usr.getCurrentObject().getObjectMatrix();
+                for(int i =0;i<pivotMatrix.length;i++){
+                    for(int j =0;j<pivotMatrix[i].length;j++){
+                        for(int k=0;k<pivotMatrix[i][j].length;k++){
+                            final boolean inValid = (i+pivot.getCurrentObjectX())<pivotMatrix.length &&
+                                    (j+pivot.getCurrentObjectY())<pivotMatrix[0].length &&
+                                    (k+pivot.getCurrentObjectZ())<pivotMatrix[0][0].length &&(i+usr.getCurrentObjectX())<pivotMatrix.length &&
+                                    (j+usr.getCurrentObjectY())<pivotMatrix[0].length &&
+                                    (k+usr.getCurrentObjectZ())<pivotMatrix[0][0].length;
+                            if(inValid&&
+                                    pivotMatrix[i+pivot.getCurrentObjectX()][j+pivot.getCurrentObjectY()][k+pivot.getCurrentObjectZ()]==pivotMatrix[i+usr.getCurrentObjectX()][j+usr.getCurrentObjectY()][k+usr.getCurrentObjectZ()]){
+                                return true;
+                            }
+
+                        }
                     }
+                }
+
+        }
+        return false;
+    }
+    public static boolean checkOverlayPlayerBlock(User pivot){
+        ArrayList<User> players = GameStatus.getPlayers();
+         for(User usr:players){
+            if(!usr.equals(pivot)){
+                boolean[][][] pivotMatrix = pivot.getCurrentObject().getObjectMatrix();
+                boolean[][][] mat = usr.getCurrentObject().getObjectMatrix();
+                for(int i =0;i<pivotMatrix.length;i++){
+                    for(int j =0;j<pivotMatrix[i].length;j++){
+                        for(int k=0;k<pivotMatrix[i][j].length;k++){
+                            final boolean inValid = (i+pivot.getCurrentObjectX())<pivotMatrix.length &&
+                                    (j+pivot.getCurrentObjectY())<pivotMatrix[0].length &&
+                                    (k+pivot.getCurrentObjectZ())<pivotMatrix[0][0].length &&(i+usr.getCurrentObjectX())<pivotMatrix.length &&
+                                    (j+usr.getCurrentObjectY())<pivotMatrix[0].length &&
+                                    (k+usr.getCurrentObjectZ())<pivotMatrix[0][0].length;
+                            if(inValid&&
+              pivotMatrix[i+pivot.getCurrentObjectX()][j+pivot.getCurrentObjectY()][k+pivot.getCurrentObjectZ()]==pivotMatrix[i+usr.getCurrentObjectX()][j+usr.getCurrentObjectY()][k+usr.getCurrentObjectZ()]){
+                                return true;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    public  void savePositionToBoolMatrix() {
+synchronized (GameStatus.getGameBoolMatrix()) {
+    for (int i = 0; i < currentObject.getObjectMatrix().length; i++)
+        for (int j = 0; j < currentObject.getObjectMatrix().length; j++)
+            for (int k = 0; k < currentObject.getObjectMatrix().length
+                    && k < GameStatus.getGameHeight(); k++)
+                if ((k + currentObjectZ) < GameStatus.getGameHeight()
+                        && currentObject.getObjectMatrix()[i][j][k] == true) {
+                    GameStatus.getGameBoolMatrix()[i + currentObjectX][j + currentObjectY][k
+                            + currentObjectZ] = true;
+                    GameStatus.getGameColorMatrix()[i + currentObjectX][j + currentObjectY][k
+                            + currentObjectZ] = currentObject.getColor();
+                }
+}
     }
 
     @Override
@@ -315,7 +372,7 @@ public abstract class User implements  UserDefaultBehavior {
         if (currentObjectZ <= 0  || currentObject==null) {
             return false;
         }
-
+    synchronized (GameStatus.getGameBoolMatrix()) {
         for (int i = 0; i < currentObject.getObjectMatrix().length; i++)
             for (int j = 0; j < currentObject.getObjectMatrix().length; j++)
                 for (int k = 0; k < currentObject.getObjectMatrix().length; k++)
@@ -330,6 +387,7 @@ public abstract class User implements  UserDefaultBehavior {
                         }
 
         currentObjectZ--;
+    }
         return true;
     }
     protected User myIdentity(){

@@ -19,7 +19,10 @@ public abstract class AbstractOpenGlRenderer implements Renderer {
 	private int mHeight;
 	private long mLastTime;
 	private int mFPS;
-
+private GL10 gl10=null;
+	public GL10 getGL(){
+		return gl10;
+	}
 	public AbstractOpenGlRenderer() {
 		mFirstDraw = true;
 		mSurfaceCreated = false;

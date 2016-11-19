@@ -32,6 +32,11 @@
                 android:text="pause"
                 android:id="@+id/btn_pause"
                 />
+            <Button android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="restart"
+                android:id="@+id/btn_restart"
+                />
         </LinearLayout>
         <android.opengl.GLSurfaceView
             android:id="@+id/glSurface"

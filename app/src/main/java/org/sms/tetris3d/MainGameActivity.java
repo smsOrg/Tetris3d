@@ -5,7 +5,7 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 import android.opengl.*;
-
+import android.content.*;
 import org.sms.tetris3d.players.Computer;
 import org.sms.tetris3d.render.*;
 import org.sms.tetris3d.interfaces.*;
@@ -16,6 +16,19 @@ import com.trippleit.android.tetris3d.controls.*;
  */
 
 public class MainGameActivity extends Activity {
+protected  void restartActivity(){
+    if (Build.VERSION.SDK_INT >= 11) {
+        recreate();
+    } else {
+        Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        overridePendingTransition(0, 0);
+
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+    }
+}
     private boolean timerLoopAvailable = true;
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
@@ -25,11 +38,11 @@ public class MainGameActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
-        GameRenderer renderer = new GameRenderer();
+        final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
+       final  GameRenderer renderer = new GameRenderer();
         glView.setRenderer(renderer);
-        GLSurfaceView glView2 = (GLSurfaceView) findViewById(R.id.glSurface2);
-        NextBlockRenderer renderer2 = new NextBlockRenderer();
+        final GLSurfaceView glView2 = (GLSurfaceView) findViewById(R.id.glSurface2);
+       final  NextBlockRenderer renderer2 = new NextBlockRenderer();
         LinearLayout llt = (LinearLayout)findViewById(R.id.mainviewcontrolpanel);
         llt.getLayoutParams().height = (int)(getResources().getDisplayMetrics().heightPixels*0.108);
         Button pause_btn = (Button)findViewById(R.id.btn_pause);
@@ -40,6 +53,12 @@ public class MainGameActivity extends Activity {
                     GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
                 }else
                     GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
+            }
+        });
+        ((Button)findViewById(R.id.btn_restart)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restartActivity();
             }
         });
         llt.setLayoutParams(llt.getLayoutParams());

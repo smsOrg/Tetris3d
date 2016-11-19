@@ -26,16 +26,25 @@ public class DeviceUser extends User {
         setCurrentPosition(GameStatus.getStartX(), GameStatus.getStartY(), GameStatus.getGameHeight());
     }
     public void dropDown(final OpenGlRenderer ogr) {
-        if(GameStatus.isEnd()) return;
+        if (GameStatus.isEnd()) return;
         if (ogr.getOneSec() != 0) return;
-        boolean ret = setCurrentObjectPositionDown();
-        if(GameStatus.isDropFast())
-            while(setCurrentObjectPositionDown());
-        if (!ret) {
-            savePositionToBoolMatrix();
-            if (GameStatus.checkEnd() == false) {
-                newShape();
+        synchronized (GameStatus.getGameBoolMatrix()) {
+            boolean ret = setCurrentObjectPositionDown();
+            if (GameStatus.isDropFast())
+                while (setCurrentObjectPositionDown()) ;
+
+            if (!ret) {
+                if (!checkOverlayPlayerBlock(this)) {
+                    savePositionToBoolMatrix();
+                    if (GameStatus.checkEnd() == false) {
+                        newShape();
+                    }
+                } else {
+                    setCurrentPosition(GameStatus.getStartX(), GameStatus.getStartY(), GameStatus.getGameHeight());
+                }
+
             }
+
         }
     }
 }

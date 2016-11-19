@@ -80,6 +80,7 @@ public class GameStatus {
     public static void setCamera(float r, float h) {
         setCameraR(r);
         setCameraH(h);
+
         //calculateCamera();
     }
     public static float getDefaultCircleSize(){
@@ -102,7 +103,9 @@ public class GameStatus {
                 .toRadians(GameStatus.cameraR)))+gridSize/2;
         GameStatus.cameraY = ((getDefaultCircleSize()+getCircleSize()) * (float) Math.sin(Math
                 .toRadians(GameStatus.cameraR)))+gridSize/2;
-        GameStatus.cameraZ = GameStatus.cameraH;
+        if(Math.abs(GameStatus.cameraH)<getGameHeight()*2.3) {
+            GameStatus.cameraZ = GameStatus.cameraH+getGameHeight()/2;
+        }
     }
 
     public static float getCameraX() {
@@ -137,9 +140,11 @@ public class GameStatus {
     }
 
     public static void setCameraH(float cameraH) {
-        GameStatus.cameraH = cameraH;
+        GameStatus.cameraH =  cameraH;
         calculateCamera();
     }
+
+
     public static boolean isSupportCameraDrag(){
         return true;
     }
