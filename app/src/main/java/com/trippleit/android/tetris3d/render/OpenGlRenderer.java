@@ -62,11 +62,11 @@ public class OpenGlRenderer extends AbstractOpenGlRenderer {
 	}
 
 	
-	private void removeFullRows() {
+	protected void removeFullRows() {
 		GameStatus.removeFullRows();
 	}
 	
-	private void printAllObjects(GL10 gl) {
+	protected void printAllObjects(GL10 gl) {
 		for (int i = 0; i < GameStatus.getGridSize(); i++)
 			for (int j = 0; j < GameStatus.getGridSize(); j++)
 				for (int k = 0; k < GameStatus.getGameHeight(); k++)

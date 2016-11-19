@@ -1,5 +1,6 @@
 package com.trippleit.android.tetris3d.shapes;
 
+import org.sms.tetris3d.GameStatus;
 import org.sms.tetris3d.players.User;
 
 import java.nio.FloatBuffer;
@@ -17,13 +18,15 @@ public class Coords extends AbstractDraw implements IShape {
 	private short[] indices = { 0, 1, 0, 2, 0, 3 };
 
 	private FloatBuffer colorBuffer;
-	float colors[] = { 0.5f, 0.5f, 0.5f, 0.5f, 1f, 0f, 0f, 1f, 0f, 1f, 0f, 1f,
+	float colors[] = { 0.5f, 0.5f, 0.5f, 0.5f
+			, 1f, 0f, 0f, 1f,
+			0f, 1f, 0f, 1f,
 			0f, 0f, 1f, 1f };
 
 	public Coords() {		
 		vertices[3] = 5.0f;
 		vertices[7] = 5.0f;
-		vertices[11] = 5.0f;
+		vertices[11] = GameStatus.getGameHeight();
 		init();
 	}
 	

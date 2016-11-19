@@ -18,22 +18,28 @@ public class NextBlockRenderer extends com.trippleit.android.tetris3d.render.Abs
         if(!GameStatus.isEnd()) {
             GLU.gluLookAt(gl, 0, -15, 5, 0, 0, 0, 0, 0, 1);
 
-            new Coords(GameStatus.getGridSize(), GameStatus.getGameHeight()).draw(gl);
+            //new Coords(GameStatus.getGridSize(), GameStatus.getGameHeight()).draw(gl);
             if (GameStatus.getPlayers().get(0).getNextObject() == null) {
                 final int objNum = du.randInt(0, 5);
                 du.setNextObject(du.chooseObject(objNum));
             }
-            gl.glTranslatef(2.5f, -5, 4);
+final int zSz = du.getNextObject().getZsize();
+            gl.glTranslatef(2.5f, -7, 3+zSz/2);
+            gl.glPushMatrix();
             gl.glRotatef(rad, 0.0f, 0.0f, 1);
             rad = (rad + 2) % 360;
             printCurrentObject(gl,du);
+            gl.glPopMatrix();
         }
     }
     private void printCurrentObject(GL10 gl,User who){
         gl.glPushMatrix();
-        gl.glTranslatef(0,0,0);//GameStatus.getCurrentObjectX(), GameStatus.getCurrentObjectY(), GameStatus.getCurrentObjectZ());
+
+
+        gl.glTranslatef(-(float) GameStatus.getPlayers().get(0).getNextObject().getXsize()/2, -(float)GameStatus.getPlayers().get(0).getNextObject().getYsize()/2,0);//GameStatus.getCurrentObjectX(), GameStatus.getCurrentObjectY(), GameStatus.getCurrentObjectZ());
 
         GameStatus.getPlayers().get(0).getNextObject().draw(gl);
+
         gl.glPopMatrix();
     }
 }

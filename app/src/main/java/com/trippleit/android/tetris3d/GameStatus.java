@@ -7,10 +7,11 @@ import android.content.Context;
 import android.util.Log;
 
 public class GameStatus {
-
+    public final static float initialCameraAngle = 360-65;
     protected static float cameraR, cameraH;
     protected static float cameraX, cameraY, cameraZ;
     protected static long remove_line_count=0l;
+    protected static float circleSize = 0;
     protected static int gameHeight;
     protected static int gridSize;
     protected static int startX, startY;
@@ -34,7 +35,7 @@ public class GameStatus {
         gridSize = 5;
         gStatus = GAME_STATUS.START;
         restartGameBoolMatrix();
-        setCamera(-65, 10);
+        setCamera(initialCameraAngle, gameHeight);
         start=true;
         end = false;
         startX = 2;
@@ -77,17 +78,34 @@ public class GameStatus {
      *            Visina kammere
      */
     public static void setCamera(float r, float h) {
-        GameStatus.cameraR = r;
-        GameStatus.cameraH = h;
-        calculateCamera();
+        setCameraR(r);
+        setCameraH(h);
+
+        //calculateCamera();
+    }
+    public static float getDefaultCircleSize(){
+        return (gridSize*2);
+    }
+    public static float getMaxCircleSize(){
+        return (gridSize*4);
+    }
+    public static float getCircleSize(){
+        return circleSize;
+    }
+    public static void setCircleSize(float size){
+        if(size>=0&&size<getMaxCircleSize()){
+            circleSize = size;
+        }
     }
 
     protected static void calculateCamera() {
-        GameStatus.cameraX = 15 * (float) Math.cos(Math
-                .toRadians(GameStatus.cameraR));
-        GameStatus.cameraY = 15 * (float) Math.sin(Math
-                .toRadians(GameStatus.cameraR));
-        GameStatus.cameraZ = GameStatus.cameraH;
+        GameStatus.cameraX = ((getDefaultCircleSize()+getCircleSize()) * (float) Math.cos(Math
+                .toRadians(GameStatus.cameraR)))+gridSize/2;
+        GameStatus.cameraY = ((getDefaultCircleSize()+getCircleSize()) * (float) Math.sin(Math
+                .toRadians(GameStatus.cameraR)))+gridSize/2;
+        if(Math.abs(GameStatus.cameraH)<getGameHeight()*2.3) {
+            GameStatus.cameraZ = GameStatus.cameraH+getGameHeight()/2;
+        }
     }
 
     public static float getCameraX() {
@@ -110,6 +128,9 @@ public class GameStatus {
     }
 
     public static void setCameraR(float cameraR) {
+        if(cameraR<0){
+            cameraR=360-cameraR;
+        }
         GameStatus.cameraR = cameraR;
         calculateCamera();
     }
@@ -119,11 +140,13 @@ public class GameStatus {
     }
 
     public static void setCameraH(float cameraH) {
-        GameStatus.cameraH = cameraH;
+        GameStatus.cameraH =  cameraH;
         calculateCamera();
     }
+
+
     public static boolean isSupportCameraDrag(){
-        return false;
+        return true;
     }
     /**
      * Postavljanje matrice zauzeća polja, ukoliko nije inicijalizirana
