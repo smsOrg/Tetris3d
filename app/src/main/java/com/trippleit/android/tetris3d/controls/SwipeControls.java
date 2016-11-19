@@ -65,14 +65,14 @@ public class SwipeControls implements OnTouchListener {
 			case MotionEvent.ACTION_MOVE: {
 				if(GameStatus.isSupportCameraDrag()) {
 
-
-					vt.computeCurrentVelocity(100, 3);
+					vt.computeCurrentVelocity(1000, 3);
 					float vx = -1 * vt.getXVelocity();
 					float vy = vt.getYVelocity();
 					float vv = (float) Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
-					final float deltaXAngle = vv / vx;
-					final float deltaYAngle = (vv) / (vy * (float) Math.sqrt(vv));
+					final float deltaXAngle = vx/4;//vv / vx;
+					final float deltaYAngle = vy/8;//(vv) / (vy * (float) Math.sqrt(vv));
 					if (!Float.isNaN(deltaXAngle)) {
+
 						GameStatus.setCameraR((GameStatus.getCameraR() + deltaXAngle) % 360);
 					}
 					android.util.Log.e("tracking", GameStatus.getCameraR() + "");
@@ -110,9 +110,11 @@ public class SwipeControls implements OnTouchListener {
 					return true;
 				}				
 				// Log.d("Kruno", "Action up1");
-				x2 = event.getX();
-				y2 = event.getY();
-				move(x1, y1, x2, y2, fingersCount);
+				if(!GameStatus.isSupportCameraDrag()) {
+					x2 = event.getX();
+					y2 = event.getY();
+					move(x1, y1, x2, y2, fingersCount);
+				}
 				isMultiTouch = false;
 				fingersCount = 0;
 				break;

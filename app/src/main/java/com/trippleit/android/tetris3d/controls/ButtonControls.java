@@ -1,6 +1,8 @@
 package com.trippleit.android.tetris3d.controls;
 
 import org.sms.tetris3d.*;
+import org.sms.tetris3d.controls.MovePanelAdapter;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +14,7 @@ import android.view.View.OnTouchListener;
 public class ButtonControls extends Activity implements OnTouchListener {
 
 	private Handler mHandler_up, mHandler_down, mHandler_right, mHandler_left;
-
+private final MovePanelAdapter mpa = new MovePanelAdapter();
 	public ButtonControls(Context c) {
 
 	}
@@ -95,32 +97,53 @@ public class ButtonControls extends Activity implements OnTouchListener {
 	Runnable mAction_up = new Runnable() {
 		@Override
 		public void run() {
-			GameStatus.setCameraH(GameStatus.getCameraH() + 1);
-			mHandler_up.postDelayed(this, 50);
+			if(GameStatus.isSupportCameraDrag()){
+				mpa.move_top(GameStatus.getPlayers().get(0));
+				//GameStatus.getPlayers().get(0).moveY(false);
+			}else {
+				GameStatus.setCameraH(GameStatus.getCameraH() + 1);mHandler_up.postDelayed(this, 50);
+			}
+
 		}
 	};
 
 	Runnable mAction_down = new Runnable() {
 		@Override
 		public void run() {
-			GameStatus.setCameraH(GameStatus.getCameraH() - 1);
-			mHandler_down.postDelayed(this, 50);
+			if(GameStatus.isSupportCameraDrag()){
+				mpa.move_bottom(GameStatus.getPlayers().get(0));
+				//GameStatus.getPlayers().get(0).moveY(true);
+			}else {
+				GameStatus.setCameraH(GameStatus.getCameraH() - 1);mHandler_down.postDelayed(this, 50);
+			}
+
 		}
 	};
 
 	Runnable mAction_left = new Runnable() {
 		@Override
-		public void run() {			
-			GameStatus.setCameraR(GameStatus.getCameraR() - 1);
-			mHandler_left.postDelayed(this, 50);
+		public void run() {
+			if(GameStatus.isSupportCameraDrag()){
+				mpa.move_left(GameStatus.getPlayers().get(0));
+				//GameStatus.getPlayers().get(0).moveX(true);
+			}else {
+				GameStatus.setCameraR(GameStatus.getCameraR() - 1);mHandler_left.postDelayed(this, 50);
+			}
+
 		}
 	};
 
 	Runnable mAction_right = new Runnable() {
 		@Override
 		public void run() {
-			GameStatus.setCameraR(GameStatus.getCameraR() + 1);
-			mHandler_right.postDelayed(this, 50);
+			if(GameStatus.isSupportCameraDrag()){
+				//GameStatus.getPlayers().get(0).moveX(false);
+				mpa.move_right(GameStatus.getPlayers().get(0));
+			}else {
+
+				GameStatus.setCameraR(GameStatus.getCameraR() + 1);mHandler_right.postDelayed(this, 50);
+			}
+
 		}
 	};
 
