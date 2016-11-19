@@ -40,13 +40,24 @@ public class SwipeControls implements OnTouchListener {
 	private float x2 = 0, y2 = 0;
 	private long time = 0;
 	private  VelocityTracker vt =null;
+	enum ZOOM_STATE{Zoom,None,Freeze}
+	ZOOM_STATE zs = ZOOM_STATE.None;
+
 	MotionEvent tmpevent = null;
+	private float spacing(MotionEvent event) {
+		float x = event.getX(0) - event.getX(1);
+		float y = event.getY(0) - event.getY(1);
+		return (float)Math.sqrt(x * x + y * y);
+	}
+	float oldDist = 1f;
+	float newDist = 1f;
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		if(vt==null){
-			vt = VelocityTracker.obtain();
-		}
+
+			if (vt == null) {
+				vt = VelocityTracker.obtain();
+			}
 
 			vt.addMovement(event);
 
@@ -56,37 +67,24 @@ public class SwipeControls implements OnTouchListener {
 			case MotionEvent.ACTION_DOWN: {
 
 				// Log.d("Kruno", "Action Down1");
-				x1 = event.getX();
-				y1 = event.getY();
+				if(GameStatus.isSupportCameraDrag()) {
+					x1 = event.getX(0);
+					y1 = event.getY(0);
+				}else {
+					x1 = event.getX();
+					y1 = event.getY();
+				}
 				fingersCount = event.getPointerCount();
 				time = System.currentTimeMillis();
 				break;
 			}
-			case MotionEvent.ACTION_MOVE: {
-				if(GameStatus.isSupportCameraDrag()) {
 
-					vt.computeCurrentVelocity(1000, 3);
-					float vx = -1 * vt.getXVelocity();
-					float vy = vt.getYVelocity();
-					float vv = (float) Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
-					final float deltaXAngle = vx/4;//vv / vx;
-					final float deltaYAngle = vy/8;//(vv) / (vy * (float) Math.sqrt(vv));
-					if (!Float.isNaN(deltaXAngle)) {
-
-						GameStatus.setCameraR((GameStatus.getCameraR() + deltaXAngle) % 360);
-					}
-					android.util.Log.e("tracking", GameStatus.getCameraR() + "");
-					if (!Float.isNaN(deltaYAngle)) {
-						GameStatus.setCameraH(GameStatus.getCameraH() + deltaYAngle);
-					}
-				}
-
-				// Log.d("Kruno", "Action Move");
-				break;
-			}
 
 			case MotionEvent.ACTION_POINTER_DOWN: {
 				// Log.d("Kruno", "Pointer Down");
+				zs = ZOOM_STATE.Zoom;
+				newDist = spacing(event);
+				oldDist = spacing(event);
 				isMultiTouch = true;
 				fingersCount = event.getPointerCount();
 				if (fingersCount == 3)
@@ -95,10 +93,12 @@ public class SwipeControls implements OnTouchListener {
 			}
 			case MotionEvent.ACTION_POINTER_UP: {
 				// Log.d("Kruno", "Pointer up");
-				// fingersCount = event.getPointerCount();
+				zs=ZOOM_STATE.None;
+				 fingersCount = event.getPointerCount();
 				break;
 			}
 			case MotionEvent.ACTION_UP: {
+zs=ZOOM_STATE.None;
 				//Log.d("RG", "diffX: " + ((System.currentTimeMillis() - time)<90));
 				if(vt!=null) {
 					vt.recycle();
@@ -113,16 +113,63 @@ public class SwipeControls implements OnTouchListener {
 				if(!GameStatus.isSupportCameraDrag()) {
 					x2 = event.getX();
 					y2 = event.getY();
+
 					move(x1, y1, x2, y2, fingersCount);
 				}
+
 				isMultiTouch = false;
 				fingersCount = 0;
+				break;
+			}
+			case MotionEvent.ACTION_MOVE: {
+				if(GameStatus.isSupportCameraDrag()) {
+
+					if(zs!=ZOOM_STATE.Zoom){
+						vt.computeCurrentVelocity(1000, 3);
+						float vx = -1 * vt.getXVelocity();
+						float vy = vt.getYVelocity();
+						float vv = (float) Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
+						final float deltaXAngle = vx / 4;//vv / vx;
+						final float deltaYAngle = vy / 8;//(vv) / (vy * (float) Math.sqrt(vv));
+						if (!Float.isNaN(deltaXAngle)) {
+
+							GameStatus.setCameraR((GameStatus.getCameraR() + deltaXAngle) % 360);
+						}
+						android.util.Log.e("tracking", GameStatus.getCameraR() + "");
+						if (!Float.isNaN(deltaYAngle)) {
+							GameStatus.setCameraH(GameStatus.getCameraH() + deltaYAngle);
+						}
+					}
+					else {
+						newDist = spacing(event);
+						if (newDist - oldDist > 20) { // zoom in
+
+						} else { // zoom out
+
+						}
+
+						final float newscale = GameStatus.getCircleSize()-(newDist - oldDist)/(GameStatus.getCircleSize()+1);//+magnify(x1, y1, x2, y2, Math.max( v.getMeasuredHeight(),v.getMeasuredWidth()));
+						GameStatus.setCircleSize(newscale);
+						oldDist = newDist;
+					}
+				}
+
+				// Log.d("Kruno", "Action Move");
 				break;
 			}
 		}
 		return true;
 	}
 
+	private float magnify(float xFirst, float yFirst, float xSecond, float ySecond,
+						 int fCount){
+	float result = 0;
+		float diffY = ySecond - yFirst;
+		float diffX = xSecond - xFirst;
+		result=Math.min(diffX,diffY)/fCount;
+
+		return  result;
+	}
 	private void move(float xFirst, float yFirst, float xSecond, float ySecond,
 			int fCount) {
 		switch (fCount) {
