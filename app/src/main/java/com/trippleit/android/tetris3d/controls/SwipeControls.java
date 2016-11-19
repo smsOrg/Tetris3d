@@ -84,11 +84,11 @@ public class SwipeControls implements OnTouchListener {
 				// Log.d("Kruno", "Pointer Down");
 				fingersCount = event.getPointerCount();
 				if (fingersCount == 3) {
-					if(zs!=ZOOM_STATE.Freeze_Screen) {
+					/*if(zs!=ZOOM_STATE.Freeze_Screen) {
 						zs = ZOOM_STATE.Freeze_Screen;
 					}else{
 						zs = ZOOM_STATE.Zoom;
-					}
+					}*/
 				}
 				else if(fingersCount==2){
 				zs = ZOOM_STATE.Zoom;
@@ -145,26 +145,34 @@ public class SwipeControls implements OnTouchListener {
 						final float deltaXAngle = vx / 3;//vv / vx;
 						final float deltaYAngle = vy / 5;//(vv) / (vy * (float) Math.sqrt(vv));
 						if (!Float.isNaN(deltaXAngle)) {
-
 							GameStatus.setCameraR((GameStatus.getCameraR() + deltaXAngle) % 360);
 						}
-						android.util.Log.e("tracking", GameStatus.getCameraR() + "");
 						if (!Float.isNaN(deltaYAngle)) {
 							//GameStatus.setCameraHR((GameStatus.getCameraHR() + deltaYAngle) % 360);
 							GameStatus.setCameraH(GameStatus.getCameraH() + deltaYAngle);
 						}
 					}
 					else if(zs==ZOOM_STATE.Zoom){
-						newDist = spacing(event);
-						if (newDist - oldDist > 20) { // zoom in
-
-						} else { // zoom out
-
+						vt.computeCurrentVelocity(1100, 2);
+						float yfirst = vt.getYVelocity(0);
+						float ySecond = vt.getYVelocity(1);
+						if(yfirst<0&&ySecond<0){
+							GameStatus.setPivotZ(-Math.min(yfirst,ySecond)/4.2f+GameStatus.getPivotZ());
 						}
+						else if(yfirst>0&&ySecond>0){
+							GameStatus.setPivotZ(-Math.max(yfirst,ySecond)/4.2f+GameStatus.getPivotZ());
+						}else {
+							newDist = spacing(event);
+							if (newDist - oldDist > 20) { // zoom in
 
-						final float newscale = GameStatus.getCircleSize()-(newDist - oldDist)/(GameStatus.getCircleSize()+1);//+magnify(x1, y1, x2, y2, Math.max( v.getMeasuredHeight(),v.getMeasuredWidth()));
-						GameStatus.setCircleSize(newscale);
-						oldDist = newDist;
+							} else { // zoom out
+
+							}
+
+							final float newscale = GameStatus.getCircleSize() - (newDist - oldDist) / (GameStatus.getCircleSize() + 1);//+magnify(x1, y1, x2, y2, Math.max( v.getMeasuredHeight(),v.getMeasuredWidth()));
+							GameStatus.setCircleSize(newscale);
+							oldDist = newDist;
+						}
 					}
 				}
 

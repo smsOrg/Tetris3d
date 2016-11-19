@@ -40,7 +40,7 @@ public class GameRenderer extends OpenGlRenderer {
         else {
 
             //GLU.gluLookAt(gl, GameStatus.getCameraX(), GameStatus.getCameraY(), GameStatus.getCameraZ(), 0, 0, 0, 0, 0, 1);
-            GLU.gluLookAt(gl, GameStatus.getCameraX(),GameStatus.getCameraY(), GameStatus.getCameraZ(), (float)GameStatus.getGridSize()/2, (float)GameStatus.getGridSize()/2, (float)GameStatus.getGameHeight()/4, 0, 0, 1);
+            GLU.gluLookAt(gl, GameStatus.getCameraX(),GameStatus.getCameraY(), GameStatus.getCameraZ(), (float)GameStatus.getGridSize()/2, (float)GameStatus.getGridSize()/2, GameStatus.getPivotZ(), 0, 0, 1);
 
 
             new Coords(GameStatus.getGridSize(), GameStatus.getGameHeight()).draw(gl);
