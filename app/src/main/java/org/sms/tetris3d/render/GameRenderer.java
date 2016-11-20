@@ -10,6 +10,7 @@ import org.sms.tetris3d.GameStatus;
 import org.sms.tetris3d.players.Computer;
 import org.sms.tetris3d.players.DeviceUser;
 import org.sms.tetris3d.players.User;
+import org.sms.tetris3d.shapes.numbers.Number;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -18,9 +19,16 @@ import javax.microedition.khronos.opengles.GL10;
  */
 
 public class GameRenderer extends OpenGlRenderer {
-
+int startcnt =30;
+    int timelim = 9;
+    public boolean isPassedOneSec(){
+        return curTime-beforeTime >= 1000;
+    }
+    long beforeTime = System.currentTimeMillis();
+    long curTime = System.currentTimeMillis();
     @Override
     public void onDrawFrame(GL10 gl, boolean firstDraw) {
+
         DeviceUser du = (DeviceUser) GameStatus.getPlayers().get(0);
         gl.glTranslatef((float)GameStatus.getGridSize()/2, (float)GameStatus.getGridSize()/2,0);
         gl.glPushMatrix();
@@ -29,10 +37,15 @@ public class GameRenderer extends OpenGlRenderer {
             du.newShape();
         }
         if(GameStatus.isStarting()) {
-            //drawStartCount(startcnt);
-            //if((--startcnt)<1){
-            GameStatus.setStartStatus(false);
-            //}
+
+            drawNumberUnderTen(gl,du,0);
+            startcnt=timelim;
+
+
+            if((startcnt)<1){
+                GameStatus.setStartStatus(false);
+            }
+
         }
         else if(GameStatus.isPaused()){
             drawPause(gl);
@@ -74,4 +87,19 @@ public class GameRenderer extends OpenGlRenderer {
         }
         gl.glPopMatrix();
     }
+    public void drawNumberUnderTen(GL10 gl,User usr,int limit){
+
+        if(timelim<=limit){
+            return;
+        }
+        Number num = new Number(usr,timelim);
+        GLU.gluLookAt(gl, num.getXsize()/2+1, -num.getYsize()*10,num.getZsize()/2, num.getXsize()/2+1, num.getYsize()/2, num.getZsize()/2, 0, 0, 1);
+       num.draw(gl);
+        curTime = System.currentTimeMillis();
+        if(isPassedOneSec()){
+            beforeTime=curTime;
+            timelim--;
+        }
+    }
+   
 }
