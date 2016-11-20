@@ -17,5 +17,5 @@ import android.graphics.drawable.Drawable;
    public void onAddItems(int count);
    public void onAddItem();
    public Drawable getItemIcon();
-   
+
 }

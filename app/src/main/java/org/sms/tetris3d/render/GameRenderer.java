@@ -20,7 +20,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GameRenderer extends OpenGlRenderer {
 int startcnt =30;
-    int timelim = 9;
+    int timelim = 5;
     public boolean isPassedOneSec(){
         return curTime-beforeTime >= 1000;
     }
@@ -89,7 +89,7 @@ int startcnt =30;
     }
     public void drawNumberUnderTen(GL10 gl,User usr,int limit){
 
-        if(timelim<=limit){
+        if(timelim<=limit || timelim>9){
             return;
         }
         Number num = new Number(usr,timelim);
@@ -101,5 +101,5 @@ int startcnt =30;
             timelim--;
         }
     }
-   
+
 }
