@@ -1,5 +1,7 @@
 package org.sms.tetris3d.items;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by hsh on 2016. 11. 20..
  */
@@ -14,5 +16,6 @@ package org.sms.tetris3d.items;
    public void onRemoveItems(int count);
    public void onAddItems(int count);
    public void onAddItem();
-
+   public Drawable getItemIcon();
+   
 }
