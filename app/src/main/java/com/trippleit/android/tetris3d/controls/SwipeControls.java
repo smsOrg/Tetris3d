@@ -157,10 +157,10 @@ public class SwipeControls implements OnTouchListener {
 						float yfirst = vt.getYVelocity(0);
 						float ySecond = vt.getYVelocity(1);
 						if(yfirst<0&&ySecond<0){
-							GameStatus.setPivotZ(-Math.min(yfirst,ySecond)/4.2f+GameStatus.getPivotZ());
+							GameStatus.setPivotZ(-Math.min(yfirst,ySecond)/5.2f+GameStatus.getPivotZ());
 						}
 						else if(yfirst>0&&ySecond>0){
-							GameStatus.setPivotZ(-Math.max(yfirst,ySecond)/4.2f+GameStatus.getPivotZ());
+							GameStatus.setPivotZ(-Math.max(yfirst,ySecond)/5.2f+GameStatus.getPivotZ());
 						}else {
 							newDist = spacing(event);
 							if (newDist - oldDist > 20) { // zoom in
