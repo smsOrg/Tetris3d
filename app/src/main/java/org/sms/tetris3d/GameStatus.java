@@ -20,6 +20,15 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     public static ArrayList<User> getPlayers(){
         return players;
     }
+    protected static float pivotZ ;
+    public static float getPivotZ(){
+        return pivotZ;
+    }
+    public static void setPivotZ(float pz){
+        if((float)getGameHeight()/4<=pz&&pz<=getGameHeight()+2) {
+            pivotZ = pz;
+        }
+    }
     public static int getAvailableZPos(final User who){
         int result = 0;
         synchronized (GameStatus.getGameBoolMatrix()) {
@@ -51,6 +60,7 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         players.forceClear();
         players.add(new DeviceUser());
         gameHeight = 12;
+        setPivotZ((float)gameHeight/4);
         gridSize = 6;
         gStatus = GAME_STATUS.START;
         restartGameBoolMatrix();
