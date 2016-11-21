@@ -130,6 +130,36 @@ protected  void restartActivity(){
         timer.start();
     }
 
+    //add minsu-----------------------------(오류생기면이부분지우면)
+	public void ssstop(View v) {
+		showDialog(1);
+	}
+
+	@Override
+	@Deprecated
+	protected Dialog onCreateDialog(int id) {
+		final String items[] = {"되돌아가기", "다시시작", "옵션", "종료"};
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("일시정지");
+
+		builder.setItems(items, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Toast.makeText(getBaseContext(), items[which], Toast.LENGTH_SHORT).show();
+                //dialog modify please
+			}
+		});
+
+		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+			}
+		});
+		return builder.create();
+	}
+//------------------------------------------
+    
     @Override
     protected void onDestroy() {
         timerLoopAvailable=false;
