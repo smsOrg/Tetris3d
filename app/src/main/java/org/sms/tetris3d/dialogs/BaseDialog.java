@@ -11,7 +11,6 @@ import android.widget.*;
 public class BaseDialog extends AlertDialog {
     public BaseDialog(Context ctx){
         super(ctx);
-
     }
     public BaseDialog(Context ctx,int themeResId){
         super(ctx,themeResId);
@@ -20,6 +19,7 @@ public class BaseDialog extends AlertDialog {
         setContentView(resId);
     }
     public void addListView(int resId){
+
         ViewGroup layout = (ViewGroup)findViewById(resId);//top layout
         layout.addView(new ListView(getContext()));
     }

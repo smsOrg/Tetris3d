@@ -6,6 +6,8 @@ import android.view.*;
 import android.widget.*;
 import android.opengl.*;
 import android.content.*;
+
+import org.sms.tetris3d.dialogs.DialogItem;
 import org.sms.tetris3d.players.Computer;
 import org.sms.tetris3d.render.*;
 import org.sms.tetris3d.interfaces.*;
@@ -19,7 +21,20 @@ import com.trippleit.android.tetris3d.controls.*;
  * Created by hsh on 2016. 11. 19..
  */
 
-public class MainGameActivity extends Activity implements ToolTipView.OnToolTipViewClickedListener {
+public class MainGameActivity extends Activity  {
+    AlertDialog getDialog(final DialogItem[] items){
+        CharSequence[] vals = new CharSequence[items.length];
+        for(int i =0;i<vals.length;i++){
+            vals[i] = items[i].toString();
+        }
+       return new AlertDialog.Builder(this).setItems(vals,new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                items[which].onClickItem();
+            }
+        }).setCancelable(false).create();
+    }
 protected  void restartActivity(){
     if (Build.VERSION.SDK_INT >= 11) {
         recreate();
@@ -37,11 +52,13 @@ protected  void restartActivity(){
 
     @Override
     public void onBackPressed() {
-        if(false){
-
-        }else {
-            super.onBackPressed();
+        GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
+        if (dialog!=null && dialog.isShowing()) {
+            dialog.hide();
         }
+
+        else
+        dialog.show();
     }
 private void changePauseState(){
     if(GameStatus.getGameStatus()== GameStatus.GAME_STATUS.PAUSE){
@@ -49,6 +66,7 @@ private void changePauseState(){
     }else
         GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
 }
+    AlertDialog dialog = null;
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -59,6 +77,26 @@ private void changePauseState(){
         /*if((getIntent().getLongExtra("check",-2)^'s')>>10 !='s'+'m'+'s'){
             finish();
         }*/
+        dialog = getDialog(new DialogItem[]{new DialogItem(){
+            @Override
+            public void onClickItem(){
+
+                changePauseState();
+
+            }
+        }.setTitle("back"),new DialogItem(){
+            @Override
+            public void onClickItem(){
+                restartActivity();
+            }
+        }.setTitle("restart"),
+                new DialogItem(){
+                    @Override
+                    public void onClickItem(){
+                        finish();
+                    }
+                }.setTitle("exit")
+        });
         final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
        final  GameRenderer renderer = new GameRenderer();
         glView.setRenderer(renderer);
@@ -145,14 +183,13 @@ RotateControls rc = new RotateControls();
         timer.start();
     }
 
+
+
     @Override
     protected void onDestroy() {
         timerLoopAvailable=false;
         super.onDestroy();
     }
 
-    @Override
-    public void onToolTipViewClicked(ToolTipView toolTipView) {
 
-    }
 }

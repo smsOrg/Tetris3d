@@ -184,12 +184,12 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/material_welcome_card_layout.xml"
     },
     {
-        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
-        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/select_dialog_item_material.xml"
-    },
-    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/select_dialog_item_material.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
