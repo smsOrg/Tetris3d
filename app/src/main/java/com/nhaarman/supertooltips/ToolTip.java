@@ -23,6 +23,7 @@ public class ToolTip {
     public enum AnimationType {
         FROM_MASTER_VIEW,
         FROM_TOP,
+        FROM_BOTTOM,
         NONE
     }
 

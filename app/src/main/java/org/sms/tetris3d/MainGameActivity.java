@@ -10,12 +10,16 @@ import org.sms.tetris3d.players.Computer;
 import org.sms.tetris3d.render.*;
 import org.sms.tetris3d.interfaces.*;
 import org.sms.tetris3d.controls.*;
+import android.graphics.drawable.*;
+import android.graphics.*;
+import com.nhaarman.supertooltips.*;
 import com.trippleit.android.tetris3d.controls.*;
+
 /**
  * Created by hsh on 2016. 11. 19..
  */
 
-public class MainGameActivity extends Activity {
+public class MainGameActivity extends Activity implements ToolTipView.OnToolTipViewClickedListener {
 protected  void restartActivity(){
     if (Build.VERSION.SDK_INT >= 11) {
         recreate();
@@ -39,7 +43,12 @@ protected  void restartActivity(){
             super.onBackPressed();
         }
     }
-
+private void changePauseState(){
+    if(GameStatus.getGameStatus()== GameStatus.GAME_STATUS.PAUSE){
+        GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
+    }else
+        GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
+}
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -47,30 +56,18 @@ protected  void restartActivity(){
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
-
+        /*if((getIntent().getLongExtra("check",-2)^'s')>>10 !='s'+'m'+'s'){
+            finish();
+        }*/
         final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
        final  GameRenderer renderer = new GameRenderer();
         glView.setRenderer(renderer);
         final GLSurfaceView glView2 = (GLSurfaceView) findViewById(R.id.glSurface2);
        final  NextBlockRenderer renderer2 = new NextBlockRenderer();
         LinearLayout llt = (LinearLayout)findViewById(R.id.mainviewcontrolpanel);
+        llt.bringToFront();
         llt.getLayoutParams().height = (int)(getResources().getDisplayMetrics().heightPixels*0.108);
-        Button pause_btn = (Button)findViewById(R.id.btn_pause);
-        pause_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(GameStatus.getGameStatus()== GameStatus.GAME_STATUS.PAUSE){
-                    GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
-                }else
-                    GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
-            }
-        });
-        ((Button)findViewById(R.id.btn_restart)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                restartActivity();
-            }
-        });
+
         llt.setLayoutParams(llt.getLayoutParams());
         glView2.getLayoutParams().width = llt.getLayoutParams().height;
         glView2.setLayoutParams(glView2.getLayoutParams());
@@ -105,6 +102,14 @@ protected  void restartActivity(){
         b2.setOnTouchListener(bc);
         b3.setOnTouchListener(bc);
         b4.setOnTouchListener(bc);
+
+Button rot_b1 = (Button) findViewById(R.id.btn_rot_x);
+        Button rot_b2 = (Button) findViewById(R.id.btn_rot_y);
+        Button rot_b3 = (Button) findViewById(R.id.btn_rot_z);
+RotateControls rc = new RotateControls();
+       rot_b1.setOnClickListener(rc);
+        rot_b2.setOnClickListener(rc);
+        rot_b3.setOnClickListener(rc);
 
         final TextView tv = (TextView) findViewById(R.id.tvGameOver);
         Thread timer = new Thread() {
@@ -144,5 +149,10 @@ protected  void restartActivity(){
     protected void onDestroy() {
         timerLoopAvailable=false;
         super.onDestroy();
+    }
+
+    @Override
+    public void onToolTipViewClicked(ToolTipView toolTipView) {
+
     }
 }

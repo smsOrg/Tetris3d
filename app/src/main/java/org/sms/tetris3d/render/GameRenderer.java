@@ -20,7 +20,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GameRenderer extends OpenGlRenderer {
 int startcnt =30;
-    int timelim = 5;
+    int timelim = 3;
     public boolean isPassedOneSec(){
         return curTime-beforeTime >= 1000;
     }

@@ -201,6 +201,9 @@ public class ToolTipView extends LinearLayout implements ViewTreeObserver.OnPreD
             } else if (mToolTip.getAnimationType() == ToolTip.AnimationType.FROM_TOP) {
                 animators.add(ObjectAnimator.ofFloat(this, TRANSLATION_Y_COMPAT, 0, toolTipViewY));
             }
+            else if (mToolTip.getAnimationType() == ToolTip.AnimationType.FROM_BOTTOM) {
+                animators.add(ObjectAnimator.ofFloat(this, TRANSLATION_Y_COMPAT, 0, -toolTipViewY));
+            }
 
             animators.add(ObjectAnimator.ofFloat(this, SCALE_X_COMPAT, 0, 1));
             animators.add(ObjectAnimator.ofFloat(this, SCALE_Y_COMPAT, 0, 1));
@@ -342,7 +345,7 @@ public class ToolTipView extends LinearLayout implements ViewTreeObserver.OnPreD
         }
     }
 
-    public interface OnToolTipViewClickedListener {
+    public static interface OnToolTipViewClickedListener {
         void onToolTipViewClicked(ToolTipView toolTipView);
     }
 

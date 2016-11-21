@@ -14,17 +14,17 @@ public class NextBlockRenderer extends com.trippleit.android.tetris3d.render.Abs
     protected float cx,cy,cz,cr=-0.05f,rad=0;
     @Override
     public void onDrawFrame(GL10 gl, boolean firstDraw) {
-        final DeviceUser du = (DeviceUser)GameStatus.getPlayers().get(0);
-        if(!GameStatus.isEnd()) {
-            GLU.gluLookAt(gl, 0, -15, 5, 0, 0, 0, 0, 0, 1);
+        if(!GameStatus.isEnd()&&!GameStatus.isStarting()) {
+            final DeviceUser du = (DeviceUser)GameStatus.getPlayers().get(0);
 
+            GLU.gluLookAt(gl, 0, -15, 3, 0, 0, 1, 0, 0, 1);
             //new Coords(GameStatus.getGridSize(), GameStatus.getGameHeight()).draw(gl);
             if (GameStatus.getPlayers().get(0).getNextObject() == null) {
                 final int objNum = du.randInt(0, 5);
                 du.setNextObject(du.chooseObject(objNum));
             }
 final int zSz = du.getNextObject().getZsize();
-            gl.glTranslatef(2.5f, -7, 3+zSz/2);
+            gl.glTranslatef(2.5f, -7, 5-zSz/2);
             gl.glPushMatrix();
             gl.glRotatef(rad, 0.0f, 0.0f, 1);
             rad = (rad + 2) % 360;

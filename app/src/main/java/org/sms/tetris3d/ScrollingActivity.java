@@ -22,7 +22,7 @@ public static class LCardProvider extends com.dexafree.materialList.card.CardPro
         Intent it = new Intent();
         it.setClass(getApplicationContext(),MainGameActivity.class);
         it.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT|Intent.FLAG_ACTIVITY_NEW_TASK);
-
+it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
         getApplicationContext().startActivity(it);
     }
     @Override
@@ -32,8 +32,7 @@ public static class LCardProvider extends com.dexafree.materialList.card.CardPro
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        MaterialListView mlv =(MaterialListView)findViewById(R.id.menu_listview);
+       MaterialListView mlv =(MaterialListView)findViewById(R.id.menu_listview);
                 Card card =new Card.Builder(this)
                 .setTag(MainGameActivity.class.getName())
 
@@ -66,14 +65,14 @@ public static class LCardProvider extends com.dexafree.materialList.card.CardPro
                // Log.d("LONG_CLICK", card.getTag().toString());
             }
         });
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-
+*/
     }
 
     @Override
