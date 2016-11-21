@@ -1,7 +1,0 @@
-#Thu Nov 17 14:47:22 KST 2016
-base.0=/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_448df2200b3efca9b30cf0adf555b16c24644e88
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_640ef05f8e5b50e7f2dd831021cbd2486c300a68/classes.dex
-base.1=/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_640ef05f8e5b50e7f2dd831021cbd2486c300a68
-file.0=/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_448df2200b3efca9b30cf0adf555b16c24644e88/classes.dex

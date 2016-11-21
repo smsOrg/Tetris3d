@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:2:1-23:12
+ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:2:1-32:12
 	package
 		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:3:5-31
 		INJECTED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml
@@ -14,7 +14,7 @@ ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifes
 		INJECTED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml
 application
-ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:5:5-21:19
+ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:5:5-30:19
 MERGED from [com.android.support:design:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-compat:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/AndroidManifest.xml:25:5-20
@@ -53,6 +53,14 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:18:17-77
 	android:name
 		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:18:27-74
+activity#org.sms.tetris3d.MainGameActivity
+ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:21:9-29:20
+	android:screenOrientation
+		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:24:13-49
+	android:label
+		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:23:13-37
+	android:name
+		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:22:13-45
 uses-sdk
 INJECTED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/AndroidManifest.xml:20:5-43
