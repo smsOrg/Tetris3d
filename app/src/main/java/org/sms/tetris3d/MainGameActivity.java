@@ -30,6 +30,16 @@ protected  void restartActivity(){
     }
 }
     private boolean timerLoopAvailable = true;
+
+    @Override
+    public void onBackPressed() {
+        if(false){
+
+        }else {
+            super.onBackPressed();
+        }
+    }
+
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
