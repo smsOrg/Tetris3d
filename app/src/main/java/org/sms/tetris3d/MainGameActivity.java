@@ -114,12 +114,13 @@ private void changePauseState(){
         glView.requestFocus();
         glView.setFocusableInTouchMode(true);
         final TextView lncnt_view = (TextView)findViewById(R.id.line_count_view);
+        lncnt_view.setText(getString(R.string.prefix_string_line_count)+ org.sms.tetris3d.GameStatus.getRemoveLineCount());
         GameStatus.setOnRemoveOneLayer(new OnRemoveLayer() {
             @Override
             public void onRemove(final long rem_count) {
                 runOnUiThread(new Runnable(){
                     public void run(){
-                        lncnt_view.setText(rem_count+"");
+                        lncnt_view.setText(getString(R.string.prefix_string_line_count)+rem_count);
                     }
                 });
             }

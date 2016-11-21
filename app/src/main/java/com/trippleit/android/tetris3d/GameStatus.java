@@ -30,6 +30,9 @@ public class GameStatus {
     public enum PLAYER_STATUS{
         DISCONNECT,CONNECT,MOVE_BLOCK,ROTATE_BLOCK,PUT_BLOCK,SWIPE_BLOCK,NEW_SHAPE
     }
+    public static long getRemoveLineCount(){
+        return GameStatus.remove_line_count;
+    }
     public static void init(Context _c) {
         gameHeight = 10;
         gridSize = 5;
@@ -267,23 +270,25 @@ public class GameStatus {
     }
 
     public static boolean removeFullRows() {
-        ArrayList<Integer> rowsToRemove = new ArrayList<Integer>();
-        for (int k = gameHeight; k >= 0; k--) {
-            boolean remove = true;
-            for (int i = 0; i < gridSize; i++)
-                for (int j = 0; j < gridSize; j++)
-                    if (gameBoolMatrix[i][j][k] == false)
-                        remove = false;
-            if (remove)
-                rowsToRemove.add(k);
-        }
-        if (!rowsToRemove.isEmpty()) {
-            GameStatus.remove_line_count+=rowsToRemove.size();
-            removeRows(rowsToRemove);
-            if(GameStatus.orol!=null){
-                orol.onRemove(GameStatus.remove_line_count);
+        synchronized (gameBoolMatrix) {
+            ArrayList<Integer> rowsToRemove = new ArrayList<Integer>();
+            for (int k = gameHeight; k >= 0; k--) {
+                boolean remove = true;
+                for (int i = 0; i < gridSize; i++)
+                    for (int j = 0; j < gridSize; j++)
+                        if (gameBoolMatrix[i][j][k] == false)
+                            remove = false;
+                if (remove)
+                    rowsToRemove.add(k);
             }
-            return true;
+            if (!rowsToRemove.isEmpty()) {
+                GameStatus.remove_line_count += rowsToRemove.size();
+                removeRows(rowsToRemove);
+                if (GameStatus.orol != null) {
+                    orol.onRemove(GameStatus.remove_line_count);
+                }
+                return true;
+            }
         }
         return false;
     }

@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_launcher2.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-mdpi/ic_launcher2.png"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_launcher.png",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-mdpi/ic_launcher.png"
     }

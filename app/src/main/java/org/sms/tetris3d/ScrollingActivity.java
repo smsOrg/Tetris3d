@@ -33,22 +33,41 @@ it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
         setSupportActionBar(toolbar);
 
        MaterialListView mlv =(MaterialListView)findViewById(R.id.menu_listview);
-                Card card =new Card.Builder(this)
-                .setTag(MainGameActivity.class.getName())
-
+        Card cardwel =new Card.Builder(this)
+                .setTag("welcome")
+                .setDismissible()
                 .withProvider(new CardProvider())
-
-                .setLayout(R.layout.material_basic_buttons_card)
-                .setTitle("yrdy")
-                .setDescription("yrd")
+                .setLayout(R.layout.material_welcome_card_layout)
+                .setTitleColor(android.graphics.Color.WHITE)
+                .setTitle(R.string.start_game)
+                .setDescription("I am the description")
+                .setDescriptionColor(android.graphics.Color.WHITE)
+                .setSubtitle("My subtitle!")
+                .setSubtitleColor(android.graphics.Color.WHITE)
+                .setBackgroundColor(android.graphics.Color.BLUE)
                 .setDrawable(R.drawable.sample_android)
-
-
-
-
-
+                .addAction(R.id.ok_button, new com.dexafree.materialList.card.action. WelcomeButtonAction(this)
+                        .setText("Okay!")
+                        .setTextColor(android.graphics.Color.WHITE)
+                        .setListener(new OnActionClickListener() {
+                            @Override
+                            public void onActionClicked(View view, Card card) {
+                                Snackbar.make(view,"WelCome!",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+                                //Toast.makeText(mContext, "Welcome!", Toast.LENGTH_SHORT).show();
+                            }
+                        }))
                 .endConfig()
                 .build();
+                Card card =new Card.Builder(this)
+                .setTag(MainGameActivity.class.getName())
+                .withProvider(new CardProvider())
+                .setLayout(R.layout.material_basic_image_buttons_card_layout)
+                .setTitle(R.string.start_game)
+                .setDescription(R.string.start_game_desc)
+                .setDrawable(R.drawable.ic_launcher2)
+                .endConfig()
+                .build();
+        mlv.getAdapter().add(cardwel);
         mlv.getAdapter().add(card);
 
        mlv .addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
