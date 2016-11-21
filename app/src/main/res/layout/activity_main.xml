@@ -81,7 +81,14 @@
             android:layout_marginLeft="5dp"        
             android:background="@drawable/camera_right" />
     </LinearLayout>
-
+<!-- add minsu--------------------->
+    <Button
+        android:onClick="ssstop"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:text="II" />
+<!--------------------------------->
     <TextView
         android:id="@+id/tvGameOver"
         android:layout_width="wrap_content"
