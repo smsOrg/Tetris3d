@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="07d57580aba70918bf7e776363cd4cea13a938cf">
+        sha1="ebf20c258cdf15535b225fe5a9716ddb2d27cb2f">
         <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_448df2200b3efca9b30cf0adf555b16c24644e88/classes.dex" />
     </item>
     <item
@@ -30,21 +30,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/hsh/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_d12506c89e61a07afa965b3a9a472d8ccb2589db/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
         <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_7f4c256031381d7428f365beb9e64172a3e9c8c0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hsh/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_d12506c89e61a07afa965b3a9a472d8ccb2589db/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -115,7 +115,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="5cc2d0da497c171a438788f58704820c9a213190">
+        sha1="9ddb7257906163d9872a854e6d14e447b4d9f30c">
         <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_640ef05f8e5b50e7f2dd831021cbd2486c300a68/classes.dex" />
     </item>
     <item
@@ -138,6 +138,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/hsh/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-2.4.0_d91768ae69fb271d3dacc05aced892d8477ad431/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -147,12 +156,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.2.1_1b54fea8eb048229916ee83b3bdaefa372e92f0a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="d5c731fc64c03dfe04d51134955b483551c35849">
         <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_fd7abb79aa070c3a915b051696ee0591ba32e7da/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hsh/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_53f9792a7fbb18ffea0a8a11ea5012aa484a4655/classes.dex" />
     </item>
     <item
         is-multidex="true"

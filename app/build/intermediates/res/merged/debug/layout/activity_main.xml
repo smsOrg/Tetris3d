@@ -3,46 +3,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <RelativeLayout android:layout_width="fill_parent"
+        android:id="@+id/mainviewparent"
         android:layout_height="fill_parent">
 
-        <LinearLayout android:id="@+id/mainviewcontrolpanel"
-            android:minWidth="30dip"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_alignParentRight="true"
-            >
-            <android.opengl.GLSurfaceView
-                android:id="@+id/glSurface2"
-                android:layout_width="fill_parent"
-                android:layout_height="100dip"
-                android:minHeight="100dip"
-                android:layout_gravity="top" />
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:text="line view"
-                android:id="@+id/line_count_view"
-                android:gravity="center"
-                ></TextView>
-            <Button android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:text="pause"
-                android:id="@+id/btn_pause"
-                />
-        </LinearLayout>
+
         <android.opengl.GLSurfaceView
             android:id="@+id/glSurface"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_toLeftOf="@+id/mainviewcontrolpanel"
+            android:layout_above="@+id/mainviewcontrolpanel"
             android:layout_gravity="top|left" />
+        <LinearLayout android:id="@+id/mainviewcontrolpanel"
+            android:minHeight="30dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_alignParentBottom="true"
+            >
+            <android.opengl.GLSurfaceView
+                android:id="@+id/glSurface2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dip"
+                android:paddingTop="3dp"
+                android:minWidth="30dip"
+                android:layout_gravity="left" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="line view"
+                android:id="@+id/line_count_view"
+                android:gravity="center"
+                ></TextView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+            <Button android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:text="x"
+                android:background="@drawable/rotate"
+                android:id="@+id/btn_rot_x"
+                android:layout_weight="1"
+                />
+            <Button android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:text="y"
+                android:background="@drawable/rotate"
+                android:id="@+id/btn_rot_y"
+                android:layout_weight="1"
+                />
+                <Button android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:text="z"
+                    android:background="@drawable/rotate"
+                    android:id="@+id/btn_rot_z"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+            <TextView android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="tv"
+                android:visibility="gone"
+                android:id="@+id/activity_main_redtv"
+                />
+            <com.nhaarman.supertooltips.ToolTipRelativeLayout
+                android:id="@+id/activity_main_tooltipRelativeLayout"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/xyz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal" >
 

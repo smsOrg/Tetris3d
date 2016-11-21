@@ -8,9 +8,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.*;
+import com.dexafree.materialList.view.*;
+import com.dexafree.materialList.card.*;
+import com.nhaarman.supertooltips.ToolTip;
+import com.dexafree.materialList.listeners.RecyclerItemClickListener;
 
 public class ScrollingActivity extends AppCompatActivity {
+public static class LCardProvider extends com.dexafree.materialList.card.CardProvider{
 
+}
+    private void startGame(){
+        Intent it = new Intent();
+        it.setClass(getApplicationContext(),MainGameActivity.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT|Intent.FLAG_ACTIVITY_NEW_TASK);
+it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
+        getApplicationContext().startActivity(it);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,14 +32,47 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+       MaterialListView mlv =(MaterialListView)findViewById(R.id.menu_listview);
+                Card card =new Card.Builder(this)
+                .setTag(MainGameActivity.class.getName())
+
+                .withProvider(new CardProvider())
+
+                .setLayout(R.layout.material_basic_buttons_card)
+                .setTitle("yrdy")
+                .setDescription("yrd")
+                .setDrawable(R.drawable.sample_android)
+
+
+
+
+
+                .endConfig()
+                .build();
+        mlv.getAdapter().add(card);
+
+       mlv .addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(Card card, int position) {
+               if(card.getTag().equals(MainGameActivity.class.getName())){
+                   startGame();
+               }
+            }
+
+            @Override
+            public void onItemLongClick(Card card, int position) {
+               // Log.d("LONG_CLICK", card.getTag().toString());
+            }
+        });
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+*/
     }
 
     @Override

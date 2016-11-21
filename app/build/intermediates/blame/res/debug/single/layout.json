@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/supporting_text_24dp.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/supporting_text_24dp.xml"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/notification_template_big_media.xml"
     },
@@ -12,8 +16,16 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/layout/start.xml"
     },
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/headline_image.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/headline_image.xml"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/res/layout/design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/material_image_with_buttons_card.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/material_image_with_buttons_card.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/splash.xml",
@@ -28,12 +40,20 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_search_view.xml"
     },
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/divider.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/divider.xml"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/res/layout/design_menu_item_action_area.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/material_list_card_layout.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/material_list_card_layout.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/design_navigation_item.xml",
@@ -68,12 +88,20 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/res/layout/design_layout_tab_icon.xml"
     },
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/material_small_image_card.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/material_small_image_card.xml"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/res/layout/design_navigation_item_header.xml"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/rich_media_image.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/rich_media_image.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
@@ -104,12 +132,20 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/layout/instructions.xml"
     },
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/headline_16dp.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/headline_16dp.xml"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/notification_template_lines.xml"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/tooltip.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/layout/tooltip.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
@@ -128,6 +164,10 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/layout/activity_item_list.xml"
     },
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/supporting_text_16dp.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/supporting_text_16dp.xml"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_action_bar_view_list_nav_layout.xml"
     },
@@ -138,6 +178,10 @@
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/item_list.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/layout/item_list.xml"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/material_welcome_card_layout.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/material_welcome_card_layout.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
@@ -172,6 +216,10 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_screen_simple_overlay_action_mode.xml"
     },
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/material_basic_buttons_card.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/material_basic_buttons_card.xml"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_list_menu_item_layout.xml"
     },
@@ -198,6 +246,10 @@
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/res/layout/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/material_big_image_card_layout.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/material_big_image_card_layout.xml"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
@@ -228,6 +280,10 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/res/layout/design_text_input_password_icon.xml"
     },
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/headline_24dp.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/headline_24dp.xml"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/content_scrolling.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/layout/content_scrolling.xml"
     },
@@ -246,5 +302,9 @@
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/layout/material_basic_image_buttons_card_layout.xml",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/res/layout/material_basic_image_buttons_card_layout.xml"
     }
 ]

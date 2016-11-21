@@ -7,11 +7,21 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="org.sms.tetris3d.ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
-
+        android:text="@string/large_text" />-->
+    <com.dexafree.materialList.view.MaterialListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menu_listview"
+        ></com.dexafree.materialList.view.MaterialListView>
+</LinearLayout>
 </android.support.v4.widget.NestedScrollView>
