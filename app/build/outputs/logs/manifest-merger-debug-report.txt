@@ -25,6 +25,8 @@ MERGED from [com.android.support:support-fragment:24.2.1] /Users/hsh/AndroidStud
 MERGED from [com.android.support:appcompat-v7:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/AndroidManifest.xml:23:5-20
 MERGED from [com.android.support:animated-vector-drawable:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/AndroidManifest.xml:22:5-20
+MERGED from [Tetris3d:materialList:unspecified] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/AndroidManifest.xml:11:5-14:19
+MERGED from [com.android.support:cardview-v7:23.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.2.1/AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:8:9-41
 	android:supportsRtl
@@ -74,6 +76,8 @@ MERGED from [com.android.support:appcompat-v7:24.2.1] /Users/hsh/AndroidStudioPr
 MERGED from [com.android.support:support-vector-drawable:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/AndroidManifest.xml:21:5-43
 MERGED from [com.android.support:animated-vector-drawable:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/AndroidManifest.xml:20:5-43
+MERGED from [Tetris3d:materialList:unspecified] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/Tetris3d/materialList/unspecified/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:cardview-v7:23.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.2.1/AndroidManifest.xml:20:5-43
 	tools:overrideLibrary
 		ADDED from [com.android.support:support-v4:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/AndroidManifest.xml:23:9-51
 	android:targetSdkVersion

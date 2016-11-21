@@ -17,10 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:text="@string/large_text" />
-    <ListView
+    <com.dexafree.materialList.view.MaterialListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/menu_listview"
-        ></ListView>
+        ></com.dexafree.materialList.view.MaterialListView>
 </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

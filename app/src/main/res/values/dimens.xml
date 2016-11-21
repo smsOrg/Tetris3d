@@ -1,5 +1,6 @@
 <resources>
     <dimen name="app_bar_height">280dp</dimen>
+    <dimen name="app_bar_height_for_main_activity">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="item_width">200dp</dimen>
