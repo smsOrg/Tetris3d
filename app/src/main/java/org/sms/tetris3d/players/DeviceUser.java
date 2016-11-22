@@ -31,7 +31,7 @@ public class DeviceUser extends User {
         synchronized (GameStatus.getGameBoolMatrix()) {
             boolean ret = setCurrentObjectPositionDown();
             if (GameStatus.isDropFast())
-                while (setCurrentObjectPositionDown()) ;
+                while ((ret=setCurrentObjectPositionDown())) ;
 
             if (!ret) {
                 if (!checkOverlayPlayerBlock(this)) {

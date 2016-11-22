@@ -50,7 +50,7 @@ int startcnt =30;
         else if(GameStatus.isPaused()){
             drawPause(gl);
         }
-        else {
+        else{
 
             //GLU.gluLookAt(gl, GameStatus.getCameraX(), GameStatus.getCameraY(), GameStatus.getCameraZ(), 0, 0, 0, 0, 0, 1);
             GLU.gluLookAt(gl, GameStatus.getCameraX(),GameStatus.getCameraY(), GameStatus.getCameraZ(), (float)GameStatus.getGridSize()/2, (float)GameStatus.getGridSize()/2, GameStatus.getPivotZ(), 0, 0, 1);
@@ -59,17 +59,19 @@ int startcnt =30;
             new Coords(GameStatus.getGridSize(), GameStatus.getGameHeight()).draw(gl);
             new Grid(GameStatus.getGridSize()).draw(gl);
 
-           // du.dropDown(this);
-            for(User usr:GameStatus.getPlayers()) {
-                if (User.checkOverlayPlayerBlock(usr)) {
-                    usr.setCurrentPosition(GameStatus.getStartX(), GameStatus.getStartY(), GameStatus.getGameHeight());
-                }
-                if(usr instanceof DeviceUser){
-                    ((DeviceUser)usr).dropDown(this);
-                }else if(usr instanceof Computer){
-                    //((Computer)usr).dropDown(this);
-                }
-            }
+    // du.dropDown(this);
+    for (User usr : GameStatus.getPlayers()) {
+        if (User.checkOverlayPlayerBlock(usr)) {
+            usr.setCurrentPosition(GameStatus.getStartX(), GameStatus.getStartY(), GameStatus.getGameHeight());
+        }
+        if (usr instanceof DeviceUser) {synchronized (GameStatus.getGameBoolMatrix()) {
+            ((DeviceUser) usr).dropDown(this);
+        }
+        } else if (usr instanceof Computer) {
+            //((Computer)usr).dropDown(this);
+        }
+    }
+
             //dropDown();
             removeFullRows();
             printAllObjects(gl);

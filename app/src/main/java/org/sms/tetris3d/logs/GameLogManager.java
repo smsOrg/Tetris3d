@@ -2,6 +2,7 @@ package org.sms.tetris3d.logs;
 
 import android.content.*;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import org.json.JSONArray;
@@ -38,4 +39,30 @@ public class GameLogManager {
        return  readable_db.rawQuery("select * from log order by remove_line_count desc, play_time",new String[]{});
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void clearAllLog(SQLiteDatabase writeable_db){
+        writeable_db.execSQL("delete from log");
+    }
 }

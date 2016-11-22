@@ -7,6 +7,7 @@ import android.widget.*;
 import android.opengl.*;
 import android.content.*;
 
+import org.json.JSONObject;
 import org.sms.tetris3d.dialogs.DialogItem;
 import org.sms.tetris3d.logs.GameLogManager;
 import org.sms.tetris3d.players.Computer;
@@ -17,15 +18,18 @@ import android.graphics.drawable.*;
 import android.graphics.*;
 import com.nhaarman.supertooltips.*;
 import com.trippleit.android.tetris3d.controls.*;
-
+import java.util.*;
 /**
  * Created by hsh on 2016. 11. 19..
  */
 
 public class MainGameActivity extends Activity  {
+    private boolean timerLoopAvailable = true;
+
     AlertDialog getDialog(final DialogItem[] items){
        return getDialogAsBuilder(items).create();
     }
+
     AlertDialog.Builder getDialogAsBuilder(final DialogItem[] items){
         CharSequence[] vals = new CharSequence[items.length];
         for(int i =0;i<vals.length;i++){
@@ -39,20 +43,21 @@ public class MainGameActivity extends Activity  {
             }
         }).setCancelable(false);
     }
-protected  void restartActivity(){
-    if (Build.VERSION.SDK_INT >= 11) {
-        recreate();
-    } else {
-        Intent intent = getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        finish();
-        overridePendingTransition(0, 0);
 
-        startActivity(intent);
-        overridePendingTransition(0, 0);
+    protected  void restartActivity(){
+        if (Build.VERSION.SDK_INT >= 11) {
+            recreate();
+        } else {
+            Intent intent = getIntent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finish();
+            overridePendingTransition(0, 0);
+
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        }
     }
-}
-    private boolean timerLoopAvailable = true;
+
 
     @Override
     public void onBackPressed() {
@@ -159,16 +164,19 @@ private void changePauseState(){
         Button b4 = (Button) findViewById(R.id.btnRight);
 
         ButtonControls bc = new ButtonControls(this);
+
         b1.setOnTouchListener(bc);
         b2.setOnTouchListener(bc);
         b3.setOnTouchListener(bc);
         b4.setOnTouchListener(bc);
 
-Button rot_b1 = (Button) findViewById(R.id.btn_rot_x);
+        Button rot_b1 = (Button) findViewById(R.id.btn_rot_x);
         Button rot_b2 = (Button) findViewById(R.id.btn_rot_y);
         Button rot_b3 = (Button) findViewById(R.id.btn_rot_z);
-RotateControls rc = new RotateControls();
-       rot_b1.setOnClickListener(rc);
+
+        RotateControls rc = new RotateControls();
+
+        rot_b1.setOnClickListener(rc);
         rot_b2.setOnClickListener(rc);
         rot_b3.setOnClickListener(rc);
 
@@ -179,33 +187,45 @@ RotateControls rc = new RotateControls();
                 super.run();
                 int time = 0;
                 while (timerLoopAvailable) {
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    time++;
-                    final int temp = time;
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
 
-                            if(GameStatus.isEnd()) {
-                                tv.setText("GAME OVER :(");
-                glm.addLog(glm.getDataBase(true),GameStatus.getConfigData(),GameStatus.getRemoveLineCount(),temp);
-                                timerLoopAvailable = false;
-if(!endDialog.isShowing()){
-    endDialog.show();
-}
-
-                            }
-                            else {
-
-                                tv.setText("Time: " + temp);
-                            }
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    });
-                }
+                        if(!GameStatus.isStarting()) {
+                            time++;
+                        }
+                        final int temp = time;
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                if (GameStatus.isEnd()) {
+                                    tv.setText("GAME OVER :(");
+                                    if(timerLoopAvailable) {
+                                        JSONObject config = GameStatus.getConfigData();
+                                        Date dt =  new Date();
+                                        try {
+                                            config.put("end_time", dt.toString());
+                                        }catch (Exception e){
+
+                                        }
+                                        glm.addLog(glm.getDataBase(true), config, GameStatus.getRemoveLineCount(), temp);
+                                    }
+                                    timerLoopAvailable = false;
+                                    if (!endDialog.isShowing()) {
+                                        endDialog.show();
+                                    }
+
+                                } else {
+                                    tv.setText("Time: " + temp);
+                                }
+                            }
+                        });
+                    }
+
             }
         };
         timer.start();

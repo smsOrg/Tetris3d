@@ -82,6 +82,7 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
             config_data.put("game_board_xy_size", gridSize);
             config_data.put("game_board_height",gameHeight);
             config_data.put("participated_player_count",players.size());
+
         }catch (Exception e){
 
         }
