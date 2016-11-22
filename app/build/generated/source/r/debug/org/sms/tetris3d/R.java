@@ -2752,16 +2752,17 @@ containing a value of this type.
         public static final int ic_launcher2=0x7f02005c;
         public static final int instructions=0x7f02005d;
         public static final int navigation_empty_icon=0x7f02005e;
-        public static final int notification_template_icon_bg=0x7f020068;
-        public static final int quickcontact_drop_shadow=0x7f02005f;
-        public static final int rotate=0x7f020060;
-        public static final int sample_android=0x7f020061;
-        public static final int splash=0x7f020062;
-        public static final int start=0x7f020063;
-        public static final int tooltip_arrow_down=0x7f020064;
-        public static final int tooltip_arrow_up=0x7f020065;
-        public static final int tooltip_bottom_frame=0x7f020066;
-        public static final int tooltip_top_frame=0x7f020067;
+        public static final int notification_template_icon_bg=0x7f020069;
+        public static final int pause_img=0x7f02005f;
+        public static final int quickcontact_drop_shadow=0x7f020060;
+        public static final int rotate=0x7f020061;
+        public static final int sample_android=0x7f020062;
+        public static final int splash=0x7f020063;
+        public static final int start=0x7f020064;
+        public static final int tooltip_arrow_down=0x7f020065;
+        public static final int tooltip_arrow_up=0x7f020066;
+        public static final int tooltip_bottom_frame=0x7f020067;
+        public static final int tooltip_top_frame=0x7f020068;
     }
     public static final class id {
         public static final int action0=0x7f0c009e;
@@ -3081,17 +3082,29 @@ containing a value of this type.
         public static final int game_over_dialg_prefix_content=0x7f060028;
         public static final int game_over_dialg_restart=0x7f060029;
         public static final int game_over_dialg_title=0x7f06002a;
-        public static final int large_text=0x7f06002b;
-        public static final int left=0x7f06002c;
-        public static final int prefix_string_line_count=0x7f06002d;
-        public static final int right=0x7f06002e;
+        public static final int gamelogactivity_clearlog_title=0x7f06002b;
+        public static final int gamelogactivity_item_boardsize_format=0x7f06002c;
+        public static final int gamelogactivity_item_player_cnt=0x7f06002d;
+        public static final int gamelogactivity_item_playtime=0x7f06002e;
+        public static final int gamelogactivity_item_rmlayer=0x7f06002f;
+        public static final int gamelogactivity_item_time=0x7f060030;
+        public static final int gamelogactivity_nolog_title=0x7f060031;
+        public static final int gamelogactivity_sort_title=0x7f060032;
+        public static final int large_text=0x7f060033;
+        public static final int left=0x7f060034;
+        public static final int pausedialog_item_exit_game=0x7f060035;
+        public static final int pausedialog_item_restart_game=0x7f060036;
+        public static final int pausedialog_item_resume=0x7f060037;
+        public static final int pausedialog_title=0x7f060038;
+        public static final int prefix_string_line_count=0x7f060039;
+        public static final int right=0x7f06003a;
         public static final int search_menu_title=0x7f060013;
-        public static final int start=0x7f06002f;
-        public static final int start_game=0x7f060030;
-        public static final int start_game_desc=0x7f060031;
+        public static final int start=0x7f06003b;
+        public static final int start_game=0x7f06003c;
+        public static final int start_game_desc=0x7f06003d;
         public static final int status_bar_notification_info_overflow=0x7f060014;
-        public static final int tempNote=0x7f060032;
-        public static final int up=0x7f060033;
+        public static final int tempNote=0x7f06003e;
+        public static final int up=0x7f06003f;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f08008f;

@@ -15,7 +15,7 @@ public class GameLogUtil extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table if not exists log(id integer auto_increment,config_data text,remove_line_count integer,play_time integer);");
+        db.execSQL("create table if not exists log(id integer primary key,config_data text,remove_line_count integer not null,play_time integer not null,time_stamp integer not null);");
     }
 
     @Override

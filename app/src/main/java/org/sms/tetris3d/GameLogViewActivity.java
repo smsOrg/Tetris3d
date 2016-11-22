@@ -21,7 +21,7 @@ import com.dexafree.materialList.card.*;
 import org.json.JSONObject;
 import org.sms.tetris3d.drawables.NumberDrawable;
 import org.sms.tetris3d.logs.GameLogManager;
-
+import java.util.*;
 /**
  * Created by hsh on 2016. 11. 22..
  */
@@ -55,7 +55,7 @@ int idx = 1;
                     .setTag(MainGameActivity.class.getName())
                     .withProvider(new CardProvider())
                     .setLayout(R.layout.material_basic_buttons_card)
-                    .setTitle("There are no game logs")
+                    .setTitle(R.string.gamelogactivity_nolog_title)
                     .endConfig()
                     .build();
             mlv.getAdapter().add(card);
@@ -68,16 +68,31 @@ int idx = 1;
                     first = false;
                 }
                 StringBuffer sb = new StringBuffer();
-                for (String cn : query.getColumnNames()) {
-                    if(!cn.equals("id")) {
-                        sb.append(query.getString(query.getColumnIndexOrThrow(cn)) + "\n");
-                    }
+                StringBuffer titleSb = new StringBuffer();
+                long timestamp =query.getLong(4);
+                int playtime = query.getInt(3);
+                        int linecount = query.getInt(2);
+                Date d = new Date(timestamp);
+                titleSb.append(d.toString()+"  :: "+linecount);
+                String configStr = query.getString(1);
+                JSONObject config=null;
+                sb.append(getString(R.string.gamelogactivity_item_rmlayer)+linecount+"\n");
+                sb.append(getString(R.string.gamelogactivity_item_playtime)+playtime+"\n");
+                sb.append(getString(R.string.gamelogactivity_item_time)+d.toString()+"\n");
+
+                try {
+                    config = new JSONObject(configStr);
+                    sb.append(getString(R.string.gamelogactivity_item_player_cnt)+config.get("participated_player_count")+"\n");
+                    sb.append(String.format("보드 사이즈: %s (x axis) X %s (y axis) X %s (z axis)\n",config.get("game_board_xy_size"),config.get("game_board_xy_size"),config.get("game_board_height")));
+                }catch(Exception e){
+
                 }
+
                 Card card = new Card.Builder(this)
                         .setTag("tag")
                         .withProvider(new CardProvider())
                         .setLayout(R.layout.material_basic_image_buttons_card_layout)
-                        .setTitle("log")
+                        .setTitle(titleSb.toString())
                         .setDescription(sb.toString())
                         .setDrawable(new NumberDrawable(idx++, Color.WHITE,idx-2<rankColors.length?rankColors[idx-2]:rankColors[rankColors.length-1])) //R.drawable.sample_android)
                         .endConfig()
@@ -99,11 +114,15 @@ int idx = 1;
             }
         });
     }
+    protected  void sortLog(){
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        menu.add(0,10,0,"Clear Log").setTitle("Clear Log").setShowAsAction(MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0,10,0,getString(R.string.gamelogactivity_clearlog_title)).setTitle(getString(R.string.gamelogactivity_clearlog_title)).setShowAsAction(MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0,11,0,getString(R.string.gamelogactivity_sort_title)).setTitle(getString(R.string.gamelogactivity_sort_title)).setShowAsAction(MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
         return true;
     }
 
@@ -120,6 +139,9 @@ int idx = 1;
         }
         else if(id==10){
             clearAllLog();
+        }
+        else if(id==11){
+            sortLog();
         }
         return super.onOptionsItemSelected(item);
     }

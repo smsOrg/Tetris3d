@@ -89,26 +89,27 @@ private void changePauseState(){
             finish();
         }
         glm = new GameLogManager(getApplicationContext());
-        dialog = getDialog(new DialogItem[]{new DialogItem(){
+        dialog = getDialogAsBuilder(new DialogItem[]{new DialogItem(){
             @Override
             public void onClickItem(){
 
                 changePauseState();
 
             }
-        }.setTitle("back"),new DialogItem(){
+        }.setTitle(getString(R.string.pausedialog_item_resume)),
+                new DialogItem(){
             @Override
             public void onClickItem(){
                 restartActivity();
             }
-        }.setTitle("restart"),
+        }.setTitle(getString(R.string.pausedialog_item_restart_game)),
                 new DialogItem(){
                     @Override
                     public void onClickItem(){
                         finish();
                     }
                 }.setTitle("exit")
-        });
+        }).setIcon(R.drawable.pause_img).setTitle(R.string.pausedialog_title) .create();
         endDialog= new  android.support.v7.app.AlertDialog.Builder(MainGameActivity.this)
                 .setTitle(R.string.game_over_dialg_title)
                 .setMessage(R.string.game_over_dialg_prefix_content)
@@ -212,11 +213,13 @@ private void changePauseState(){
                                         }catch (Exception e){
 
                                         }
-                                        glm.addLog(glm.getDataBase(true), config, GameStatus.getRemoveLineCount(), temp);
+                                        glm.addLog(glm.getDataBase(true), config, GameStatus.getRemoveLineCount(), temp,dt.getTime());
                                     }
                                     timerLoopAvailable = false;
                                     if (!endDialog.isShowing()) {
-                                        endDialog.show();
+                                        try {
+                                            endDialog.show();
+                                        }catch(Exception e){}
                                     }
 
                                 } else {

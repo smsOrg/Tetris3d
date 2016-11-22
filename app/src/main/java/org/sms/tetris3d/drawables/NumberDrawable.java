@@ -33,8 +33,8 @@ public class NumberDrawable extends Drawable {
         final float r = Math.min(width/2,height/2);
         //canvas.drawColor(Color.BLACK);
         if(!isInitializedFontSize){
-            int tmpsz = 1;
 
+            int tmpsz = 3;
             final float maxRan = (float)Math.sqrt(2)*r;
             while(numRect.width()<=maxRan&&numRect.height()<=maxRan){
                 numPaint.setTextSize(tmpsz);

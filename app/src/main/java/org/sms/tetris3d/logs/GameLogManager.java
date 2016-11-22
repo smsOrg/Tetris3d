@@ -27,40 +27,18 @@ public class GameLogManager {
             return glu.getReadableDatabase();
         }
     }
-    public void addLog(SQLiteDatabase writeable_db, JSONObject config, long line_count,int play_time){
+    public void addLog(SQLiteDatabase writeable_db, JSONObject config, long line_count,int play_time,long timestamp){
         ContentValues cv = new ContentValues();
         cv.put("config_data",config.toString());
         cv.put("remove_line_count",line_count);
         cv.put("play_time",play_time);
+        cv.put("time_stamp",timestamp);
         writeable_db.insert("log",null,cv);
 
 }
     public Cursor getLog(SQLiteDatabase readable_db){
        return  readable_db.rawQuery("select * from log order by remove_line_count desc, play_time",new String[]{});
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void clearAllLog(SQLiteDatabase writeable_db){
         writeable_db.execSQL("delete from log");
