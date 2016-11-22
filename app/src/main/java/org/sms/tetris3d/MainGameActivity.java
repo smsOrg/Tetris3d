@@ -124,7 +124,7 @@ private void changePauseState(){
                     public void onClick(DialogInterface dialog, int which) {
                         restartActivity();
                     }
-                }).create();
+                }).setCancelable(false).create();
         final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
        final  GameRenderer renderer = new GameRenderer();
         glView.setRenderer(renderer);
