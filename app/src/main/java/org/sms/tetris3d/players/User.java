@@ -67,7 +67,6 @@ public abstract class User implements  UserDefaultBehavior {
     }
 
     public IShape getCurrentObject(){
-
         return currentObject!=null? currentObject:(currentObject=chooseObject(randInt(0,5)));
     }
 

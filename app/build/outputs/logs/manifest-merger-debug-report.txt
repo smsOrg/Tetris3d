@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:2:1-32:12
+ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:2:1-42:12
 	package
 		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:3:5-31
 		INJECTED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml
@@ -14,7 +14,7 @@ ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifes
 		INJECTED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml
 application
-ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:5:5-30:19
+ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:5:5-40:19
 MERGED from [com.android.support:design:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-compat:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/AndroidManifest.xml:25:5-20
@@ -63,6 +63,22 @@ ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifes
 		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:23:13-37
 	android:name
 		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:22:13-45
+intent-filter#android.intent.action.MAIN+android.intent.category.DEFAULT
+ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:25:13-28:29
+category#android.intent.category.DEFAULT
+ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:27:17-76
+	android:name
+		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:27:27-73
+activity#org.sms.tetris3d.GameLogViewActivity
+ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:30:9-39:20
+	android:screenOrientation
+		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:34:13-49
+	android:label
+		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:32:13-37
+	android:theme
+		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:33:13-56
+	android:name
+		ADDED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml:31:13-48
 uses-sdk
 INJECTED from /Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:24.2.1] /Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/AndroidManifest.xml:20:5-43

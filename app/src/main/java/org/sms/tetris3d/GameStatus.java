@@ -2,6 +2,7 @@ package org.sms.tetris3d;
 
 import android.content.Context;
 
+import org.json.JSONObject;
 import org.sms.tetris3d.players.*;
 
 import java.util.ArrayList;
@@ -14,9 +15,14 @@ import org.sms.tetris3d.players.User;
  */
 
 public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
+    public static final int DB_FILE_VERSION = 1;
     protected static final  RegisteredPlayers players = new RegisteredPlayers(){
 
     };
+    protected static  JSONObject config_data = new JSONObject();
+    public static JSONObject getConfigData(){
+        return config_data;
+    }
     public static ArrayList<User> getPlayers(){
         return players;
     }
@@ -57,6 +63,8 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     }
 
     public static void init(Context _c) {
+        config_data=new JSONObject();
+
         players.forceClear();
         players.add(new DeviceUser());
         gameHeight = 12;
@@ -70,5 +78,13 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         startX = 2;
         startY = 2;
         dropFast = false;
+        try {
+            config_data.put("game_board_xy_size", gridSize);
+            config_data.put("game_board_height",gameHeight);
+            config_data.put("participated_player_count",players.size());
+
+        }catch (Exception e){
+
+        }
     }
 }

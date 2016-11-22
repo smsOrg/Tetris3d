@@ -12,6 +12,10 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-xhdpi/camera_right.png"
     },
     {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_launcher2.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-xhdpi/ic_launcher2.png"
+    },
+    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-xhdpi/camera_left.png",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-xhdpi/camera_left.png"
     },
