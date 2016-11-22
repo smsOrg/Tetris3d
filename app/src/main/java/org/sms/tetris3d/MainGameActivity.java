@@ -8,6 +8,7 @@ import android.opengl.*;
 import android.content.*;
 
 import org.sms.tetris3d.dialogs.DialogItem;
+import org.sms.tetris3d.logs.GameLogManager;
 import org.sms.tetris3d.players.Computer;
 import org.sms.tetris3d.render.*;
 import org.sms.tetris3d.interfaces.*;
@@ -23,17 +24,20 @@ import com.trippleit.android.tetris3d.controls.*;
 
 public class MainGameActivity extends Activity  {
     AlertDialog getDialog(final DialogItem[] items){
+       return getDialogAsBuilder(items).create();
+    }
+    AlertDialog.Builder getDialogAsBuilder(final DialogItem[] items){
         CharSequence[] vals = new CharSequence[items.length];
         for(int i =0;i<vals.length;i++){
             vals[i] = items[i].toString();
         }
-       return new AlertDialog.Builder(this).setItems(vals,new DialogInterface.OnClickListener(){
+        return new AlertDialog.Builder(this).setItems(vals,new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
                 items[which].onClickItem();
             }
-        }).setCancelable(false).create();
+        }).setCancelable(false);
     }
 protected  void restartActivity(){
     if (Build.VERSION.SDK_INT >= 11) {
@@ -67,6 +71,8 @@ private void changePauseState(){
         GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
 }
     AlertDialog dialog = null;
+    GameLogManager glm;
+    android.support.v7.app.AlertDialog endDialog = null;
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -74,9 +80,10 @@ private void changePauseState(){
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
-        /*if((getIntent().getLongExtra("check",-2)^'s')>>10 !='s'+'m'+'s'){
+        if((getIntent().getLongExtra("check",-2)^'s')>>10 !='s'+'m'+'s'){
             finish();
-        }*/
+        }
+        glm = new GameLogManager(getApplicationContext());
         dialog = getDialog(new DialogItem[]{new DialogItem(){
             @Override
             public void onClickItem(){
@@ -97,6 +104,21 @@ private void changePauseState(){
                     }
                 }.setTitle("exit")
         });
+        endDialog= new  android.support.v7.app.AlertDialog.Builder(MainGameActivity.this)
+                .setTitle(R.string.game_over_dialg_title)
+                .setMessage(R.string.game_over_dialg_prefix_content)
+                .setPositiveButton(R.string.game_over_dialg_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNeutralButton(R.string.game_over_dialg_restart, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        restartActivity();
+                    }
+                }).create();
         final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
        final  GameRenderer renderer = new GameRenderer();
         glView.setRenderer(renderer);
@@ -170,7 +192,12 @@ RotateControls rc = new RotateControls();
 
                             if(GameStatus.isEnd()) {
                                 tv.setText("GAME OVER :(");
-                                timerLoopAvailable=false;
+                glm.addLog(glm.getDataBase(true),GameStatus.getConfigData(),GameStatus.getRemoveLineCount(),temp);
+                                timerLoopAvailable = false;
+if(!endDialog.isShowing()){
+    endDialog.show();
+}
+
                             }
                             else {
 
@@ -183,8 +210,6 @@ RotateControls rc = new RotateControls();
         };
         timer.start();
     }
-
-
 
     @Override
     protected void onDestroy() {
