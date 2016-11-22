@@ -3077,17 +3077,21 @@ containing a value of this type.
         public static final int bottom_sheet_behavior=0x7f060024;
         public static final int character_counter_pattern=0x7f060025;
         public static final int down=0x7f060026;
-        public static final int large_text=0x7f060027;
-        public static final int left=0x7f060028;
-        public static final int prefix_string_line_count=0x7f060029;
-        public static final int right=0x7f06002a;
+        public static final int game_over_dialg_ok=0x7f060027;
+        public static final int game_over_dialg_prefix_content=0x7f060028;
+        public static final int game_over_dialg_restart=0x7f060029;
+        public static final int game_over_dialg_title=0x7f06002a;
+        public static final int large_text=0x7f06002b;
+        public static final int left=0x7f06002c;
+        public static final int prefix_string_line_count=0x7f06002d;
+        public static final int right=0x7f06002e;
         public static final int search_menu_title=0x7f060013;
-        public static final int start=0x7f06002b;
-        public static final int start_game=0x7f06002c;
-        public static final int start_game_desc=0x7f06002d;
+        public static final int start=0x7f06002f;
+        public static final int start_game=0x7f060030;
+        public static final int start_game_desc=0x7f060031;
         public static final int status_bar_notification_info_overflow=0x7f060014;
-        public static final int tempNote=0x7f06002e;
-        public static final int up=0x7f06002f;
+        public static final int tempNote=0x7f060032;
+        public static final int up=0x7f060033;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f08008f;
