@@ -194,7 +194,7 @@ private void changePauseState(){
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        if(!GameStatus.isStarting()) {
+                        if(!GameStatus.isStarting()&&!GameStatus.isPaused()) {
                             time++;
                         }
                         final int temp = time;

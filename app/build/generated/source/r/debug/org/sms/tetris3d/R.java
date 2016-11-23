@@ -2752,17 +2752,18 @@ containing a value of this type.
         public static final int ic_launcher2=0x7f02005c;
         public static final int instructions=0x7f02005d;
         public static final int navigation_empty_icon=0x7f02005e;
-        public static final int notification_template_icon_bg=0x7f020069;
+        public static final int notification_template_icon_bg=0x7f02006a;
         public static final int pause_img=0x7f02005f;
         public static final int quickcontact_drop_shadow=0x7f020060;
-        public static final int rotate=0x7f020061;
-        public static final int sample_android=0x7f020062;
-        public static final int splash=0x7f020063;
-        public static final int start=0x7f020064;
-        public static final int tooltip_arrow_down=0x7f020065;
-        public static final int tooltip_arrow_up=0x7f020066;
-        public static final int tooltip_bottom_frame=0x7f020067;
-        public static final int tooltip_top_frame=0x7f020068;
+        public static final int rank=0x7f020061;
+        public static final int rotate=0x7f020062;
+        public static final int sample_android=0x7f020063;
+        public static final int splash=0x7f020064;
+        public static final int start=0x7f020065;
+        public static final int tooltip_arrow_down=0x7f020066;
+        public static final int tooltip_arrow_up=0x7f020067;
+        public static final int tooltip_bottom_frame=0x7f020068;
+        public static final int tooltip_top_frame=0x7f020069;
     }
     public static final class id {
         public static final int action0=0x7f0c009e;
@@ -3100,11 +3101,13 @@ containing a value of this type.
         public static final int right=0x7f06003a;
         public static final int search_menu_title=0x7f060013;
         public static final int start=0x7f06003b;
-        public static final int start_game=0x7f06003c;
-        public static final int start_game_desc=0x7f06003d;
+        public static final int startLog_desc=0x7f06003c;
+        public static final int startLog_title=0x7f06003d;
+        public static final int start_game=0x7f06003e;
+        public static final int start_game_desc=0x7f06003f;
         public static final int status_bar_notification_info_overflow=0x7f060014;
-        public static final int tempNote=0x7f06003e;
-        public static final int up=0x7f06003f;
+        public static final int tempNote=0x7f060040;
+        public static final int up=0x7f060041;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f08008f;
