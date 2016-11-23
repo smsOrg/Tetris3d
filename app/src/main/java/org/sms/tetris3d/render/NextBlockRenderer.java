@@ -36,7 +36,8 @@ final int zSz = du.getNextObject().getZsize();
         gl.glPushMatrix();
 
 
-        gl.glTranslatef(-(float) GameStatus.getPlayers().get(0).getNextObject().getXsize()/2, -(float)GameStatus.getPlayers().get(0).getNextObject().getYsize()/2,0);//GameStatus.getCurrentObjectX(), GameStatus.getCurrentObjectY(), GameStatus.getCurrentObjectZ());
+        gl.glTranslatef(-(float) GameStatus.getPlayers().get(0).getNextObject().getXsize()/2,
+                -(float)GameStatus.getPlayers().get(0).getNextObject().getYsize()/2,0);//GameStatus.getCurrentObjectX(), GameStatus.getCurrentObjectY(), GameStatus.getCurrentObjectZ());
 
         GameStatus.getPlayers().get(0).getNextObject().draw(gl);
 

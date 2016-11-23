@@ -25,6 +25,12 @@ public static class LCardProvider extends com.dexafree.materialList.card.CardPro
 it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
         getApplicationContext().startActivity(it);
     }
+    private void viewLog(){
+        Intent it = new Intent();
+        it.setClass(getApplicationContext(),GameLogViewActivity.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT|Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplicationContext().startActivity(it);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +45,10 @@ it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
                 .withProvider(new CardProvider())
                 .setLayout(R.layout.material_welcome_card_layout)
                 .setTitleColor(android.graphics.Color.WHITE)
-                .setTitle(R.string.start_game)
-                .setDescription("I am the description")
+                .setTitle("안녕하세요!")
+                .setDescription("게임시간 버튼을 누른뒤 최대한 오랫동한 살아남으세요.")
                 .setDescriptionColor(android.graphics.Color.WHITE)
-                .setSubtitle("My subtitle!")
+                .setSubtitle("게임 목표")
                 .setSubtitleColor(android.graphics.Color.WHITE)
                 .setBackgroundColor(android.graphics.Color.BLUE)
                 .setDrawable(R.drawable.sample_android)
@@ -67,9 +73,18 @@ it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
                 .setDrawable(R.drawable.ic_launcher2)
                 .endConfig()
                 .build();
+        Card logcard =new Card.Builder(this)
+                .setTag(GameLogViewActivity.class.getName())
+                .withProvider(new CardProvider())
+                .setLayout(R.layout.material_basic_image_buttons_card_layout)
+                .setTitle(R.string.startLog_title)
+                .setDescription(R.string.startLog_desc)
+                .setDrawable(R.drawable.rank)
+                .endConfig()
+                .build();
         mlv.getAdapter().add(cardwel);
         mlv.getAdapter().add(card);
-
+mlv.getAdapter().add(logcard);
        mlv .addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
 
             @Override
@@ -77,6 +92,9 @@ it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
                if(card.getTag().equals(MainGameActivity.class.getName())){
                    startGame();
                }
+                else if(card.getTag().equals(GameLogViewActivity.class.getName())){
+                   viewLog();
+                }
             }
 
             @Override

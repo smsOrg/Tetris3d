@@ -44,8 +44,12 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
                 for (int j = 0; !isExist && j < who.getCurrentObject().getObjectMatrix().length; j++) {
                     for (int k = 0; !isExist && k < who.getCurrentObject().getObjectMatrix()[j].length; k++) {
                         for (int l = 0; !isExist && l < who.getCurrentObject().getObjectMatrix()[j][k].length; l++) {
-                            final boolean isValid = (j + who.getCurrentObjectX()) < GameStatus.getGameBoolMatrix().length && (k + who.getCurrentObjectY()) < GameStatus.getGameBoolMatrix()[0].length && (l + i) < GameStatus.getGameBoolMatrix()[0][0].length;
-                            if (who.getCurrentObject().getObjectMatrix()[j][k][l] && isValid && GameStatus.getGameBoolMatrix()[j + who.getCurrentObjectX()][k + who.getCurrentObjectY()][i + l]) {
+                            final boolean isValid = (j + who.getCurrentObjectX()) < GameStatus.getGameBoolMatrix().length
+                                    && (k + who.getCurrentObjectY()) < GameStatus.getGameBoolMatrix()[0].length &&
+                                    (l + i) < GameStatus.getGameBoolMatrix()[0][0].length;
+                            if (who.getCurrentObject().getObjectMatrix()[j][k][l] &&
+                                    isValid &&
+                                    GameStatus.getGameBoolMatrix()[j + who.getCurrentObjectX()][k + who.getCurrentObjectY()][i + l]) {
                                 isExist = true;
                             }
                         }

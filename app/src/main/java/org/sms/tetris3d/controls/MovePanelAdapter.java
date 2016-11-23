@@ -9,7 +9,8 @@ import org.sms.tetris3d.players.*;
 public class MovePanelAdapter {
     protected byte initQuadrant = -1;
     protected byte getQuadrant(){
-        final float initAngle = (GameStatus.initialCameraAngle<0? 360.0f-GameStatus.initialCameraAngle:GameStatus.initialCameraAngle)%360;
+        final float initAngle = (GameStatus.initialCameraAngle<0?
+                360.0f-GameStatus.initialCameraAngle:GameStatus.initialCameraAngle)%360;
 
              float angle = (GameStatus.getCameraR()<0? 360-GameStatus.getCameraR():GameStatus.getCameraR())%360;
             angle=(angle-initAngle+360)%360;

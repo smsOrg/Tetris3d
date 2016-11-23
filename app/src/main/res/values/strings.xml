@@ -19,7 +19,8 @@
     <string name="gamelogactivity_item_player_cnt">"참여했던 플레이어 수: "</string>
     <string name="gamelogactivity_item_boardsize_format">"보드 사이즈: "</string>
     <string name="gamelogactivity_sort_title">정렬</string>
-
+    <string name="startLog_title">게임 기록 보기</string>
+    <string name="startLog_desc">이전에 게임 종료된 기록을 봅니다</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
