@@ -8,22 +8,22 @@ import org.sms.tetris3d.players.*;
 
 public class MovePanelAdapter {
     protected byte initQuadrant = -1;
-    protected byte getQuadrant(){
-        final float initAngle = (GameStatus.initialCameraAngle<0?
-                360.0f-GameStatus.initialCameraAngle:GameStatus.initialCameraAngle)%360;
-
-             float angle = (GameStatus.getCameraR()<0? 360-GameStatus.getCameraR():GameStatus.getCameraR())%360;
-            angle=(angle-initAngle+360)%360;
-            android.util.Log.e("ANGLE: ",angle+"");
-            if(0<=angle&&angle<90){
-                return 1;
-            }else if(90<=angle&&angle<180){
+    public static byte getQuadrant(){
+        //final float initAngle = (GameStatus.initialCameraAngle<0? 360.0f-GameStatus.initialCameraAngle:GameStatus.initialCameraAngle)%360;
+            float angle = (GameStatus.getCameraR()<0? (720-GameStatus.getCameraR())%360:GameStatus.getCameraR())%360;
+         //   angle=(angle-initAngle+360)%360;
+           // android.util.Log.e("ANGLE: ",angle+"");
+            final float prefixAngle =Math.abs( 45);
+            final float initialAngleCondtion = 90;
+            if(prefixAngle<=angle&&angle<initialAngleCondtion+prefixAngle){
                 return 2;
-            }
-            else if(180<=angle&&angle<270){
+            }else if(initialAngleCondtion+prefixAngle<=angle&&angle<2*initialAngleCondtion+prefixAngle){
                 return 3;
-            }else{
+            }
+            else if(2*initialAngleCondtion+prefixAngle<=angle&&angle<3*initialAngleCondtion+prefixAngle){
                 return 4;
+            }else{
+                return 1;
             }
 
     }
