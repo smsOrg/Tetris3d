@@ -1,6 +1,8 @@
-package com.trippleit.android.tetris3d.controls;
+package org.sms.tetris3d.controls;
 
 import org.sms.tetris3d.GameStatus;
+import org.sms.tetris3d.controls.MovePanelAdapter;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
@@ -42,7 +44,7 @@ public class SwipeControls implements OnTouchListener {
 	private  VelocityTracker vt =null;
 	enum ZOOM_STATE{Zoom,None,Freeze_Screen}
 	ZOOM_STATE zs = ZOOM_STATE.None;
-
+	private  MovePanelAdapter mpa = null;
 	MotionEvent tmpevent = null;
 	private float spacing(MotionEvent event) {
 		float x = event.getX(0) - event.getX(1);
@@ -51,6 +53,9 @@ public class SwipeControls implements OnTouchListener {
 	}
 	float oldDist = 1f;
 	float newDist = 1f;
+
+	private boolean isMovingBlock = false;
+
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -67,6 +72,7 @@ public class SwipeControls implements OnTouchListener {
 			case MotionEvent.ACTION_DOWN: {
 
 				// Log.d("Kruno", "Action Down1");
+				isMovingBlock = false;
 				if(GameStatus.isSupportCameraDrag()) {
 					x1 = event.getX(0);
 					y1 = event.getY(0);
@@ -110,6 +116,7 @@ public class SwipeControls implements OnTouchListener {
 				break;
 			}
 			case MotionEvent.ACTION_UP: {
+				isMovingBlock=false;
 				if(zs!=ZOOM_STATE.Freeze_Screen)
 				zs=ZOOM_STATE.None;
 				//Log.d("RG", "diffX: " + ((System.currentTimeMillis() - time)<90));
@@ -138,24 +145,52 @@ public class SwipeControls implements OnTouchListener {
 				if(GameStatus.isSupportCameraDrag()) {
 
 					if(zs==ZOOM_STATE.None){
-						vt.computeCurrentVelocity(1000, 3);
+						final int maxVelocity = 3000;
+						vt.computeCurrentVelocity(1000, maxVelocity);
+
 						float vx = -1 * vt.getXVelocity();
 						float vy = vt.getYVelocity();
 						float vv = (float) Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
-						final float deltaXAngle = vx / 3;//vv / vx;
-						final float deltaYAngle = vy / 5;//(vv) / (vy * (float) Math.sqrt(vv));
-						if (!Float.isNaN(deltaXAngle)) {
-							GameStatus.setCameraR((GameStatus.getCameraR() + deltaXAngle) % 360);
+
+						if(vv>4*maxVelocity/5){
+							if(mpa==null) {
+								mpa = new MovePanelAdapter();
+							}
+							if(!isMovingBlock) {
+								if (Math.abs(vy) > Math.abs(vx)) {
+									if (vy > 0) {
+										mpa.move_bottom(GameStatus.getPlayers().get(0));
+									} else {
+										mpa.move_top(GameStatus.getPlayers().get(0));
+									}
+
+								} else {
+									if (vx > 0) {
+										mpa.move_left(GameStatus.getPlayers().get(0));
+									} else {
+										mpa.move_right(GameStatus.getPlayers().get(0));
+									}
+								}
+							}
+							isMovingBlock=true;
 						}
-						if (!Float.isNaN(deltaYAngle)) {
-							//GameStatus.setCameraHR((GameStatus.getCameraHR() + deltaYAngle) % 360);
-							GameStatus.setCameraH(GameStatus.getCameraH() + deltaYAngle);
+						else {
+							final float deltaXAngle = vx / (float)(maxVelocity*0.7);//vv / vx;
+							final float deltaYAngle = vy / (3*2/maxVelocity+1+maxVelocity/2);//(vv) / (vy * (float) Math.sqrt(vv));
+							if (!Float.isNaN(deltaXAngle)) {
+								GameStatus.setCameraR((GameStatus.getCameraR() + deltaXAngle) % 360);
+							}
+							if (!Float.isNaN(deltaYAngle)) {
+								//GameStatus.setCameraHR((GameStatus.getCameraHR() + deltaYAngle) % 360);
+								GameStatus.setCameraH(GameStatus.getCameraH() + deltaYAngle);
+							}
 						}
 					}
 					else if(zs==ZOOM_STATE.Zoom){
 						vt.computeCurrentVelocity(1100, 2);
 						float yfirst = vt.getYVelocity(0);
 						float ySecond = vt.getYVelocity(1);
+
 						if(yfirst<0&&ySecond<0){
 							GameStatus.setPivotZ(-Math.min(yfirst,ySecond)/5.2f+GameStatus.getPivotZ());
 						}

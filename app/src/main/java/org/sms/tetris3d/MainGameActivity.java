@@ -10,13 +10,10 @@ import android.content.*;
 import org.json.JSONObject;
 import org.sms.tetris3d.dialogs.DialogItem;
 import org.sms.tetris3d.logs.GameLogManager;
-import org.sms.tetris3d.players.Computer;
 import org.sms.tetris3d.render.*;
 import org.sms.tetris3d.interfaces.*;
 import org.sms.tetris3d.controls.*;
-import android.graphics.drawable.*;
-import android.graphics.*;
-import com.nhaarman.supertooltips.*;
+
 import com.trippleit.android.tetris3d.controls.*;
 import java.util.*;
 /**

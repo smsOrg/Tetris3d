@@ -3,12 +3,17 @@ package org.sms.tetris3d.players;
 
 import org.sms.tetris3d.GameStatus;
 import com.trippleit.android.tetris3d.render.OpenGlRenderer;
-
+import org.sms.tetris3d.items.*;
 /**
  * Created by hsh on 2016. 11. 16..
  */
 
 public class DeviceUser extends User {
+    protected  final ItemManagerForEachUser item_manager = new ItemManagerForEachUser();
+    public ItemManagerForEachUser getItemManager(){
+        return item_manager;
+    }
+
     @Override
     protected DeviceUser myIdentity(){
         return this;
