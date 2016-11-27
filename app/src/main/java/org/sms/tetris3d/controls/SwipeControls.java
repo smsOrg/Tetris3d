@@ -43,6 +43,8 @@ public class SwipeControls implements OnTouchListener {
 	private long time = 0;
 	private  VelocityTracker vt =null;
 	enum ZOOM_STATE{Zoom,None,Freeze_Screen}
+	enum SINGLE_FINGER_MODE{UNKNOWN,DRAG,MOVE_BLOCK}
+	SINGLE_FINGER_MODE sfm = SINGLE_FINGER_MODE.UNKNOWN;
 	ZOOM_STATE zs = ZOOM_STATE.None;
 	private  MovePanelAdapter mpa = null;
 	MotionEvent tmpevent = null;
@@ -73,6 +75,7 @@ public class SwipeControls implements OnTouchListener {
 
 				// Log.d("Kruno", "Action Down1");
 				isMovingBlock = false;
+				sfm = SINGLE_FINGER_MODE.UNKNOWN;
 				if(GameStatus.isSupportCameraDrag()) {
 					x1 = event.getX(0);
 					y1 = event.getY(0);
@@ -117,6 +120,7 @@ public class SwipeControls implements OnTouchListener {
 			}
 			case MotionEvent.ACTION_UP: {
 				isMovingBlock=false;
+				sfm=SINGLE_FINGER_MODE.UNKNOWN;
 				if(zs!=ZOOM_STATE.Freeze_Screen)
 				zs=ZOOM_STATE.None;
 				//Log.d("RG", "diffX: " + ((System.currentTimeMillis() - time)<90));
@@ -152,11 +156,12 @@ public class SwipeControls implements OnTouchListener {
 						float vy = vt.getYVelocity();
 						float vv = (float) Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
 
-						if(vv>4*maxVelocity/5){
+						if(vv>(maxVelocity/4.0f)*3){
 							if(mpa==null) {
 								mpa = new MovePanelAdapter();
 							}
-							if(!isMovingBlock) {
+							if(!isMovingBlock && sfm!=SINGLE_FINGER_MODE.DRAG) {
+								sfm=SINGLE_FINGER_MODE.MOVE_BLOCK;
 								if (Math.abs(vy) > Math.abs(vx)) {
 									if (vy > 0) {
 										mpa.move_bottom(GameStatus.getPlayers().get(0));
@@ -174,7 +179,8 @@ public class SwipeControls implements OnTouchListener {
 							}
 							isMovingBlock=true;
 						}
-						else {
+						else if(sfm!=SINGLE_FINGER_MODE.MOVE_BLOCK){
+							sfm=SINGLE_FINGER_MODE.DRAG;
 							final float deltaXAngle = vx / (float)(maxVelocity*0.7);//vv / vx;
 							final float deltaYAngle = vy / (3*2/maxVelocity+1+maxVelocity/2);//(vv) / (vy * (float) Math.sqrt(vv));
 							if (!Float.isNaN(deltaXAngle)) {
