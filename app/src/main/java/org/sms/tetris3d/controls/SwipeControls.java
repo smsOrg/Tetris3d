@@ -156,11 +156,11 @@ public class SwipeControls implements OnTouchListener {
 						float vy = vt.getYVelocity();
 						float vv = (float) Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
 
-						if(vv>(maxVelocity/4.0f)*3){
+						if(vv>(maxVelocity/4.0f)*3 &&sfm!=SINGLE_FINGER_MODE.DRAG){
 							if(mpa==null) {
 								mpa = new MovePanelAdapter();
 							}
-							if(!isMovingBlock && sfm!=SINGLE_FINGER_MODE.DRAG) {
+							if(!isMovingBlock) {
 								sfm=SINGLE_FINGER_MODE.MOVE_BLOCK;
 								if (Math.abs(vy) > Math.abs(vx)) {
 									if (vy > 0) {
@@ -176,8 +176,9 @@ public class SwipeControls implements OnTouchListener {
 										mpa.move_right(GameStatus.getPlayers().get(0));
 									}
 								}
+								isMovingBlock=true;
 							}
-							isMovingBlock=true;
+
 						}
 						else if(sfm!=SINGLE_FINGER_MODE.MOVE_BLOCK){
 							sfm=SINGLE_FINGER_MODE.DRAG;
