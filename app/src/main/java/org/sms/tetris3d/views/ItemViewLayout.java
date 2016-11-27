@@ -26,7 +26,8 @@ public class ItemViewLayout extends LinearLayout {
         defaultOrientation();
     }
     public void addItemView(ItemView child){
-
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT,1);
+        addView(child,lp);
     }
     public ItemViewLayout addViewFromList(BaseItemManager list){
         int itemCount = Math.min(list.size(),MAX_ITEM_COUNT);
