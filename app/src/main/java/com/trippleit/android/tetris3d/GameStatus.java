@@ -166,7 +166,7 @@ public class GameStatus {
         gameBoolMatrix[x][y][z] = true;
     }
 
-    protected static void restartGameBoolMatrix() {
+    public static void restartGameBoolMatrix() {
         remove_line_count=0;
         int objectBuffer = 5;
         gameBoolMatrix = new boolean[gridSize][gridSize][gameHeight
@@ -292,6 +292,8 @@ public class GameStatus {
         }
         return false;
     }
+
+
 
     protected static void removeRows(ArrayList<Integer> rowsToRemove) {
         for (Integer x : rowsToRemove) {

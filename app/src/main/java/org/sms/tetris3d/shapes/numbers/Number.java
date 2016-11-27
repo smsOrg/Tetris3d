@@ -64,8 +64,9 @@ public class Number extends AbstractDraw implements IShape {
                     }
 
                 }
-                objectMatrix[2][0][1]=true;
-                objectMatrix[2][0][3]=true;
+                for(int i =1;i<=3;i++) {
+                        objectMatrix[2][0][i] = i%2==1;
+                }
                 break;
             }
             case 4:{

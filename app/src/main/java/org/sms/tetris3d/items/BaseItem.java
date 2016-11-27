@@ -6,7 +6,15 @@ import android.graphics.drawable.Drawable;
  * Created by hsh on 2016. 11. 20..
  */
 
-public abstract class BaseItem implements ItemListener {
+public abstract class BaseItem{
+    protected ItemListener mListener = null;
+    public BaseItem setItemListener(ItemListener listener){
+        mListener = listener;
+        return this;
+    }
+    public ItemListener getListener(){
+        return mListener;
+    }
     //item
     protected Drawable mIcon = null;
     private long coolTime=0;
@@ -16,11 +24,20 @@ public abstract class BaseItem implements ItemListener {
     protected BaseItem(long id){
         mId = id;
     }
-    @Override
+    protected BaseItem(long id,Drawable mIcon){
+        this(id);
+        setItemIcon(mIcon);
+    }
+    public long getItemCount(){
+        return itemCount;
+    }
+    public boolean isSupportedCoolTime(){
+        return false;
+    }
     public long getItemID(){
         return mId;
     }
-    @Override
+
     public long getCoolTime(){
         return coolTime;
     }
@@ -28,11 +45,13 @@ public abstract class BaseItem implements ItemListener {
         mIcon = icon;
         return this;
     }
-    @Override
     public Drawable getItemIcon(){
         return mIcon;
     }
-    public void setCoolTime(long coolT){
+    public BaseItem setCoolTime(long coolT){
         coolTime = coolT;
+        return this;
     }
+
+
 }

@@ -65,11 +65,31 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     public static void restartGame(){
         init(null);
     }
+    public static boolean forceRemoveRows(final int offsetHeight,final int count){
 
+        ArrayList<Integer> rows = new ArrayList<Integer>();
+        synchronized (gameBoolMatrix) {
+            for (int i = offsetHeight + count - 1; i >= offsetHeight; i--) {
+                if (0 <= i && i <= GameStatus.getGameHeight()) {
+                    rows.add(i);
+                }
+            }
+            if (!rows.isEmpty()) {
+                GameStatus.remove_line_count += rows.size();
+                removeRows(rows);
+                if (orol != null) {
+                    orol.onRemove(GameStatus.remove_line_count);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
     public static void init(Context _c) {
         config_data=new JSONObject();
 
         players.forceClear();
+        remove_line_count=0;
         players.add(new DeviceUser());
         gameHeight = 12;
         setPivotZ((float)gameHeight/4);

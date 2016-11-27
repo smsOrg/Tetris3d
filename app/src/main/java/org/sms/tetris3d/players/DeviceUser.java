@@ -18,7 +18,10 @@ public class DeviceUser extends User {
     protected DeviceUser myIdentity(){
         return this;
     }
-    public DeviceUser(){super();}
+    public DeviceUser(){super();
+    item_manager.add(AvailableItems.getPositionResetItem());
+        item_manager.add(AvailableItems.getRandomLayersRemoverItem());
+    }
     @Override
     public com.trippleit.android.tetris3d.shapes.IShape chooseObject(int rand){
         return super.chooseObject(rand);
