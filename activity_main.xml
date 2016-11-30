@@ -2,10 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+
     <RelativeLayout android:layout_width="fill_parent"
         android:id="@+id/mainviewparent"
         android:layout_height="fill_parent">
 
+        <android.opengl.GLSurfaceView
+            android:id="@+id/glSurface2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:paddingTop="3dp"
+            android:minWidth="30dip"
+            android:layout_marginLeft="3dip"
+            android:layout_marginRight="3dip"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
 
         <android.opengl.GLSurfaceView
             android:id="@+id/glSurface"
@@ -13,6 +24,7 @@
             android:layout_height="fill_parent"
             android:layout_above="@+id/mainviewcontrolpanel"
             android:layout_gravity="top|left" />
+
         <LinearLayout android:id="@+id/mainviewcontrolpanel"
             android:minHeight="30dip"
             android:layout_width="fill_parent"
@@ -21,14 +33,6 @@
 
             android:layout_alignParentBottom="true"
             >
-            <android.opengl.GLSurfaceView
-                android:id="@+id/glSurface2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dip"
-                android:paddingTop="3dp"
-                android:minWidth="30dip"
-                android:layout_gravity="left" />
             <TextView
                 android:layout_height="match_parent"
                 android:layout_width="wrap_content"
@@ -36,39 +40,7 @@
                 android:id="@+id/line_count_view"
                 android:gravity="center"
                 ></TextView>
-            <org.sms.tetris3d.views.RotateButtonView
-                android:background="#000000"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                android:orientation="horizontal"
-                >
-            <Button android:layout_height="match_parent"
-                android:layout_width="fill_parent"
-                android:text="x"
-                android:background="@drawable/rotate"
-                android:id="@+id/btn_rot_x"
-                android:layout_weight="1"
-                />
-            <Button android:layout_height="match_parent"
-                android:layout_width="fill_parent"
-                android:text="y"
-                android:background="@drawable/rotate"
-                android:id="@+id/btn_rot_y"
-                android:layout_weight="1"
-                />
-                <Button android:layout_height="match_parent"
-                    android:layout_width="fill_parent"
-                    android:text="z"
-                    android:background="@drawable/rotate"
-                    android:id="@+id/btn_rot_z"
-                    android:layout_weight="1"
-                    />
 
-            </LinearLayout>
             <TextView android:layout_height="match_parent"
                 android:layout_width="wrap_content"
                 android:text="tv"
@@ -81,6 +53,38 @@
                 android:visibility="gone"
                 android:layout_height="match_parent" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="88dp"
+            android:layout_height="208dp"
+            android:orientation="vertical"
+            android:layout_above="@+id/mainviewcontrolpanel"
+            android:layout_alignParentEnd="true">
+        <Button android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:text="x"
+            android:background="@drawable/rotate"
+            android:id="@+id/btn_rot_x"
+            android:layout_weight="1"
+            />
+        <Button android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:text="y"
+            android:background="@drawable/rotate"
+            android:id="@+id/btn_rot_y"
+            android:layout_weight="1"
+            />
+            <Button android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:text="z"
+                android:background="@drawable/rotate"
+                android:id="@+id/btn_rot_z"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+
+
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/xyz"
@@ -118,14 +122,7 @@
             android:layout_marginLeft="5dp"        
             android:background="@drawable/camera_right" />
     </LinearLayout>
-<!-- add minsu--------------------->
-    <Button
-        android:onClick="ssstop"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:text="II" />
-<!--------------------------------->
+
     <TextView
         android:id="@+id/tvGameOver"
         android:layout_width="wrap_content"
@@ -134,6 +131,6 @@
         android:layout_centerHorizontal="true"        
         android:textAppearance="?android:attr/textAppearanceLarge" 
         android:textColor="#ffffff" />
-    
-    
+
+
 </RelativeLayout>
