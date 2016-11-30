@@ -15,7 +15,7 @@ import org.sms.tetris3d.players.User;
  */
 
 public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
-    public static final int DB_FILE_VERSION = 1;
+    public static final int DB_FILE_VERSION = 2;
     protected static final  RegisteredPlayers players = new RegisteredPlayers(){
 
     };
@@ -34,6 +34,9 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         if((float)getGameHeight()/4<=pz&&pz<=getGameHeight()+2) {
             pivotZ = pz;
         }
+    }
+    public static DeviceUser getDeviceUser(){
+        return (DeviceUser) players.get(0);
     }
     public static int getAvailableZPos(final User who){
         int result = 0;

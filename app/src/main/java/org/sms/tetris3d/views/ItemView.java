@@ -10,9 +10,11 @@ import android.util.*;
 import android.view.*;
 
 import org.sms.tetris3d.GameStatus;
+import org.sms.tetris3d.controls.RotateControls;
 import org.sms.tetris3d.drawables.CoolDrawable;
 import org.sms.tetris3d.items.*;
 public class ItemView extends View implements View.OnClickListener {
+
     private BaseItem mItem=null;
     private CoolDrawable mCoolDrawable = null;
     private  Drawable mBackgroundDrawable = new ItemBackgroundDrawable();

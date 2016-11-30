@@ -17,7 +17,7 @@ public class GameLogManager {
 
     GameLogUtil glu = null;
     public GameLogManager(Context ctx ){
-        glu = new GameLogUtil(ctx, GameStatus.DB_FILE_VERSION);
+        glu = new GameLogUtil(ctx);
     }
     public SQLiteDatabase getDataBase(boolean writeable){
         if(writeable){

@@ -36,9 +36,14 @@
                 android:id="@+id/line_count_view"
                 android:gravity="center"
                 ></TextView>
+            <org.sms.tetris3d.views.RotateButtonView
+                android:background="#000000"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 >
             <Button android:layout_height="match_parent"
