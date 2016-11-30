@@ -43,13 +43,13 @@ public class NumberDrawable extends Drawable {
 
                 tmpsz+=3;
             }
-            while(!(numRect.width()<=maxRan&&numRect.height()<=maxRan)){
+            while(!(numRect.width()<maxRan&&numRect.height()<maxRan)){
                 numPaint.setTextSize(tmpsz);
                 numPaint.getTextBounds(number,0,number.length,numRect);
                 // android.util.Log.e("size calc","calculating...  "+tmpsz+"  and  "+numRect.width());
                 tmpsz-=2;
             }
-            tmpsz--;
+            //tmpsz--;
             numPaint.setTextSize(tmpsz);
             isInitializedFontSize = true;
             numPaint.getTextBounds(number,0,number.length,numRect);
