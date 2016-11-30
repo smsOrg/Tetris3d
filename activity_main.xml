@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> b4aa23058c495582131f98d4821dab0b8a8e0174
     <RelativeLayout android:layout_width="fill_parent"
         android:id="@+id/mainviewparent"
         android:layout_height="fill_parent">
@@ -132,5 +137,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge" 
         android:textColor="#ffffff" />
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4aa23058c495582131f98d4821dab0b8a8e0174
 </RelativeLayout>
