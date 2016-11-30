@@ -33,16 +33,6 @@
 
             android:layout_alignParentBottom="true"
             >
-            <!--
-            <android.opengl.GLSurfaceView
-                android:id="@+id/glSurface2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dip"
-                android:paddingTop="3dp"
-                android:minWidth="30dip"
-                android:layout_gravity="top|right" />
-                -->
             <TextView
                 android:layout_height="match_parent"
                 android:layout_width="wrap_content"
@@ -141,18 +131,5 @@
         android:layout_centerHorizontal="true"        
         android:textAppearance="?android:attr/textAppearanceLarge" 
         android:textColor="#ffffff" />
-<!--
-    <android.opengl.GLSurfaceView
-        android:id="@+id/glSurface2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:paddingTop="3dp"
-        android:minWidth="30dip"
-        android:layout_marginLeft="3dip"
-        android:layout_marginRight="3dip"
-        android:layout_below="@+id/xyz"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="367dp" />
--->
 
 </RelativeLayout>
