@@ -12,6 +12,8 @@ import android.util.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
 
+import com.dexafree.materialList.view.MaterialListView;
+
 import org.sms.tetris3d.GameStatus;
 import org.sms.tetris3d.controls.RotateControls;
 import org.sms.tetris3d.players.DeviceUser;
@@ -134,34 +136,39 @@ float touch_x=0,touch_y = 0;
                 final float height = Math.max(v.getMeasuredHeight(), v.getHeight());
                 final float width = Math.max(v.getMeasuredWidth(), v.getWidth());
                 final float r = Math.min(height,width);
-                float relative_xPos = width- touch_x;
-                float relative_yPos = height-touch_y;
+                android.util.Log.e("touch x and y: ",String.format("x= %f y= %f",touch_x,touch_y));
+                float relative_xPos = width/2- touch_x;
+                float relative_yPos = height/2-touch_y;
+                relative_xPos *=-1;
+                final float relative_r = (float)Math.sqrt(Math.pow(relative_xPos,2)+ Math.pow(relative_yPos,2));
                 if(r>10){
                     float currentDegree =Float.POSITIVE_INFINITY;
                     if(relative_xPos!=0){
-                        currentDegree= (float) Math.toDegrees(
-                                Math.atan(relative_yPos/relative_xPos)
-                        );
-                        switch(getQuadrant(relative_xPos,relative_yPos)){
-                            case 1:{
-                                currentDegree= 90-currentDegree;
-                                break;
-                            }
-                            case 2:{
-                                currentDegree=(720-currentDegree)%360;
-                                break;
-                            }
-                            case 3:{
-                                currentDegree=(270-currentDegree)%360;
-                                break;
-                            }
-                            case 4:{
-                                currentDegree=(currentDegree+90)%360;
-                                break;
-                            }
-                            default:break;
+                        currentDegree= (float)
+                                Math.atan(relative_yPos/relative_xPos);
+
+                        if(relative_xPos>0&&relative_yPos>=0){//dai 1
+                            currentDegree=(float)Math.PI/2-currentDegree;
+
+                           // android.util.Log.e("pos log: ","dai 1 area");
+
                         }
-                        android.util.Log.e("rbv original degree: ",currentDegree+"");
+                        else if(relative_xPos>0&&relative_yPos<0){//dai 4
+                            currentDegree=(float)Math.PI/2+Math.abs(currentDegree);
+                            //android.util.Log.e("pos log: ","dai 4 area");
+                        }
+                        else if(relative_xPos<0&&relative_yPos<0){//dai 3
+                            currentDegree=(float)Math.PI+((float)Math.PI/2-currentDegree);
+                            //android.util.Log.e("pos log: ","dai 3 area");
+                        }
+                        else{ //dai 2
+                            currentDegree=(float)Math.PI*3/2+Math.abs(currentDegree);
+                            //android.util.Log.e("pos log: ","dai 2 area");
+                        }
+
+                        currentDegree=(float)Math.toDegrees(currentDegree);
+                        //android.util.Log.e("rbv original degree: ",currentDegree+" and pos: "+String.format("%f , %f",relative_xPos,relative_yPos));
+
                     }
                     else{
                         currentDegree = (relative_yPos==0)? 0:(relative_xPos>0)? 0:180;
@@ -169,7 +176,7 @@ float touch_x=0,touch_y = 0;
                     if(currentDegree<0){
                         currentDegree = (360*3-currentDegree)%360;
                     }
-                    android.util.Log.e("rbv degree: ",currentDegree+"");
+                    //android.util.Log.e("rbv degree: ",currentDegree+"");
                     if(rc==null){
                         rc = new RotateControls();
                     }
