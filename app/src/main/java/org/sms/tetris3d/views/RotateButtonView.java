@@ -110,7 +110,7 @@ public class RotateButtonView extends View implements View.OnTouchListener{
         }
         for(int i=0;i<pnt_easy_ary.length;i++){
             canvas.drawArc(area,AREA_DEGREE*i,AREA_DEGREE,true ,pnt_easy_ary[i]);
-            android.util.Log.e("rbv color:",i+"th = "+AREA_DEGREE*(i+1));
+            //android.util.Log.e("rbv color:",i+"th = "+AREA_DEGREE*(i+1));
         }
         canvas.restore();
         String[] strs = getAxisString();
@@ -136,7 +136,7 @@ float touch_x=0,touch_y = 0;
                 final float height = Math.max(v.getMeasuredHeight(), v.getHeight());
                 final float width = Math.max(v.getMeasuredWidth(), v.getWidth());
                 final float r = Math.min(height,width);
-                android.util.Log.e("touch x and y: ",String.format("x= %f y= %f",touch_x,touch_y));
+                //android.util.Log.e("touch x and y: ",String.format("x= %f y= %f",touch_x,touch_y));
                 float relative_xPos = width/2- touch_x;
                 float relative_yPos = height/2-touch_y;
                 relative_xPos *=-1;
