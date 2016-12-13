@@ -37,49 +37,23 @@
                 android:gravity="center"
                 ></TextView>
             <org.sms.tetris3d.views.RotateButtonView
-                android:background="#000000"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+
+                android:layout_width="70dip"
+                android:layout_height="70dip" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:visibility="gone"
+
                 android:orientation="horizontal"
                 >
-            <Button android:layout_height="match_parent"
-                android:layout_width="fill_parent"
-                android:text="x"
-                android:background="@drawable/rotate"
-                android:id="@+id/btn_rot_x"
-                android:layout_weight="1"
-                />
-            <Button android:layout_height="match_parent"
-                android:layout_width="fill_parent"
-                android:text="y"
-                android:background="@drawable/rotate"
-                android:id="@+id/btn_rot_y"
-                android:layout_weight="1"
-                />
-                <Button android:layout_height="match_parent"
-                    android:layout_width="fill_parent"
-                    android:text="z"
-                    android:background="@drawable/rotate"
-                    android:id="@+id/btn_rot_z"
-                    android:layout_weight="1"
-                    />
+                <org.sms.tetris3d.views.ItemViewLayout
+
+                    android:layout_width="180dip"
+                    android:id="@+id/item_layout"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
-            <TextView android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:text="tv"
-                android:visibility="gone"
-                android:id="@+id/activity_main_redtv"
-                />
-            <com.nhaarman.supertooltips.ToolTipRelativeLayout
-                android:id="@+id/activity_main_tooltipRelativeLayout"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="match_parent" />
+
         </LinearLayout>
     </RelativeLayout>
     <LinearLayout

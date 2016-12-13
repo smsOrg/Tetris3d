@@ -77,6 +77,11 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
     }
 
     private void initPaint(){
+        try {
+            setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }catch(Exception e){
+
+        }
         x_pnt = new Paint();
         y_pnt = new Paint();
         z_pnt = new Paint();
@@ -98,7 +103,7 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
         btnclk_pnt.setColor(Color.argb(0x90,0x0,0x0,0x0));
 
         txt_pnt.setColor(Color.WHITE);
-        txt_pnt.setTextSize(40);
+        txt_pnt.setTextSize(45);
     }
     Paint[] getPackedPaints(){
         final Paint[] rst = {z_pnt,y_pnt,x_pnt};
@@ -186,7 +191,7 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
 
             }
             else{
-                currentDegree = (relative_yPos==0)? 0:(relative_xPos>0)? 0:180;
+                currentDegree = (relative_yPos>=0)? 0:180;
             }
             if(currentDegree<0){
                 currentDegree = (360*3-currentDegree)%360;
@@ -196,10 +201,16 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
             return currentDegree;
     }
     private float touch_x=0,touch_y = 0,currentDegree=0;
+    private boolean nowOutSide=false;
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         switch(event.getAction()){
+            case MotionEvent.ACTION_OUTSIDE:{
+                nowOutSide=true;
+                break;
+            }
             case MotionEvent.ACTION_DOWN:{
+                nowOutSide=false;
                 touch_x = event.getX();
                 touch_y = event.getY();
                 final float height = Math.max(v.getMeasuredHeight(), v.getHeight());
@@ -246,28 +257,26 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
                 float currentDegree = getClickedDegree(r,relative_xPos,relative_yPos);
                     //android.util.Log.e("rbv degree: ",currentDegree+"");
                     */
-
-                    if(rc==null){
+                if(!nowOutSide) {
+                    if (rc == null) {
                         rc = new RotateControls();
                     }
                     final DeviceUser du = GameStatus.getDeviceUser();
-                    mClickState=UNKNOWN_AXIS_CLICK_INDEX;
-                    if(PREFIX_DEGREE<=currentDegree&&currentDegree<PREFIX_DEGREE+AREA_DEGREE){
+                    mClickState = UNKNOWN_AXIS_CLICK_INDEX;
+                    if (PREFIX_DEGREE <= currentDegree && currentDegree < PREFIX_DEGREE + AREA_DEGREE) {
                         //mMultiProcessThread.start();
-                        mHandler.postDelayed(this,4);
+                        mHandler.postDelayed(this, 4);
                         rc.rotateY(du);
-                    }
-                    else if(PREFIX_DEGREE+AREA_DEGREE<=currentDegree&&currentDegree<PREFIX_DEGREE+AREA_DEGREE*2){
-                       // mMultiProcessThread.start();
-                        mHandler.postDelayed(this,4);
+                    } else if (PREFIX_DEGREE + AREA_DEGREE <= currentDegree && currentDegree < PREFIX_DEGREE + AREA_DEGREE * 2) {
+                        // mMultiProcessThread.start();
+                        mHandler.postDelayed(this, 4);
                         rc.rotateX(du);
-                    }
-                    else if(!Float.isInfinite(currentDegree)){
+                    } else if (!Float.isInfinite(currentDegree)) {
                         //mMultiProcessThread.start();
-                        mHandler.postDelayed(this,4);
+                        mHandler.postDelayed(this, 4);
                         rc.rotateZ(du);
                     }
-
+                }
                 break;
             }
             default:break;

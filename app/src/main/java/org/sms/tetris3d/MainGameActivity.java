@@ -13,6 +13,7 @@ import org.sms.tetris3d.logs.GameLogManager;
 import org.sms.tetris3d.render.*;
 import org.sms.tetris3d.interfaces.*;
 import org.sms.tetris3d.controls.*;
+import org.sms.tetris3d.views.ItemViewLayout;
 
 import com.trippleit.android.tetris3d.controls.*;
 import java.util.*;
@@ -80,11 +81,15 @@ private void changePauseState(){
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
         setContentView(R.layout.activity_main);
         if((getIntent().getLongExtra("check",-2)^'s')>>10 !='s'+'m'+'s'){
             finish();
         }
+        ItemViewLayout ivl = (ItemViewLayout)findViewById(R.id.item_layout);
         glm = new GameLogManager(getApplicationContext());
         dialog = getDialogAsBuilder(new DialogItem[]{new DialogItem(){
             @Override
@@ -124,6 +129,7 @@ private void changePauseState(){
                 }).setCancelable(false).create();
         final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
        final  GameRenderer renderer = new GameRenderer();
+        GameStatus.init(this);
         glView.setRenderer(renderer);
         final GLSurfaceView glView2 = (GLSurfaceView) findViewById(R.id.glSurface2);
        final  NextBlockRenderer renderer2 = new NextBlockRenderer();
@@ -132,6 +138,7 @@ private void changePauseState(){
         llt.getLayoutParams().height = (int)(getResources().getDisplayMetrics().heightPixels*0.108);
 
         llt.setLayoutParams(llt.getLayoutParams());
+        ivl.addViewFromList(GameStatus.getDeviceUser().getItemManager());
         glView2.getLayoutParams().width = llt.getLayoutParams().height;
         glView2.setLayoutParams(glView2.getLayoutParams());
         glView2.setRenderer(renderer2);
@@ -151,7 +158,7 @@ private void changePauseState(){
             }
         });
 
-        GameStatus.init(this);
+
        // GameStatus.getPlayers().add(new Computer());
         glView.setOnTouchListener(new SwipeControls(this));
         glView2.setOnClickListener(new ChangeBlockControls());
@@ -167,7 +174,7 @@ private void changePauseState(){
         b2.setOnTouchListener(bc);
         b3.setOnTouchListener(bc);
         b4.setOnTouchListener(bc);
-
+/*
         Button rot_b1 = (Button) findViewById(R.id.btn_rot_x);
         Button rot_b2 = (Button) findViewById(R.id.btn_rot_y);
         Button rot_b3 = (Button) findViewById(R.id.btn_rot_z);
@@ -177,7 +184,7 @@ private void changePauseState(){
         rot_b1.setOnClickListener(rc);
         rot_b2.setOnClickListener(rc);
         rot_b3.setOnClickListener(rc);
-
+*/
         final TextView tv = (TextView) findViewById(R.id.tvGameOver);
         Thread timer = new Thread() {
             @Override

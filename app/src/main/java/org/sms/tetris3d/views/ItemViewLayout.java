@@ -20,6 +20,7 @@ public class ItemViewLayout extends LinearLayout {
     public ItemViewLayout(Context ctx,AttributeSet attrs){
         super(ctx,attrs);
         defaultOrientation();
+
     }
     public ItemViewLayout(Context ctx,AttributeSet attrs,int themResId){
         super(ctx,attrs,themResId);

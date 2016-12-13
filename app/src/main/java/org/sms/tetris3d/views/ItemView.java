@@ -106,18 +106,45 @@ public class ItemView extends View implements View.OnClickListener {
         public ItemBackgroundDrawable(){
 
         }
+        private void drawRoundedStrokeLine(Canvas c,float dl){
+            final float height_ratio = 0.85f;
+            float height = dl*height_ratio;
+            float gap = (dl*(1-height_ratio))/2;
+            float width = dl*0.05f;
+            RectF r = new RectF(dl/3-width/2,gap,dl/3+width/2,dl-gap);
+            c.drawRect(r,p);
+            RectF r2 = new RectF(dl/2-width/2,gap-r.width()/2,dl/2+width/2,gap+r.width()/2);
+            c.drawArc(r2,-180,180,true,p);
+            r2.set(dl/2-width/2,dl-gap-r.width()/2,dl/2+width/2,dl-gap+r.width()/2);
+            c.drawArc(r2,0,180,true,p);
+        }
         @Override
         public void draw(Canvas canvas) {
             p.setColor(Color.CYAN);
             final float height = canvas.getHeight();
             final float width = canvas.getWidth();
+            final float diagonal_line_size =(float) Math.sqrt(Math.pow(height,2)+Math.pow(width,2));
+            android.util.Log.e("parent size log: ",String.format("%f X %f",width,height));
             p.setStyle(Paint.Style.STROKE);
             p.setStrokeWidth(Math.min(height,width)*0.015f);
             RectF r = new RectF(width*0.01f,height*0.01f,width*0.99f,height*0.99f);
-
+            double radius =Math.PI- Math.asin((width/2)/(diagonal_line_size/2));
+            double degree = Math.toDegrees(radius);
+            canvas.save();
+            canvas.save();
+            //canvas.rotate((float)degree,width/2,height/2);
             canvas.drawRoundRect(r,width*0.1f,height*0.1f,p);
-
-
+            canvas.restore();
+            p.setStyle(Paint.Style.FILL_AND_STROKE);
+            for(int i =1;i<=1;i+=2) {
+               /* canvas.save();
+                canvas.rotate(i*(float)degree,  height / 2,width/2);
+                canvas.save();*/
+                //drawRoundedStrokeLine(canvas, diagonal_line_size);
+                /*canvas.restore();
+                canvas.restore();*/
+            }
+            canvas.restore();
         }
 
         @Override

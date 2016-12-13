@@ -49,7 +49,7 @@ public class NumberDrawable extends Drawable {
                 // android.util.Log.e("size calc","calculating...  "+tmpsz+"  and  "+numRect.width());
                 tmpsz-=2;
             }
-            //tmpsz--;
+            tmpsz--;
             numPaint.setTextSize(tmpsz);
             isInitializedFontSize = true;
             numPaint.getTextBounds(number,0,number.length,numRect);

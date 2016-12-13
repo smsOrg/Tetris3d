@@ -44,12 +44,12 @@
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/quickcontact_drop_shadow.9.png"
     },
     {
-        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/start.png",
-        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/start.png"
-    },
-    {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_launcher2.png",
         "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/ic_launcher2.png"
+    },
+    {
+        "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/start.png",
+        "source": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/src/main/res/drawable-hdpi/start.png"
     },
     {
         "merged": "/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/res/merged/debug/drawable-hdpi/camera_down.png",

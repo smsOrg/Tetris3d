@@ -9,8 +9,11 @@ import org.sms.tetris3d.items.*;
  */
 
 public class DeviceUser extends User {
-    protected  final ItemManagerForEachUser item_manager = new ItemManagerForEachUser();
+    protected  ItemManagerForEachUser item_manager = new ItemManagerForEachUser();
     public ItemManagerForEachUser getItemManager(){
+        if(item_manager==null){
+            item_manager=new ItemManagerForEachUser();
+        }
         return item_manager;
     }
 
@@ -19,6 +22,7 @@ public class DeviceUser extends User {
         return this;
     }
     public DeviceUser(){super();
+        item_manager=new ItemManagerForEachUser();
     item_manager.add(AvailableItems.getPositionResetItem());
         item_manager.add(AvailableItems.getRandomLayersRemoverItem());
     }
