@@ -11,7 +11,7 @@ import android.graphics.*;
 
 public class EmptyItemDrawable extends Drawable {
     private final Paint p = new Paint();
-    private void drawRoundedStrokeLine(Canvas c,float dl){
+   /* private void drawRoundedStrokeLine(Canvas c,float dl){
         final float height_ratio = 0.75f;
         float height = dl*height_ratio;
         float gap = (dl*(1-height_ratio))/2;
@@ -23,18 +23,7 @@ public class EmptyItemDrawable extends Drawable {
         r2.set(dl/2-width/2,dl-gap-r.width()/2,dl/2+width/2,dl-gap+r.width()/2);
         c.drawArc(r2,0,180,true,p);
     }
-    private void drawStrokeLine2(Canvas c,float dl){
-        final float height_ratio = 0.75f;
-        float height = dl*height_ratio;
-        float gap = (dl*(1-height_ratio))/2;
-        float width = dl*0.05f;
-        RectF r = new RectF(dl/2-width/2,gap,dl/2+width/2,dl-gap);
-        c.drawRect(r,p);
-        RectF r2 = new RectF(dl/2-width/2,gap-r.width()/2,dl/2+width/2,gap+r.width()/2);
-        c.drawArc(r2,-180,180,true,p);
-        r2.set(dl/2-width/2,dl-gap-r.width()/2,dl/2+width/2,dl-gap+r.width()/2);
-        c.drawArc(r2,0,180,true,p);
-    }
+    */
     @Override
     public void draw(Canvas canvas) {
         p.setStyle(Paint.Style.STROKE);
@@ -46,8 +35,6 @@ public class EmptyItemDrawable extends Drawable {
         float r = R/2;
         final float widthgap = r*0.07f;
         final float heightgap = r*0.07f;
-        final float rOffset_x = width/2-r;
-        final float rOffset_y = height/2-r;
         r*=(1-0.07);
         android.util.Log.e("size log: ",String.format("%d X %d",width,height));
         canvas.drawCircle(width/2,height/2,r,p);

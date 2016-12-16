@@ -3,6 +3,8 @@ package org.sms.tetris3d.drawables;
 import android.graphics.drawable.*;
 import android.graphics.*;
 
+import org.sms.tetris3d.items.BaseItem;
+
 /**
  * Created by hsh on 2016. 11. 27..
  */
@@ -10,10 +12,13 @@ import android.graphics.*;
 public class CoolDrawable extends Drawable{
     float rad = 360;
     final Paint coolPaint = new Paint();
+    long crtime= BaseItem. DEFAULT_COOL_REFRESH_TIME_MILLIS;
     public CoolDrawable(){
+        crtime= BaseItem. DEFAULT_COOL_REFRESH_TIME_MILLIS;
         coolPaint.setAntiAlias(true);
-        coolPaint.setColor((Color.GRAY&0x00ffffff)|0x30000000);
+        coolPaint.setColor((Color.GRAY));//&0x00ffffff)|0x30000000);
     }
+
     public float getCurrentRadius(){
         return rad;
     }
@@ -21,11 +26,27 @@ public class CoolDrawable extends Drawable{
         rad = r;
     }
     public float computeCurrentRadius(long currentTime,long totalTime){
-        return ((float)currentTime/(0.0f+totalTime))*360;
+        if(totalTime>0) {
+            return ((float) currentTime / (0.0f + totalTime)) * 360;
+        }
+        else{
+            return 0;
+        }
     }
+
+    public CoolDrawable setCoolRefreshTime(long val){
+        crtime = val;
+        return this;
+    }
+
+    public long getCoolRefreshTime(){
+        return crtime;
+    }
+
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawColor(Color.argb(0x80,0,0,0));
+        //canvas.drawColor(Color.argb(0x80,0,0,0));
+
         canvas.save();
         final float height = canvas.getHeight();
         final float width = canvas.getWidth();
@@ -38,7 +59,7 @@ public class CoolDrawable extends Drawable{
         }else {
             r.set(0,0,width,height);
         }
-        canvas.drawArc(r,rad%=360,360,false,coolPaint);
+        canvas.drawArc(r,0,rad%=360,true,coolPaint);
         canvas.restore();
     }
 
