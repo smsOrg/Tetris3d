@@ -7,6 +7,15 @@ import android.graphics.drawable.Drawable;
  */
 
 public abstract class BaseItem{
+    public static final long DEFAULT_COOL_REFRESH_TIME_MILLIS =500;
+    private long crt = DEFAULT_COOL_REFRESH_TIME_MILLIS;
+    public BaseItem setCRT(long val){
+        crt=val;
+        return this;
+    }
+    public long getCRT(){
+        return crt;
+    }
     protected ItemListener mListener = null;
     public BaseItem setItemListener(ItemListener listener){
         mListener = listener;
@@ -20,6 +29,7 @@ public abstract class BaseItem{
     private long coolTime=0;
     protected long mId = -1;
     private long itemCount = 0;
+    private int icon_res_id=0;
 
     protected BaseItem(long id){
         mId = id;
@@ -27,6 +37,17 @@ public abstract class BaseItem{
     protected BaseItem(long id,Drawable mIcon){
         this(id);
         setItemIcon(mIcon);
+    }
+    protected BaseItem(long id,int drawable_res_id){
+        this(id);
+        setIconResourceId(drawable_res_id);
+    }
+    public int getIconResourceId(){
+        return icon_res_id;
+    }
+    public BaseItem setIconResourceId(int resId){
+        icon_res_id=resId;
+        return this;
     }
     public long getItemCount(){
         return itemCount;

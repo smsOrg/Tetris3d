@@ -19,17 +19,23 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     protected static final  RegisteredPlayers players = new RegisteredPlayers(){
 
     };
+
     protected static  JSONObject config_data = new JSONObject();
+
     public static JSONObject getConfigData(){
         return config_data;
     }
+
     public static ArrayList<User> getPlayers(){
         return players;
     }
+
     protected static float pivotZ ;
+
     public static float getPivotZ(){
         return pivotZ;
     }
+
     public static void setPivotZ(float pz){
         if((float)getGameHeight()/4<=pz&&pz<=getGameHeight()+2) {
             pivotZ = pz;
@@ -38,6 +44,7 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     public static DeviceUser getDeviceUser(){
         return (DeviceUser) players.get(0);
     }
+
     public static int getAvailableZPos(final User who){
         int result = 0;
         synchronized (GameStatus.getGameBoolMatrix()) {
@@ -65,15 +72,31 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         }
         return result;
     }
+
     public static void restartGame(){
         init(null);
     }
+
+    public static  boolean isExistSomeBlockInLayer(int layer){
+        if(0<=layer&&layer<=GameStatus.getGameHeight()){
+            for(int i=0;i<GameStatus.getGameBoolMatrix().length;i++){
+                for(int j=0;j<GameStatus.getGameBoolMatrix()[i].length;j++){
+                    if(GameStatus.getGameBoolMatrix()[i][j][layer]){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        return false;
+    }
+
     public static boolean forceRemoveRows(final int offsetHeight,final int count){
 
         ArrayList<Integer> rows = new ArrayList<Integer>();
         synchronized (gameBoolMatrix) {
             for (int i = offsetHeight + count - 1; i >= offsetHeight; i--) {
-                if (0 <= i && i <= GameStatus.getGameHeight()) {
+                if (0 <= i && i <= GameStatus.getGameHeight()&&isExistSomeBlockInLayer(i)) {
                     rows.add(i);
                 }
             }
@@ -93,7 +116,7 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
 
         players.forceClear();
         remove_line_count=0;
-        players.add(new DeviceUser());
+        players.add(new DeviceUser(_c));
         gameHeight = 12;
         setPivotZ((float)gameHeight/4);
         gridSize = 6;

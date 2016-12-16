@@ -128,11 +128,11 @@ private void changePauseState(){
                     }
                 }).setCancelable(false).create();
         final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
-       final  GameRenderer renderer = new GameRenderer();
+        final  GameRenderer renderer = new GameRenderer();
         GameStatus.init(this);
         glView.setRenderer(renderer);
         final GLSurfaceView glView2 = (GLSurfaceView) findViewById(R.id.glSurface2);
-       final  NextBlockRenderer renderer2 = new NextBlockRenderer();
+        final  NextBlockRenderer renderer2 = new NextBlockRenderer();
         LinearLayout llt = (LinearLayout)findViewById(R.id.mainviewcontrolpanel);
         llt.bringToFront();
         llt.getLayoutParams().height = (int)(getResources().getDisplayMetrics().heightPixels*0.108);
@@ -161,7 +161,7 @@ private void changePauseState(){
 
        // GameStatus.getPlayers().add(new Computer());
         glView.setOnTouchListener(new SwipeControls(this));
-        glView2.setOnClickListener(new ChangeBlockControls());
+        //glView2.setOnClickListener(new ChangeBlockControls());
 
         Button b1 = (Button) findViewById(R.id.btnUp);
         Button b2 = (Button) findViewById(R.id.btnDown);
@@ -210,14 +210,28 @@ private void changePauseState(){
                                 if (GameStatus.isEnd()) {
                                     tv.setText("GAME OVER :(");
                                     if(timerLoopAvailable) {
-                                        JSONObject config = GameStatus.getConfigData();
-                                        Date dt =  new Date();
-                                        try {
-                                            config.put("end_time", dt.toString());
-                                        }catch (Exception e){
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                            JSONObject config = GameStatus.getConfigData();
+                                            Date dt = new Date();
+                                            try
 
+                                            {
+                                                config.put("end_time", dt.toString());
+                                            }
+
+                                            catch(
+                                            Exception e
+                                            )
+
+                                            {
+
+                                            }
+
+                                            glm.addLog(glm.getDataBase(true),config,GameStatus.getRemoveLineCount(),temp,dt.getTime());
                                         }
-                                        glm.addLog(glm.getDataBase(true), config, GameStatus.getRemoveLineCount(), temp,dt.getTime());
+                                        }).start();
                                     }
                                     timerLoopAvailable = false;
                                     if (!endDialog.isShowing()) {

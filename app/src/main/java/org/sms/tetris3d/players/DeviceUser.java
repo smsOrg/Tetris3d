@@ -4,11 +4,13 @@ package org.sms.tetris3d.players;
 import org.sms.tetris3d.GameStatus;
 import com.trippleit.android.tetris3d.render.OpenGlRenderer;
 import org.sms.tetris3d.items.*;
+import android.content.*;
 /**
  * Created by hsh on 2016. 11. 16..
  */
 
 public class DeviceUser extends User {
+    protected Context mContext = null;
     protected  ItemManagerForEachUser item_manager = new ItemManagerForEachUser();
     public ItemManagerForEachUser getItemManager(){
         if(item_manager==null){
@@ -22,9 +24,19 @@ public class DeviceUser extends User {
         return this;
     }
     public DeviceUser(){super();
+
+    }
+    public DeviceUser(Context ctx){
+        this();
+        setContext(ctx);
         item_manager=new ItemManagerForEachUser();
-    item_manager.add(AvailableItems.getPositionResetItem());
-        item_manager.add(AvailableItems.getRandomLayersRemoverItem());
+        item_manager.add(AvailableItems.getPositionResetItem());
+        item_manager.add(AvailableItems.getItemByID(ctx,1,null));
+        item_manager.add(AvailableItems.getItemByID(ctx,3,null));
+    }
+    public DeviceUser setContext(Context ctx){
+        mContext = ctx;
+        return this;
     }
     @Override
     public com.trippleit.android.tetris3d.shapes.IShape chooseObject(int rand){

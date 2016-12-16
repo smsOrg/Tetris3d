@@ -3,8 +3,11 @@ package org.sms.tetris3d.items;
 import android.graphics.drawable.Drawable;
 
 import org.sms.tetris3d.GameStatus;
+import org.sms.tetris3d.R;
 import org.sms.tetris3d.players.*;
 import android.content.*;
+import android.os.Build;
+
 /**
  * Created by hsh on 2016. 11. 24..
  */
@@ -14,6 +17,11 @@ public class AvailableItems {
         public int removeCnt=0;
         public int offsetHeight=0;
     }
+    public static class NoArgumentException extends RuntimeException{
+        public NoArgumentException(){
+            super("There aren`t any arguments.");
+        }
+    }
     public static BaseItem getItemByID(Context ctx,final int id,final ArgumentAdapter aa){
         switch (id){
             case 0:{
@@ -21,18 +29,27 @@ public class AvailableItems {
 
             }
             case 1:{
-                return getRandomLayersRemoverItem();
+                if(Build.VERSION.SDK_INT <21) return getRandomLayersRemoverItem().setItemIcon(ctx.getResources().getDrawable(R.drawable.bomb)).setIconResourceId(R.drawable.bomb);
+                else return getRandomLayersRemoverItem().setItemIcon(ctx.getDrawable(R.drawable.bomb)).setIconResourceId(R.drawable.bomb);
             }
 
             case 2:{
                 if(aa!=null) {
-                    return getLayerRemoverItem(aa.offsetHeight,aa.removeCnt);
+                    if(Build.VERSION.SDK_INT <21){
+                        return getLayerRemoverItem(aa.offsetHeight,aa.removeCnt).setItemIcon(ctx.getResources().getDrawable(R.drawable.bomb)).setIconResourceId(R.drawable.bomb);
+                    }else
+                    return getLayerRemoverItem(aa.offsetHeight,aa.removeCnt).setItemIcon(ctx.getDrawable(R.drawable.bomb)).setIconResourceId(R.drawable.bomb);
                 }else{
+                    //throw new NoArgumentException();
                     return null;
                 }
             }
             case 3:{
-                return getBlockChangeItem();
+               // ctx.getResources().getIdentifier("","",ctx.getPackageName());
+                if(Build.VERSION.SDK_INT <21){
+                    return getBlockChangeItem(ctx.getResources().getDrawable(R.drawable.switchh)).setIconResourceId(R.drawable.switchh);
+                }else
+                return getBlockChangeItem(ctx.getDrawable(R.drawable.switchh)).setIconResourceId(R.drawable.switchh);
 
             }
             default:return null;
@@ -76,13 +93,19 @@ public class AvailableItems {
 
             }
         }).setCoolTime(12*1000);
+        if(Build.VERSION.SDK_INT <21){
+
+        }
+        else{
+
+        }
         return item;
     }
     protected static int randInt(int start,int end){
         if(start>end){
             return randInt(end,start);
         }else
-        return ((int)(Math.random()*Math.pow(10, (int)Math.log10(end)+2))%(end-start))+start;
+        return ((int)(Math.random()*Math.pow(10, (int)Math.log10(end)+2))%(end-start+1))+start;
     }
     public static BaseItem getRandomLayersRemoverItem(){
 
@@ -105,6 +128,16 @@ public class AvailableItems {
                     int oH = randInt(0,maxAvailableHeight);
                     int cnt = randInt(oH,GameStatus.getGameHeight()-oH);
                     if( cnt>=GameStatus.getGameHeight()){
+                        int rm_ln_cnt = 0;
+                        boolean[][][] b = GameStatus.getGameBoolMatrix();
+                        synchronized (b) {
+                            for(int k=0;k<b[0][0].length;k++) {
+                                if(GameStatus.isExistSomeBlockInLayer(k)){
+                                    rm_ln_cnt++;
+                                }
+                            }
+
+                        }
                         GameStatus.restartGameBoolMatrix();
                     }else if(oH>=0)
                         GameStatus.forceRemoveRows(oH,cnt);
@@ -173,8 +206,8 @@ public class AvailableItems {
     }
 
 
-    public static BaseItem getBlockChangeItem(){
-        BaseItem item = new BaseItem(2){
+    public static BaseItem getBlockChangeItem(Drawable icon){
+        return new BaseItem(2,icon){
             @Override
             public long getItemCount() {
                 return 0;
@@ -192,8 +225,11 @@ public class AvailableItems {
         }.setItemListener(new ItemListener() {
             @Override
             public void onActiveItem(User usr) {
-                    DeviceUser du = (DeviceUser)GameStatus.getPlayers().get(0);
-                    du.swipeBlock(false);
+                    //DeviceUser du = (DeviceUser)GameStatus.getPlayers().get(0);
+                    //du.swipeBlock(false);
+                if (usr!=null && usr instanceof DeviceUser) {
+                    ((DeviceUser)usr).swipeBlock(false);
+                }
             }
             @Override
             public void onCoolItem(boolean isCool) {
@@ -209,7 +245,7 @@ public class AvailableItems {
             public void onAddItem(User usr) {
 
             }
-        }).setCoolTime(4*1000);
-        return item;
+        }).setCoolTime(2*1000).setCRT(1000/25);
+       // return item;
     }
 }

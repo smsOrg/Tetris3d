@@ -220,7 +220,7 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
 
     protected boolean determineValidDeltaDegree(float ori_deg,float changed_deg){
         final int q = getQuadrant(ori_deg);
-        return q!=1&&q==getQuadrant(changed_deg);
+        return q!=-1&&q==getQuadrant(changed_deg);
     }
     //private boolean nowOutSide=false;
     @Override
