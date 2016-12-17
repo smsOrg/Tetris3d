@@ -210,17 +210,23 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
         if(deg>=360){
             deg-=360;
         }
-        for(int i=0;i<AREA_COUNT;i++){
-            if(i*AREA_DEGREE<=deg&&deg<(i+1)*AREA_DEGREE){
-                return i;
-            }
+        if (PREFIX_DEGREE <= deg && deg < PREFIX_DEGREE + AREA_DEGREE) {
+            //mMultiProcessThread.start();
+            return Y_AXIS_CLICK_INDEX;
+        } else if (PREFIX_DEGREE + AREA_DEGREE <= deg && deg < PREFIX_DEGREE + AREA_DEGREE * 2) {
+           return X_AXIS_CLICK_INDEX;
+        } else if (!Float.isInfinite(deg)) {
+            return Z_AXIS_CLICK_INDEX;
         }
         return -1;
     }
 
     protected boolean determineValidDeltaDegree(float ori_deg,float changed_deg){
         final int q = getQuadrant(ori_deg);
-        return q!=-1&&q==getQuadrant(changed_deg);
+        final int p = getQuadrant(changed_deg);
+        android.util.Log.e("degree log: ",String.format("%f %f",ori_deg,changed_deg));
+        android.util.Log.e("quadrand log: ",String.format("%d %d",q,p));
+        return q!=-1&&q==p;
     }
     //private boolean nowOutSide=false;
     @Override
@@ -270,27 +276,29 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
                 final float r = Math.min(height,width);
                 float relative_xPos = width/2- move_x;
                 float relative_yPos = height/2-move_y;
+                relative_xPos *=-1;
                 moveDegree= getClickedDegree(r,relative_xPos,relative_yPos);
                 break;
             }
             case MotionEvent.ACTION_UP:{
                 mClickState = UNKNOWN_AXIS_CLICK_INDEX;
-                if(tmp_area.contains((int)(v.getLeft() + move_x), (int)(v.getTop() + move_y))&&determineValidDeltaDegree(currentDegree,moveDegree)) {
+                boolean tm;
+                if((tm=determineValidDeltaDegree(currentDegree,moveDegree))&&tmp_area.contains((int)(v.getLeft() + move_x), (int)(v.getTop() + move_y))) {
 
                     if (rc == null) {
                         rc = new RotateControls();
                     }
                     final DeviceUser du = GameStatus.getDeviceUser();
 
-                    if (PREFIX_DEGREE <= currentDegree && currentDegree < PREFIX_DEGREE + AREA_DEGREE) {
+                    if (PREFIX_DEGREE <= moveDegree && moveDegree < PREFIX_DEGREE + AREA_DEGREE) {
                         //mMultiProcessThread.start();
                         mHandler.postDelayed(this, 4);
                         rc.rotateY(du);
-                    } else if (PREFIX_DEGREE + AREA_DEGREE <= currentDegree && currentDegree < PREFIX_DEGREE + AREA_DEGREE * 2) {
+                    } else if (PREFIX_DEGREE + AREA_DEGREE <= moveDegree && moveDegree < PREFIX_DEGREE + AREA_DEGREE * 2) {
                         // mMultiProcessThread.start();
                         mHandler.postDelayed(this, 4);
                         rc.rotateX(du);
-                    } else if (!Float.isInfinite(currentDegree)) {
+                    } else if (!Float.isInfinite(moveDegree)) {
                         //mMultiProcessThread.start();
                         mHandler.postDelayed(this, 4);
                         rc.rotateZ(du);
@@ -299,6 +307,7 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
                 else{
                   invalidate();
                 }
+                android.util.Log.e("rbv boolean log: ",Boolean.toString(tm));
                 break;
             }
             default:break;
