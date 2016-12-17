@@ -9,16 +9,23 @@ import java.util.ArrayList;
 import org.sms.tetris3d.players.*;
 import org.sms.tetris3d.players.DeviceUser;
 import org.sms.tetris3d.players.User;
+import org.sms.tetris3d.savepoint.SavePoint;
 
 /**
  * Created by hsh on 2016. 11. 16..
  */
 
 public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
-    public static final int DB_FILE_VERSION = 2;
+    public static final int DB_FILE_VERSION = 3;
     protected static final  RegisteredPlayers players = new RegisteredPlayers(){
 
     };
+
+    protected static long play_time=0;
+
+    public static void setPlayTime(long val){play_time = val;}
+
+    public static long getPlayTime(){return play_time;}
 
     protected static  JSONObject config_data = new JSONObject();
 
@@ -126,6 +133,7 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         start=true;
         end = false;
         startX = 2;
+        play_time=0;
         startY = 2;
         dropFast = false;
         try {
@@ -135,6 +143,45 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
 
         }catch (Exception e){
 
+        }
+    }
+
+    public static void initFromSavePoint(Context c,SavePoint sp) throws Exception{
+        if(sp.getGameMatrix()!=null&&sp.getUserData()!=null){
+            config_data=new JSONObject();
+            players.forceClear();
+
+            gameHeight=sp.getGameHeight();
+            gridSize=sp.getGridSize();
+            startX=sp.getStartX();
+            startY=sp.getStartY();
+            players.add(sp.getUserData().setContext(c));
+
+            remove_line_count=0;
+            players.add(sp.getUserData());
+            setPivotZ((float)gameHeight/4);
+            gStatus = GAME_STATUS.START;
+            //restartGameBoolMatrix();
+            gameBoolMatrix=sp.getGameMatrix();
+            gameColorMatrix=sp.getGameMatColor();
+            setCamera(initialCameraAngle, gameHeight);
+            setCameraH(sp.getCameraH());
+            setCameraR(sp.getCameraR());
+            start=true;
+            end = false;
+            dropFast = false;
+
+            try {
+                config_data.put("game_board_xy_size", gridSize);
+                config_data.put("game_board_height",gameHeight);
+                config_data.put("participated_player_count",players.size());
+
+            }catch (Exception e){
+
+            }
+        }
+        else{
+            throw new NullPointerException("game matrix or user data is null.");
         }
     }
 }

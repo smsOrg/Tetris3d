@@ -23,6 +23,7 @@ public class DBHelper  extends SQLiteOpenHelper {
     protected void createEssentialTables(SQLiteDatabase db){
         db.execSQL("create table if not exists log(id integer primary key,config_data text,remove_line_count integer not null,play_time integer not null,time_stamp integer not null);");
         db.execSQL("create table if not exists deviceUserItems(id integer primary key,item_id integer not null unique);");
+        db.execSQL("create table if not exists localSavePoint(id integer primary key,   save_point_name text not null check(length(save_point_name) > 2),   device_environment text,   save_time integer not null,   raw_data blob not null);");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

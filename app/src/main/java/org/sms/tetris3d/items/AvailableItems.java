@@ -8,20 +8,17 @@ import org.sms.tetris3d.players.*;
 import android.content.*;
 import android.os.Build;
 
+import java.io.Serializable;
+
 /**
  * Created by hsh on 2016. 11. 24..
  */
 
-public class AvailableItems {
-    public static class ArgumentAdapter{
+public class AvailableItems implements Serializable{
+    /*public static class ArgumentAdapter implements Serializable{
         public int removeCnt=0;
         public int offsetHeight=0;
-    }
-    public static class NoArgumentException extends RuntimeException{
-        public NoArgumentException(){
-            super("There aren`t any arguments.");
-        }
-    }
+    }*/
     public static BaseItem getItemByID(Context ctx,final int id,final ArgumentAdapter aa){
         switch (id){
             case 0:{

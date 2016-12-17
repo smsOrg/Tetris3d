@@ -2,11 +2,13 @@ package org.sms.tetris3d.items;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
+
 /**
  * Created by hsh on 2016. 11. 20..
  */
 
-public abstract class BaseItem{
+public abstract class BaseItem implements Serializable{
     public static final long DEFAULT_COOL_REFRESH_TIME_MILLIS =500;
     private long crt = DEFAULT_COOL_REFRESH_TIME_MILLIS;
     public BaseItem setCRT(long val){

@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="d31b1158f33bcf24ff13ee8ab0d1511834598520">
+        sha1="906dbdb8726b94fda1f1e670af8531d1945d744c">
         <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_448df2200b3efca9b30cf0adf555b16c24644e88/classes.dex" />
     </item>
     <item
@@ -70,7 +70,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="191b10e9aa2e95f6f225eeff9b83c2396f6cfec0">
+        sha1="98554d9723244fc3fbab8c672f6319ca5586630d">
         <dex dex="/Users/hsh/AndroidStudioProjects/Tetris3d/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_640ef05f8e5b50e7f2dd831021cbd2486c300a68/classes.dex" />
     </item>
     <item

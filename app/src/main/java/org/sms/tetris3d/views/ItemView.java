@@ -109,16 +109,19 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
                     mCoolThread = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            //mItem.getListener().onActiveItem(GameStatus.getDeviceUser());
-                            while(!GameStatus.isEnd()&&(coolCurrentTime=System.currentTimeMillis())-coolStartTime<=mItem.getCoolTime()){
+                            while(!GameStatus.isEnd()&&mCoolDrawable.getCurrentRadius()<=360){ //(coolCurrentTime=System.currentTimeMillis())-coolStartTime<=mItem.getCoolTime()){
+                                coolCurrentTime=System.currentTimeMillis();
+                                //(coolCurrentTime=System.currentTimeMillis())-coolStartTime<=mItem.getCoolTime();
+                                final float a=mCoolDrawable.computeCurrentRadius(
+                                        coolCurrentTime-coolStartTime,mItem.getCoolTime()
+                                );
+                                if(a>=360){
+                                    break;
+                                }
                                 if(mCoolDrawable!=null) {
-                                   mCoolDrawable.setCurrentRadius(
-                                           mCoolDrawable.computeCurrentRadius(
-                                                   coolCurrentTime-coolStartTime,mItem.getCoolTime()
-                                           ));
+                                   mCoolDrawable.setCurrentRadius(a);
                                 }
                                 postInvalidate();
-                                android.util.Log.e("thread log: ","cool time work");
                                 try {
                                     Thread.sleep(mCoolDrawable.getCoolRefreshTime());
                                 }catch(Exception e){}
@@ -130,7 +133,7 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
                                     }catch(Exception e){}
                                 }
                             }
-                            if(!GameStatus.isEnd()&&mCoolDrawable!=null&&mCoolDrawable.getCurrentRadius()<360) {
+                            /*if(!GameStatus.isEnd()&&mCoolDrawable!=null&&mCoolDrawable.getCurrentRadius()<360) {
                                     mCoolDrawable.setCurrentRadius(360);
                                 postInvalidate();
                                 try {
@@ -138,7 +141,7 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
                                 } catch (Exception e) {
                                 }
 
-                            }
+                            }*/
                             coolState=false;
                             mCoolThread=null;
                             postInvalidate();

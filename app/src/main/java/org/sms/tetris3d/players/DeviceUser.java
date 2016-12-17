@@ -5,12 +5,15 @@ import org.sms.tetris3d.GameStatus;
 import com.trippleit.android.tetris3d.render.OpenGlRenderer;
 import org.sms.tetris3d.items.*;
 import android.content.*;
+
+import java.io.Serializable;
+
 /**
  * Created by hsh on 2016. 11. 16..
  */
 
-public class DeviceUser extends User {
-    protected Context mContext = null;
+public class DeviceUser extends User implements Serializable{
+    protected transient Context mContext = null;
     protected  ItemManagerForEachUser item_manager = new ItemManagerForEachUser();
     public ItemManagerForEachUser getItemManager(){
         if(item_manager==null){
@@ -30,9 +33,9 @@ public class DeviceUser extends User {
         this();
         setContext(ctx);
         item_manager=new ItemManagerForEachUser();
-        item_manager.add(AvailableItems.getPositionResetItem());
+        /*item_manager.add(AvailableItems.getPositionResetItem());
         item_manager.add(AvailableItems.getItemByID(ctx,1,null));
-        item_manager.add(AvailableItems.getItemByID(ctx,3,null));
+        item_manager.add(AvailableItems.getItemByID(ctx,3,null));*/
     }
     public DeviceUser setContext(Context ctx){
         mContext = ctx;

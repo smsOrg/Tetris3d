@@ -13,17 +13,21 @@ import org.sms.tetris3d.logs.GameLogManager;
 import org.sms.tetris3d.render.*;
 import org.sms.tetris3d.interfaces.*;
 import org.sms.tetris3d.controls.*;
+import org.sms.tetris3d.savepoint.SavePoint;
+import org.sms.tetris3d.savepoint.SavePointManager;
 import org.sms.tetris3d.views.ItemViewLayout;
 
 import com.trippleit.android.tetris3d.controls.*;
+
+import java.io.Serializable;
 import java.util.*;
 /**
  * Created by hsh on 2016. 11. 19..
  */
 
-public class MainGameActivity extends Activity  {
+public class MainGameActivity extends Activity {
     private boolean timerLoopAvailable = true;
-
+    protected SavePointManager spm;
     AlertDialog getDialog(final DialogItem[] items){
        return getDialogAsBuilder(items).create();
     }
@@ -56,7 +60,34 @@ public class MainGameActivity extends Activity  {
         }
     }
 
+    public void saveSavePoint(){
+        synchronized (spm.getSync()) {
+            Toast.makeText(getApplicationContext(),"saving...",Toast.LENGTH_LONG).show();
+            final String sp_name = "sp_"+((float)(System.currentTimeMillis()/10)/10.0f);
+            final JSONObject jobj = new JSONObject();
+            try {
+                jobj.put("game_db_version", GameStatus.DB_FILE_VERSION);
+                jobj.put("android_sdk_version", Build.VERSION.SDK_INT);
+                jobj.put("device_time", new Date().toString());
+                jobj.put("device_config_version", 1.0f);
+            } catch (Exception e) {
 
+            }
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    spm.addSavePoint(sp_name, jobj, SavePoint.createSavePoint());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "saved!", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            });
+            t.start();
+        }
+    }
     @Override
     public void onBackPressed() {
         GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
@@ -99,6 +130,23 @@ private void changePauseState(){
 
             }
         }.setTitle(getString(R.string.pausedialog_item_resume)),
+
+                new DialogItem(){
+                    @Override
+                    public void onClickItem(){
+
+                        saveSavePoint();
+
+                    }
+                }.setTitle("save on some point"),
+                new DialogItem(){
+                    @Override
+                    public void onClickItem(){
+
+                        spm.deleteAllSavePoints();
+
+                    }
+                }.setTitle("clear all point"),
                 new DialogItem(){
             @Override
             public void onClickItem(){
@@ -130,6 +178,7 @@ private void changePauseState(){
         final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
         final  GameRenderer renderer = new GameRenderer();
         GameStatus.init(this);
+        spm = new SavePointManager(this);
         glView.setRenderer(renderer);
         final GLSurfaceView glView2 = (GLSurfaceView) findViewById(R.id.glSurface2);
         final  NextBlockRenderer renderer2 = new NextBlockRenderer();
@@ -190,7 +239,7 @@ private void changePauseState(){
             @Override
             public void run() {
                 super.run();
-                int time = 0;
+                //int time = 0;
                 while (timerLoopAvailable) {
 
                         try {
@@ -199,9 +248,11 @@ private void changePauseState(){
                             e.printStackTrace();
                         }
                         if(!GameStatus.isStarting()&&!GameStatus.isPaused()) {
-                            time++;
+
+                            GameStatus.setPlayTime(GameStatus.getPlayTime()+1);
+                            //time++;
                         }
-                        final int temp = time;
+                        final long temp = GameStatus.getPlayTime();
 
                         runOnUiThread(new Runnable() {
                             @Override

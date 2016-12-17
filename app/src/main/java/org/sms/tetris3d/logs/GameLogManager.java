@@ -27,7 +27,7 @@ public class GameLogManager {
             return glu.getReadableDatabase();
         }
     }
-    public void addLog(SQLiteDatabase writeable_db, JSONObject config, long line_count,int play_time,long timestamp){
+    public void addLog(SQLiteDatabase writeable_db, JSONObject config, long line_count,long play_time,long timestamp){
         ContentValues cv = new ContentValues();
         cv.put("config_data",config.toString());
         cv.put("remove_line_count",line_count);

@@ -1,5 +1,6 @@
 package com.trippleit.android.tetris3d.shapes;
 
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -10,7 +11,7 @@ import javax.microedition.khronos.opengles.GL10;
 import org.sms.tetris3d.GameStatus;
 import org.sms.tetris3d.players.User;
 
-public abstract class AbstractDraw {
+public abstract class AbstractDraw implements Serializable {
 	protected User usr=null;
 	public void drawObject(GL10 gl, boolean objectMatrix[][][], String color) {
 		gl.glPushMatrix();

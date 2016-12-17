@@ -11,6 +11,7 @@ import com.trippleit.android.tetris3d.shapes.ObjectS;
 import com.trippleit.android.tetris3d.shapes.ObjectT;
 import com.trippleit.android.tetris3d.shapes.ObjectZ;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.microedition.khronos.opengles.GL10;
@@ -19,7 +20,7 @@ import javax.microedition.khronos.opengles.GL10;
  * Created by hsh on 2016. 11. 16..
  */
 
-public abstract class User implements  UserDefaultBehavior {
+public abstract class User implements  UserDefaultBehavior,Serializable {
 
     protected User(){
         super();
