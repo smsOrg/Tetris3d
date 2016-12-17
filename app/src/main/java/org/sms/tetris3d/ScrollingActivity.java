@@ -22,6 +22,7 @@ public static class LCardProvider extends com.dexafree.materialList.card.CardPro
         Intent it = new Intent();
         it.setClass(getApplicationContext(),MainGameActivity.class);
         it.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT|Intent.FLAG_ACTIVITY_NEW_TASK);
+        it.putExtra("save_point_mode",false);
 it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
         getApplicationContext().startActivity(it);
     }

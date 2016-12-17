@@ -15,7 +15,6 @@ public class Card {
     @Nullable
     private Object mTag;
     private boolean mDismissible;
-
     /**
      * Creates a new Card.
      *

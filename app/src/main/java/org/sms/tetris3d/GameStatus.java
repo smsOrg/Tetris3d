@@ -150,7 +150,7 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         if(sp.getGameMatrix()!=null&&sp.getUserData()!=null){
             config_data=new JSONObject();
             players.forceClear();
-
+            play_time=sp.getPlayTime();
             gameHeight=sp.getGameHeight();
             gridSize=sp.getGridSize();
             startX=sp.getStartX();

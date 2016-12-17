@@ -149,6 +149,7 @@ public class SavePoint implements Externalizable {
             setRemoveLineCount(sp.getRemoveLineCount());
             setSaveTime(sp.getSaveTime());
             setUserData(sp.getUserData());
+            setGameHeight(sp.getGameHeight());
             setGridSize(sp.getGridSize());
             setStartX(sp.getStartX());
             setStartY(sp.getStartY());

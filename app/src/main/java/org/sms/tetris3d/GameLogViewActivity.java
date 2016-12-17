@@ -161,7 +161,7 @@ int idx = 1;
             mlv.getAdapter().add(card);
         }else {
             boolean first = true;
-
+            SavePoint sp=null;
             while(query.moveToNext()){
                 if(first){
                     query.moveToFirst();
@@ -178,7 +178,7 @@ int idx = 1;
                 sb.append(configStr+"\n");
                 sb.append("\n===========\n\n");
                 if(raw_data!=null) {
-                    SavePoint sp = SavePoint.createSavePointFromByteArray(raw_data);
+                    sp = SavePoint.createSavePointFromByteArray(raw_data);
                     if(sp!=null){
                         try {
                             GameStatus.initFromSavePoint(this, sp);
@@ -212,8 +212,7 @@ int idx = 1;
                     sb.append("raw data is null");
                 }
                 Card card = new Card.Builder(this)
-                        .setTag("tag")
-
+                        .setTag(sp)
                         .withProvider(new CardProvider())
                         .setLayout(R.layout.material_basic_image_buttons_card_layout)
                         .setTitle(titleSb.toString())
@@ -229,7 +228,16 @@ int idx = 1;
 
             @Override
             public void onItemClick(Card card, int position) {
-
+                if(card.getTag()!=null && card.getTag() instanceof SavePoint){
+                    SavePoint sp = (SavePoint)card.getTag();
+                    Intent it = new Intent();
+                    it.putExtra("mSavePoint",sp);
+                    it.setClass(getApplicationContext(),MainGameActivity.class);
+                    it.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
+                    it.putExtra("save_point_mode",true);
+                    getApplicationContext().startActivity(it);
+                }
             }
 
             @Override

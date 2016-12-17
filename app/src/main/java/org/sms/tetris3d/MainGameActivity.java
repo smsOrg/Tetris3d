@@ -120,6 +120,7 @@ private void changePauseState(){
         if((getIntent().getLongExtra("check",-2)^'s')>>10 !='s'+'m'+'s'){
             finish();
         }
+
         ItemViewLayout ivl = (ItemViewLayout)findViewById(R.id.item_layout);
         glm = new GameLogManager(getApplicationContext());
         dialog = getDialogAsBuilder(new DialogItem[]{new DialogItem(){
@@ -177,8 +178,18 @@ private void changePauseState(){
                 }).setCancelable(false).create();
         final GLSurfaceView glView = (GLSurfaceView) findViewById(R.id.glSurface);
         final  GameRenderer renderer = new GameRenderer();
-        GameStatus.init(this);
         spm = new SavePointManager(this);
+        Object tSp = null;
+        if(getIntent().getBooleanExtra("save_point_mode",false)&& (tSp = getIntent().getSerializableExtra("mSavePoint"))!=null&&tSp instanceof  SavePoint) {
+            SavePoint mSp = (SavePoint)tSp;
+            try {
+                GameStatus.initFromSavePoint(this, mSp);
+            }catch (Exception e){
+                GameStatus.init(this);
+            }
+        }else{
+            GameStatus.init(this);
+        }
         glView.setRenderer(renderer);
         final GLSurfaceView glView2 = (GLSurfaceView) findViewById(R.id.glSurface2);
         final  NextBlockRenderer renderer2 = new NextBlockRenderer();
