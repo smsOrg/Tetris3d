@@ -11,20 +11,29 @@
   | Hwang se hyeon  | Main Developer and Source Code Manager and Team Leader   |
   
   
-## DESCRIPTION
-* 3D tetris is 
+## SUMMARY
+* Project Purpose is to play tetris Game on Android as sensational tetris
+* Our 3D tetris is using real 3d shapes and 3-axis(x,y,z) to play game , so 
 * Supports android device which has latest version of android.
 * To implement Game, We are using OpenGl Library.
 * UI of this Project will be using google material design.
 * Support 
 
-##Project Purpose
+##Program Feature
+* You can play tetris as real 3D Tetris
+* By playing game ,You will be able to change block between current block and next block
+
+####Project Purpose
 > To play tetris Game on Android as sensational tetris 
 
-##Game Purpose
+####Game Purpose
 > Survive as long as possible.
 
 ##INTRODUCTION
+ > You can play tetris as real 3D Tetris!
+ > And you will be able to use items such as switch block item , position of what falling down reset item, bomb which remove some layers item.
+ > also you can play game from save point and save game on save point.
+
  * Program Lanaguage
  
   | #     | Program Language | Note                 |
@@ -60,8 +69,9 @@ For more information, view https://github.com/smsOrg/Tetris3d/blob/master/LICENS
 
 ##Our Next Plan...
 1. Implement Item Store
-2. Add Point(Score≡Item Money) System
-3. Optimize Algorithm
-4. Add Cooperation Game Mode as multi-play
-5. Add Non-Gravity Game Mode on single-play
-6. Apply BackGround Image
+2. Add more items
+3. Add Point(Score≡Item Money) System
+4. Optimize Algorithm
+5. Add Cooperation Game Mode as multi-play
+6. Add Non-Gravity Game Mode on single-play
+7. Apply BackGround Image
