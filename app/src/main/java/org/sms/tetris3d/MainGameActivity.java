@@ -16,9 +16,11 @@ import org.sms.tetris3d.controls.*;
 import org.sms.tetris3d.savepoint.SavePoint;
 import org.sms.tetris3d.savepoint.SavePointManager;
 import org.sms.tetris3d.views.ItemViewLayout;
-
+import android.graphics.*;
+import android.graphics.drawable.*;
 import com.trippleit.android.tetris3d.controls.*;
-
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import cn.pedant.SweetAlert.SweetAlertDialog.*;
 import java.io.Serializable;
 import java.util.*;
 /**
@@ -33,7 +35,7 @@ public class MainGameActivity extends Activity {
     }
 
     AlertDialog.Builder getDialogAsBuilder(final DialogItem[] items){
-        
+
         CharSequence[] vals = new CharSequence[items.length];
         for(int i =0;i<vals.length;i++){
             vals[i] = items[i].toString();
@@ -63,7 +65,12 @@ public class MainGameActivity extends Activity {
 
     public void saveSavePoint(){
         synchronized (spm.getSync()) {
-            Toast.makeText(getApplicationContext(),"saving...",Toast.LENGTH_LONG).show();
+            final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText("Saving...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+            //Toast.makeText(getApplicationContext(),"saving...",Toast.LENGTH_LONG).show();
             final String sp_name = "sp_"+((float)(System.currentTimeMillis()/10)/10.0f);
             final JSONObject jobj = new JSONObject();
             try {
@@ -81,7 +88,20 @@ public class MainGameActivity extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(), "saved!", Toast.LENGTH_LONG).show();
+                            pDialog.setTitleText("Saved!")
+                                    .setContentText("Save Point was saved!")
+                                    .setConfirmText("OK")
+
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sDialog) {
+                                            GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
+                                            sDialog.dismissWithAnimation();
+                                        }
+                                    })
+                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            pDialog.setCancelable(false);
+                            //Toast.makeText(getApplicationContext(), "saved!", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
