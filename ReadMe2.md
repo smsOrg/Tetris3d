@@ -30,9 +30,11 @@
 > Survive as long as possible.
 
 ##INTRODUCTION
- > You can play tetris as real 3D Tetris!
+ > You can play tetris as real 3D Tetris! 
+ >
  > And you will be able to use items such as switch block item , position of what falling down reset item, bomb which remove some layers item.
- > also you can play game from save point and save game on save point.
+ >
+ > Also you can play game from save point and save game on save point.
 
  * Program Lanaguage
  
