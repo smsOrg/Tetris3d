@@ -218,11 +218,7 @@ public class SavePoint implements Externalizable {
         setCameraR(in.readFloat());
         setPlayTime(in.readLong());
         game_mat = (boolean[][][])in.readObject();
-        if(game_mat!=null){
-            android.util.Log.e("game_mat is not null: ","game matrix length= "+game_mat.length);
-        }else{
-            android.util.Log.e("game_mat is null: ","game matrix length= null");
-        }
+
         game_geoColor = (String[][][])in.readObject();
 
         mUserData= (DeviceUser)in.readObject();

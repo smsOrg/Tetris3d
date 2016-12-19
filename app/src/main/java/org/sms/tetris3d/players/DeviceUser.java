@@ -177,6 +177,7 @@ public class DeviceUser extends User implements Serializable{
             super();
             setContext(ctx);
             ItemID[] lst=  getEquipedItemsIDList();
+            if(lst!=null)
             for(ItemID item:lst){
                 add(AvailableItems.getItemByID(ctx,item.getID(),item.getArgumentAdapter()));
             }
