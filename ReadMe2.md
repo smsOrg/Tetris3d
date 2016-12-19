@@ -4,11 +4,12 @@
   * Team Name: sms
   * Team Member
   
-  ``` 
-  * Kim se hun (Image Manager and etc)
-  * Lee min su (App Layout manager and source code documentation Manager)
-  * Hwang se hyeon(Main Developer and Team Leader)
-  ``` 
+  | Member          | Work                                                     |
+  |-----------------|----------------------------------------------------------|
+  | Kim se hun      | Image Manager and etc                                    |
+  | Lee min su      | App Layout manager and source code documentation Manager |
+  | Hwang se hyeon  | Main Developer and Team Leader                           |
+  
   
 ## DESCRIPTION
 * 3D tetris is 
