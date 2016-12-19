@@ -21,6 +21,9 @@
 ##Project Purpose
 > To play tetris Game on Android as sensational tetris 
 
+##Game Purpose
+> Survive as long as possible.
+
 ##INTRODUCTION
  * Program Lanaguage
  
