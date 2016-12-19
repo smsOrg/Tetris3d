@@ -8,7 +8,7 @@
   |-----------------|----------------------------------------------------------|
   | Kim se hun      | Project Image Manager and etc                            |
   | Lee min su      | App Layout manager and source code documentation Manager |
-  | Hwang se hyeon  | Main Developer and Team Leader                           |
+  | Hwang se hyeon  | Main Developer and Source Code Manager and Team Leader   |
   
   
 ## DESCRIPTION
@@ -57,3 +57,11 @@ For more information, view https://github.com/smsOrg/Tetris3d/blob/master/LICENS
 ##Program Feature
 * You can play tetris as real 3D Tetris
 * By playing game ,You will be able to change block between current block and next block
+
+##Our Next Plan...
+1. Implement Item Store
+2. Add Point(Score≡Item Money) System
+3. Optimize Algorithm
+4. Add Cooperation Game Mode as multi-play
+5. Add Non-Gravity Game Mode on single-play
+6. Apply BackGround Image
