@@ -21,15 +21,17 @@ public class AvailableItems implements Serializable{
     }*/
     public static BaseItem getItemByID(Context ctx,final int id,final ArgumentAdapter aa){
         switch (id){
+            case ItemIDs.ResetIDs.ID_POSITION_RESET:
             case 0:{
-                return getPositionResetItem();
+                return getPositionResetItem(ctx);
 
             }
+            case ItemIDs.BoomIDs.ID_REMOVE_RANDOM_LAYERS:
             case 1:{
                 if(Build.VERSION.SDK_INT <21) return getRandomLayersRemoverItem().setItemIcon(ctx.getResources().getDrawable(R.drawable.bomb)).setIconResourceId(R.drawable.bomb);
                 else return getRandomLayersRemoverItem().setItemIcon(ctx.getDrawable(R.drawable.bomb)).setIconResourceId(R.drawable.bomb);
             }
-
+            case ItemIDs.BoomIDs.ID_REMOVE_LAYERS:
             case 2:{
                 if(aa!=null) {
                     if(Build.VERSION.SDK_INT <21){
@@ -41,6 +43,7 @@ public class AvailableItems implements Serializable{
                     return null;
                 }
             }
+            case ItemIDs.SwitchIDs.ID_SWITCH_CURRENT_AND_NEXT_BLOCK:
             case 3:{
                // ctx.getResources().getIdentifier("","",ctx.getPackageName());
                 if(Build.VERSION.SDK_INT <21){
@@ -52,7 +55,7 @@ public class AvailableItems implements Serializable{
             default:return null;
         }
     }
-    public static BaseItem getPositionResetItem(){
+    public static BaseItem getPositionResetItem(Context ctx){
         BaseItem item = new BaseItem(0){
             @Override
             public long getItemCount() {
@@ -91,10 +94,10 @@ public class AvailableItems implements Serializable{
             }
         }).setCoolTime(12*1000);
         if(Build.VERSION.SDK_INT <21){
-
+            item.setItemIcon(ctx.getResources().getDrawable(R.drawable.arrow_up)).setIconResourceId(R.drawable.arrow_up);
         }
         else{
-
+            item.setItemIcon(ctx.getDrawable(R.drawable.arrow_up)).setIconResourceId(R.drawable.arrow_up);
         }
         return item;
     }

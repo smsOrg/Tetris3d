@@ -18,7 +18,6 @@ import org.sms.tetris3d.savepoint.SavePoint;
 public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
     public static final int DB_FILE_VERSION = 3;
     protected static final  RegisteredPlayers players = new RegisteredPlayers(){
-
     };
 
     protected static long play_time=0;

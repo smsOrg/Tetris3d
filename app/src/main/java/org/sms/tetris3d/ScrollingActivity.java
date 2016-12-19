@@ -85,8 +85,8 @@ it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
                 .build();
         mlv.getAdapter().add(cardwel);
         mlv.getAdapter().add(card);
-mlv.getAdapter().add(logcard);
-       mlv .addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
+        mlv.getAdapter().add(logcard);
+        mlv .addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
 
             @Override
             public void onItemClick(Card card, int position) {
