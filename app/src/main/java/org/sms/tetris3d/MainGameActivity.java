@@ -84,26 +84,48 @@ public class MainGameActivity extends Activity {
             Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    spm.addSavePoint(sp_name, jobj, SavePoint.createSavePoint());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            pDialog.setTitleText("Saved!")
-                                    .setContentText("Save Point was saved!")
-                                    .setConfirmText("OK")
+                    try {
+                        spm.addSavePoint(sp_name, jobj, SavePoint.createSavePoint());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                pDialog.setTitleText("Saved!")
+                                        .setContentText("Save Point was saved!")
+                                        .setConfirmText("OK")
 
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                        @Override
-                                        public void onClick(SweetAlertDialog sDialog) {
-                                            GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
-                                            sDialog.dismissWithAnimation();
-                                        }
-                                    })
-                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                            pDialog.setCancelable(false);
-                            //Toast.makeText(getApplicationContext(), "saved!", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sDialog) {
+                                                GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
+                                                sDialog.dismissWithAnimation();
+                                            }
+                                        })
+                                        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                pDialog.setCancelable(false);
+                                //Toast.makeText(getApplicationContext(), "saved!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }catch(Exception e){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                pDialog.setTitleText("Save Error!")
+                                        .setContentText("Save Point was not saved. :(")
+                                        .setConfirmText("OK")
+
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sDialog) {
+                                                GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
+                                                sDialog.dismissWithAnimation();
+                                            }
+                                        })
+                                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                pDialog.setCancelable(false);
+                                //Toast.makeText(getApplicationContext(), "saved!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
                 }
             });
             t.start();
