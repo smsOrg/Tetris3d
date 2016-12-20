@@ -17,7 +17,7 @@
 * Also We will make multi play mode
 * Supports android device which has latest version of android.
 * We have been tried to using google material design or simplest design but multiple color is applied
-* Support 
+* To manage game data, We are using Json, xml and Sqlite3.
 
 ##Program Feature
 * You can play tetris as real 3D Tetris
