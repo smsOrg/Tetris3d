@@ -23,6 +23,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import cn.pedant.SweetAlert.SweetAlertDialog.*;
 import java.io.Serializable;
 import java.util.*;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.DialogPlusBuilder;
 /**
  * Created by hsh on 2016. 11. 19..
  */
@@ -35,7 +37,7 @@ public class MainGameActivity extends Activity {
     }
 
     AlertDialog.Builder getDialogAsBuilder(final DialogItem[] items){
-       
+
         CharSequence[] vals = new CharSequence[items.length];
         for(int i =0;i<vals.length;i++){
             vals[i] = items[i].toString();
