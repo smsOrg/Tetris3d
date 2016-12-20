@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#222326"
     android:layout_height="match_parent">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/gamelogactivity_item_rmlayer"
+    android:gravity="center"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    />
+<TextView
+    android:layout_width="match_parent"
+    android:id="@+id/tv_rm_ln"
+    android:gravity="center"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:layout_height="wrap_content"
+
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/tv_elap_time"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <mehdi.sakout.fancybuttons.FancyButton
+
+        android:id="@+id/btn_game_restart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="30dip"
+        android:layout_marginLeft="30dip"
+        android:paddingLeft="30dip"
+        android:paddingRight="30dip"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="3dp"
+        fancy:fb_defaultColor="#222326"
+        fancy:fb_focusColor="#424243"
+
+        fancy:fb_fontIconSize="50sp"
+        fancy:fb_iconPosition="top"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="@string/game_over_dialg_restart"
+        fancy:fb_textColor="#FFFFFF">
+    </mehdi.sakout.fancybuttons.FancyButton>
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btn_game_exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="30dip"
+        android:layout_marginLeft="30dip"
+        android:paddingLeft="30dip"
+        android:paddingRight="30dip"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="3dp"
+        fancy:fb_defaultColor="#222326"
+        fancy:fb_focusColor="#424243"
+
+        fancy:fb_fontIconSize="50sp"
+        fancy:fb_iconPosition="top"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="@string/game_over_dialg_ok"
+        fancy:fb_textColor="#FFFFFF">
+    </mehdi.sakout.fancybuttons.FancyButton>
 
 </LinearLayout>

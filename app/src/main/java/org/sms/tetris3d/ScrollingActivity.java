@@ -20,20 +20,20 @@ import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.DialogPlusBuilder;
 import android.widget.*;
 import android.view.*;
+import android.widget.SimpleAdapter;
 
 import org.sms.tetris3d.drawables.NumberDrawable;
 import org.sms.tetris3d.savepoint.SavePoint;
 import org.sms.tetris3d.savepoint.SavePointManager;
-
+import org.sms.tetris3d.views.*;
+import org.sms.tetris3d.views.SimpleAdapter.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class ScrollingActivity extends AppCompatActivity {
-public static class LCardProvider extends com.dexafree.materialList.card.CardProvider{
-
-}
+/*
     public class SimpleAdapter extends BaseAdapter {
 
         private LayoutInflater layoutInflater;
@@ -68,35 +68,25 @@ public static class LCardProvider extends com.dexafree.materialList.card.CardPro
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder;
             FancyButton view = (FancyButton)convertView;
 
             if (view == null) {
-
-                    view = (FancyButton)layoutInflater.inflate(R.layout.simple_list_item, parent, false);
-
-                //viewHolder = new ViewHolder();
-
-                //viewHolder.img_button = (FancyButton) view.findViewById(R.id.text_btn);
-                //view.setTag(viewHolder);
-            } else {
-                //viewHolder = (ViewHolder) view.getTag();
+                view = (FancyButton) layoutInflater.inflate(R.layout.simple_list_item, parent, false);
             }
 
             Context context = parent.getContext();
             Object[] obj =(Object[]) getItem(position);
-            view.setText((String)obj[0]);
+            final String title =  (String)obj[0];
+            view.setText(title);
+
+            if(title.equals("Close")||title.equals("close")||title.equals("Back")||title.equals("back")){
+                android.util.Log.e("str: ",String.format("%s pos: %d",title,position));
+                view.setBackgroundColor(Color.argb(0xff,0xff,0x5f,0x69));
+            }
             view.setClickable(false);
             view.setFocusable(false);
             view.setFocusableInTouchMode(false);
-            /*if(obj.length>1&&obj[1]!=null && obj[1] instanceof View.OnClickListener ){
-                view.setOnClickListener((View.OnClickListener) obj[1]);
-            }*/
-            //viewHolder.img_button.setText((String)obj[0]);
-           // viewHolder.img_button.setClickable(false);
-           /* if(obj.length>1&&obj[1]!=null){
-                viewHolder.img_button.setOnClickListener((View.OnClickListener) obj[1]);
-            }*/
+
 
             return view;
         }
@@ -109,7 +99,7 @@ public static class LCardProvider extends com.dexafree.materialList.card.CardPro
     }
     interface OnClickListener{
         boolean onClick(View v,DialogPlus dp,Object arg);
-    }
+    }*/
     private void startGameActivity(){
         Intent it = new Intent();
         it.setClass(getApplicationContext(),MainGameActivity.class);
@@ -144,7 +134,7 @@ private SavePointManager spm=null;
                     sp = SavePoint.createSavePointFromByteArray(raw_data);
                     if(sp!=null){
                        rst.add(new Object[]{title+String.format(" (%s)",new SimpleDateFormat("yy.M.d").format(new Date(time_stamp))),
-                    new OnClickListener() {
+                    new org.sms.tetris3d.views.SimpleAdapter.OnClickListener() {
                            @Override
                            public boolean onClick(View v,DialogPlus dp,Object arg) {
                                 if(arg!=null && arg instanceof SavePoint){
@@ -201,7 +191,7 @@ private SavePointManager spm=null;
                         //lst.add(new Object[]{"Start New Game reset"});
                         lst.add(new Object[]{"Close"});
                         DialogPlus dp_dialog = DialogPlus.newDialog(ScrollingActivity .this).
-                                setAdapter(new SimpleAdapter(ScrollingActivity.this, lst)) //(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[]{"asdfa"})))
+                                setAdapter(new org.sms.tetris3d.views.SimpleAdapter(ScrollingActivity.this, lst)) //(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[]{"asdfa"})))
                                 .setOnItemClickListener(new com.orhanobut.dialogplus.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
@@ -243,10 +233,6 @@ private SavePointManager spm=null;
         lst.add(new Object[]{"Start Game from Save Point", new OnClickListener() {
             @Override
             public boolean onClick(View v,DialogPlus dp,Object arg) {
-
-                /*f(dp!=null&&dp.isShowing()){
-                    dp.dismiss();
-                }*/
                 selectSavePoint();
                 return false;
             }
@@ -259,7 +245,7 @@ private SavePointManager spm=null;
         }});
 
         dp_dialog = DialogPlus.newDialog(this)
-                .setAdapter(new SimpleAdapter(this,lst)) //(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[]{"asdfa"})))
+                .setAdapter(new org.sms.tetris3d.views.SimpleAdapter(this,lst)) //(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[]{"asdfa"})))
                 .setOnItemClickListener(new com.orhanobut.dialogplus.OnItemClickListener() {
                     @Override
                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {

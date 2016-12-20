@@ -2,6 +2,8 @@ package org.sms.tetris3d;
 
 import android.app.*;
 import android.os.*;
+import android.text.format.DateUtils;
+import android.util.TypedValue;
 import android.view.*;
 import android.widget.*;
 import android.opengl.*;
@@ -15,12 +17,18 @@ import org.sms.tetris3d.interfaces.*;
 import org.sms.tetris3d.controls.*;
 import org.sms.tetris3d.savepoint.SavePoint;
 import org.sms.tetris3d.savepoint.SavePointManager;
-import org.sms.tetris3d.views.ItemViewLayout;
+import org.sms.tetris3d.views.*;
+import org.sms.tetris3d.views.SimpleAdapter;
+
 import android.graphics.*;
 import android.graphics.drawable.*;
+
+import com.orhanobut.dialogplus.OnItemClickListener;
 import com.trippleit.android.tetris3d.controls.*;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import cn.pedant.SweetAlert.SweetAlertDialog.*;
+import mehdi.sakout.fancybuttons.FancyButton;
+
 import java.io.Serializable;
 import java.util.*;
 import com.orhanobut.dialogplus.DialogPlus;
@@ -30,8 +38,107 @@ import com.orhanobut.dialogplus.DialogPlusBuilder;
  */
 
 public class MainGameActivity extends Activity {
+
     private boolean timerLoopAvailable = true;
+
     protected SavePointManager spm;
+
+    DialogPlus dialog = null;
+
+    GameLogManager glm;
+
+    android.support.v7.app.AlertDialog endDialog = null;
+
+
+    public static class SimplePauseAdapter extends BaseAdapter {
+        private LayoutInflater layoutInflater;
+        private ArrayList<Object[]> mList;
+        private Context mContext;
+        public Context getContext(){
+            return  mContext;
+        }
+        public SimplePauseAdapter(Context context, ArrayList<Object[]> list) {
+            layoutInflater = LayoutInflater.from(context);
+            mContext = context;
+            mList = list;
+        }
+        public DialogPlus dp;
+        public DialogPlus getDialogPlus(){
+            return dp;
+        }
+        public SimplePauseAdapter setDialogPlus(DialogPlus mDP){
+            dp=mDP;
+            return this;
+        }
+
+        @Override
+        public int getCount() {
+            return mList!=null?mList.size():0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = convertView;
+            ViewHolder vh=null;
+            if (view == null) {
+                view =  layoutInflater.inflate(R.layout.simple_pause_list_item, parent, false);
+                vh = new ViewHolder();
+                vh.img_button = (FancyButton) view.findViewById(R.id.text_btn);
+                view.setTag(vh);
+            }
+            else{
+                vh =(ViewHolder) view.getTag();
+            }
+
+            Context context = parent.getContext();
+            Object[] obj =(Object[]) getItem(position);
+            final String title =  (String)obj[0];
+            vh.img_button .setText(title);
+            if(title.equals("exit")||title.equals("Exit")){
+                vh.img_button .setBackgroundColor(Color.argb(0xff,0xff,0x5f,0x69));
+            }else if(title.equals(context.getResources().getString(R.string.pausedialog_item_resume))){
+                vh.img_button .setBackgroundColor(Color.argb(0xff,0x7a,0xb8,0x0));
+                vh.img_button.setTextColor(Color.WHITE);
+                vh.img_button.setIconPosition(FancyButton.POSITION_LEFT);
+                vh.img_button.setFocusBackgroundColor(Color.argb(0xff,0x9b,0xd8,0x23));
+                vh.img_button.setBorderColor(Color.WHITE);
+                vh.img_button.setBorderWidth((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,1f,context.getResources().getDisplayMetrics()));
+                vh.img_button.setRadius((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,30f,context.getResources().getDisplayMetrics()));
+                //vh.img_button.setIconResource("&#xf04b;");
+            }
+            vh.img_button.setClickable(false);
+            vh.img_button.setFocusable(false);
+            vh.img_button.setFocusableInTouchMode(false);
+            /*if(obj.length>1&&obj[1]!=null && obj[1] instanceof View.OnClickListener ){
+                view.setOnClickListener((View.OnClickListener) obj[1]);
+            }*/
+            //viewHolder.img_button.setText((String)obj[0]);
+            // viewHolder.img_button.setClickable(false);
+           /* if(obj.length>1&&obj[1]!=null){
+                viewHolder.img_button.setOnClickListener((View.OnClickListener) obj[1]);
+            }*/
+
+            return view;
+        }
+
+        class ViewHolder {
+            TextView textView;
+            ImageView imageView;
+            FancyButton img_button;
+        }
+    }
+
+
     AlertDialog getDialog(final DialogItem[] items){
        return getDialogAsBuilder(items).create();
     }
@@ -50,7 +157,47 @@ public class MainGameActivity extends Activity {
             }
         }).setCancelable(false);
     }
+    protected DialogPlus getPauseDialog(ArrayList<Object[]> lst){
+        final DialogPlus rst= getPauseDialogAsBuilder(lst).create();
+        try {
+            View v1 = rst.getHeaderView();
+            if (v1 != null) {
+                TextView tv1 = (TextView)v1.findViewById(R.id.dialog_header_title);
+                tv1.setText(R.string.pausedialog_title);
+                if(Build.VERSION.SDK_INT>=21){
+                    tv1.setCompoundDrawables( getDrawable(R.drawable.pause_img),null,null,null);
+                }else
+                tv1.setCompoundDrawables(getBaseContext().getResources(). getDrawable(R.drawable.pause_img),null,null,null);
+            }
+        }catch(Exception e){
 
+        }
+        return rst;
+    }
+    protected DialogPlusBuilder getPauseDialogAsBuilder(ArrayList<Object[]> lst){
+        DialogPlusBuilder dpb = DialogPlus.newDialog(this);
+                dpb.setContentHolder(new com.orhanobut.dialogplus.ListHolder());
+        dpb.setCancelable(true);
+        dpb.setAdapter(new SimplePauseAdapter(this,lst));
+        dpb.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                boolean isDismissable = true;
+                Object[] objs = (Object[])item;
+                if(objs.length>1&&objs[1]!=null && objs[1] instanceof SimpleAdapter.OnClickListener){
+                    isDismissable=((SimpleAdapter.OnClickListener)objs[1]).onClick(null,dialog,null);
+                }
+                if(isDismissable){
+                    dialog.dismiss();
+                }
+            }
+        });
+        dpb.setExpanded(false);
+
+        dpb.setGravity(Gravity.CENTER);
+        dpb.setHeader(R.layout.dialogplus_header);
+         return dpb;
+    }
     protected  void restartActivity(){
         if (Build.VERSION.SDK_INT >= 11) {
             recreate();
@@ -59,7 +206,6 @@ public class MainGameActivity extends Activity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             finish();
             overridePendingTransition(0, 0);
-
             startActivity(intent);
             overridePendingTransition(0, 0);
         }
@@ -137,7 +283,8 @@ public class MainGameActivity extends Activity {
     public void onBackPressed() {
         GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
         if (dialog!=null && dialog.isShowing()) {
-            dialog.hide();
+            //dialog.hide();
+            dialog.dismiss();
         }
 
         else
@@ -149,9 +296,47 @@ private void changePauseState(){
     }else
         GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
 }
-    AlertDialog dialog = null;
-    GameLogManager glm;
-    android.support.v7.app.AlertDialog endDialog = null;
+protected ArrayList<Object[]> getPauseDialogMenu(){
+    ArrayList<Object[]> rst = new ArrayList<Object[]>();
+    rst.add(new Object[]{getString(R.string.pausedialog_item_resume),new SimpleAdapter.OnClickListener() {
+        @Override
+        public boolean onClick(View v, DialogPlus dp, Object arg) {
+            return true;
+        }
+    }});
+    rst.add(new Object[]{"save on some point",new SimpleAdapter.OnClickListener() {
+        @Override
+        public boolean onClick(View v, DialogPlus dp, Object arg) {
+            saveSavePoint();
+            return true;
+        }
+    }});
+    rst.add(new Object[]{"clear all point",new SimpleAdapter.OnClickListener() {
+        @Override
+        public boolean onClick(View v, DialogPlus dp, Object arg) {
+            spm.deleteAllSavePoints();
+            return false;
+        }
+    }});
+    rst.add(new Object[]{getString(R.string.pausedialog_item_restart_game),new SimpleAdapter.OnClickListener() {
+        @Override
+        public boolean onClick(View v, DialogPlus dp, Object arg) {
+            dp.dismiss();
+            restartActivity();
+            return false;
+        }
+    }});
+    rst.add(new Object[]{"exit",new SimpleAdapter.OnClickListener() {
+        @Override
+        public boolean onClick(View v, DialogPlus dp, Object arg) {
+            dp.dismiss();
+            finish();
+            return false;
+        }
+    }});
+
+    return rst;
+}
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -168,7 +353,9 @@ private void changePauseState(){
 
         ItemViewLayout ivl = (ItemViewLayout)findViewById(R.id.item_layout);
         glm = new GameLogManager(getApplicationContext());
-        dialog = getDialogAsBuilder(new DialogItem[]{new DialogItem(){
+        dialog = getPauseDialog(getPauseDialogMenu());
+
+        /*dialog = getDialogAsBuilder(new DialogItem[]{new DialogItem(){
             @Override
             public void onClickItem(){
 
@@ -205,7 +392,7 @@ private void changePauseState(){
                         finish();
                     }
                 }.setTitle("exit")
-        }).setIcon(R.drawable.pause_img).setTitle(R.string.pausedialog_title) .create();
+        }).setIcon(R.drawable.pause_img).setTitle(R.string.pausedialog_title) .create();*/
         endDialog= new  android.support.v7.app.AlertDialog.Builder(MainGameActivity.this)
                 .setTitle(R.string.game_over_dialg_title)
                 .setMessage(R.string.game_over_dialg_prefix_content)
@@ -291,6 +478,7 @@ private void changePauseState(){
         rot_b3.setOnClickListener(rc);
 */
         final TextView tv = (TextView) findViewById(R.id.tvGameOver);
+        tv.setShadowLayer(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,1f,getResources().getDisplayMetrics()),TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,1.5f,getResources().getDisplayMetrics()),TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,1.5f,getResources().getDisplayMetrics()),Color.BLACK);
         Thread timer = new Thread() {
             @Override
             public void run() {
@@ -346,9 +534,11 @@ private void changePauseState(){
                                             endDialog.show();
                                         }catch(Exception e){}
                                     }
-
+android.support.design.widget.
                                 } else {
-                                    tv.setText("Time: " + temp);
+                                   // DateUtils.formatElapsedTime(temp);
+
+                                    tv.setText(DateUtils.formatElapsedTime(temp));
                                 }
                             }
                         });
