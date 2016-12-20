@@ -142,7 +142,6 @@ private SavePointManager spm=null;
 
                 if(raw_data!=null) {
                     sp = SavePoint.createSavePointFromByteArray(raw_data);
-
                     if(sp!=null){
                        rst.add(new Object[]{title+String.format(" (%s)",new SimpleDateFormat("yy.M.d").format(new Date(time_stamp))),
                     new OnClickListener() {
