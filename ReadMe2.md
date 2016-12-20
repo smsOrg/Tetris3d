@@ -12,11 +12,11 @@
   
   
 ## SUMMARY
-* Project Purpose is to play tetris Game on Android as sensational tetris
-* Our 3D tetris is using real 3d shapes and 3-axis(x,y,z) to play game , so 
+* Project Purpose is to make tetris Game on Android as sensational tetris
+* Our 3D tetris Project aims using real 3d shapes and 3-axis(x,y,z) and implementing item to play game
+* Also We will make multi play mode
 * Supports android device which has latest version of android.
-* To implement Game, We are using OpenGl Library.
-* UI of this Project will be using google material design.
+* We have been tried to using google material design or simplest design but multiple color is applied
 * Support 
 
 ##Program Feature
@@ -24,7 +24,7 @@
 * By playing game ,You will be able to change block between current block and next block
 
 ####Project Purpose
-> To play tetris Game on Android as sensational tetris 
+> To Make tetris Game on Android as sensational tetris 
 
 ####Game Purpose
 > Survive as long as possible.
@@ -61,7 +61,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-For more information, view https://github.com/smsOrg/Tetris3d/blob/master/LICENSE
+For more information, See https://github.com/smsOrg/Tetris3d/blob/master/LICENSE
 ```
  
 
@@ -69,11 +69,18 @@ For more information, view https://github.com/smsOrg/Tetris3d/blob/master/LICENS
 * You can play tetris as real 3D Tetris
 * By playing game ,You will be able to change block between current block and next block
 
+##EXAMPLE
+
+```
+Preparing...
+```
+
+
 ##Our Next Plan...
-1. Implement Item Store
-2. Add more items
-3. Add Point(Score≡Item Money) System
-4. Optimize Algorithm
-5. Add Cooperation Game Mode as multi-play
-6. Add Non-Gravity Game Mode on single-play
-7. Apply BackGround Image
+ 1. Implement Item Store
+ 2. Add more items
+ 3. Add Point(Score≡Item Money) System
+ 4. Optimize Algorithm
+ 5. Add Cooperation Game Mode as multi-play
+ 6. Add Non-Gravity Game Mode on single-play
+ 7. Apply BackGround Image
