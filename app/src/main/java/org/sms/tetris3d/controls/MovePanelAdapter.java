@@ -1,4 +1,10 @@
 package org.sms.tetris3d.controls;
+/**
+ * 떨어지고 있는 도형을 x,y축을 기준으로 이동해주는 클래스인데 현재 테트리스 탑을 보여주고 있는 카메라의 뷰각도에 따라 적응해 도형을 이동시킴
+ *
+ * @version 1.2
+ * @author 황세현
+ */
 
 import org.sms.tetris3d.GameStatus;
 import org.sms.tetris3d.players.*;
@@ -7,13 +13,14 @@ import org.sms.tetris3d.players.*;
  */
 
 public class MovePanelAdapter {
-    protected byte initQuadrant = -1;
+
+    /**
+     * 현재 카메라의 각도에 적응해 기준 사분면을 결정하는 메소드
+     * @return 사분면을 의미하는 byte형 데이터
+     */
     public static byte getQuadrant(){
-        //final float initAngle = (GameStatus.initialCameraAngle<0? 360.0f-GameStatus.initialCameraAngle:GameStatus.initialCameraAngle)%360;
-            float angle = (GameStatus.getCameraR()<0? (720-GameStatus.getCameraR())%360:GameStatus.getCameraR())%360;
-         //   angle=(angle-initAngle+360)%360;
-           // android.util.Log.e("ANGLE: ",angle+"");
-            final float prefixAngle =Math.abs( 45);
+           float angle = (GameStatus.getCameraR()<0? (720-GameStatus.getCameraR())%360:GameStatus.getCameraR())%360;
+          final float prefixAngle =Math.abs( 45);
             final float initialAngleCondtion = 90;
             if(prefixAngle<=angle&&angle<initialAngleCondtion+prefixAngle){
                 return 2;
@@ -29,6 +36,12 @@ public class MovePanelAdapter {
     }
     public MovePanelAdapter(){
     }
+
+    /**
+     * 중심이 되는 사분면을 이용해 도형을 좌측으로 이동시킵니다
+     *
+     * @param usr
+     */
     public void move_left(User usr){
 
         switch (getQuadrant()){
@@ -51,6 +64,11 @@ public class MovePanelAdapter {
         }
 
     }
+    /**
+     * 중심이 되는 사분면을 이용해 도형을 우측으로 이동시킵니다
+     *
+     * @param usr
+     */
     public void move_right(User usr){
         switch (getQuadrant()){
             case 1:{
@@ -72,6 +90,11 @@ public class MovePanelAdapter {
         }
 
     }
+    /**
+     * 중심이 되는 사분면을 이용해 도형을 위로 이동시킵니다
+     *
+     * @param usr
+     */
     public void move_top(User usr){
        switch (getQuadrant()){
             case 1:{
@@ -92,6 +115,11 @@ public class MovePanelAdapter {
             }default:break;
         }
     }
+    /**
+     * 중심이 되는 사분면을 이용해 도형을 아래로 이동시킵니다
+     *
+     * @param usr
+     */
     public void move_bottom(User usr){
         switch (getQuadrant()){
             case 1:{

@@ -10,44 +10,78 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.View.OnTouchListener;
-
+/**
+ * 화면을 드래그같은 모션을 이용해 도형을 이동시키고 카메라 각도를 조절하고 확대해주는 클래스
+ *
+ * @version 1.1
+ *
+ * @author 황세현
+ *
+ */
 public class SwipeControls implements OnTouchListener {
 
 	public SwipeControls(Context _c) {
 	}
 
+	/**
+	 * 화면을 우측으로 이동했을때에 동작하는 함수
+	 */
 	public void onSwipeRight() {
 		//Log.d("Kruno", "" + isMultiTouch);
 		GameStatus.getPlayers().get(0).setCurrentXPositionPos();
 	}
-
+	/**
+	 * 화면을 좌측으로 이동했을때에 동작하는 함수
+	 */
 	public void onSwipeLeft() {
 		//Log.d("Kruno", "" + isMultiTouch);
 		GameStatus.getPlayers().get(0).setCurrentXPositionNeg();
 	}
-
+	/**
+	 * 화면을 위로 이동했을때에 동작하는 함수
+	 */
 	public void onSwipeTop() {
 		//Log.d("Kruno", "" + isMultiTouch);
 		GameStatus.getPlayers().get(0).setCurrentYPositionPos();
 	}
-
+	/**
+	 * 화면을 아래로 이동했을때에 동작하는 함수
+	 */
 	public void onSwipeBottom() {
 		//Log.d("Kruno", "" + isMultiTouch);
 		GameStatus.getPlayers().get(0).setCurrentYPositionNeg();
 	}
 
 	private boolean isMultiTouch = false;
+
 	private Integer fingersCount = 0;
+
 	private float x1 = 0, y1 = 0;
+
 	private float x2 = 0, y2 = 0;
+
 	private long time = 0;
+
 	private  VelocityTracker vt =null;
+
 	enum ZOOM_STATE{Zoom,None,Freeze_Screen}
+
 	enum SINGLE_FINGER_MODE{UNKNOWN,DRAG,MOVE_BLOCK}
+
 	SINGLE_FINGER_MODE sfm = SINGLE_FINGER_MODE.UNKNOWN;
+
 	ZOOM_STATE zs = ZOOM_STATE.None;
+
 	private  MovePanelAdapter mpa = null;
+
 	MotionEvent tmpevent = null;
+
+	/**
+	 * 좌표를 이용해 터치하고 있는 손가락 사이의 길이를 가져오는 함수
+	 *
+	 * @param event
+	 * @return 손가락과 손가락 사이의 길이
+     */
 	private float spacing(MotionEvent event) {
 		float x = event.getX(0) - event.getX(1);
 		float y = event.getY(0) - event.getY(1);
@@ -58,6 +92,14 @@ public class SwipeControls implements OnTouchListener {
 
 	private boolean isMovingBlock = false;
 
+
+	/**
+	 * 모션유형을 검사해 도형을 이동시키거나 카메라를 회전시켜주게하는 함수
+	 *
+	 * @param v
+	 * @param event
+     * @return 활성화 비활성화
+     */
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -225,6 +267,16 @@ public class SwipeControls implements OnTouchListener {
 		return true;
 	}
 
+	/**
+	 * 손가락으로 확대한 정도의 값을 가져오는 함수
+	 *
+	 * @param xFirst
+	 * @param yFirst
+	 * @param xSecond
+	 * @param ySecond
+	 * @param fCount
+     * @return 확대한정도
+     */
 	private float magnify(float xFirst, float yFirst, float xSecond, float ySecond,
 						 int fCount){
 	float result = 0;
@@ -234,6 +286,16 @@ public class SwipeControls implements OnTouchListener {
 
 		return  result;
 	}
+
+	/**
+	 * 도형을 움직이는 모션을 취했을떄 도형을 이동하는 메소드
+	 *
+	 * @param xFirst
+	 * @param yFirst
+	 * @param xSecond
+	 * @param ySecond
+     * @param fCount
+     */
 	private void move(float xFirst, float yFirst, float xSecond, float ySecond,
 			int fCount) {
 		switch (fCount) {
@@ -272,6 +334,16 @@ public class SwipeControls implements OnTouchListener {
 		}
 	}
 
+	/**
+	 *
+	 * 해당하는 사분면을 가져오는 함수
+	 *
+	 * @param xFirst
+	 * @param yFirst
+	 * @param xSecond
+	 * @param ySecond
+     * @return 임시 사분면 데이터
+     */
 	public int detectDirection(float xFirst, float yFirst, float xSecond,
 			float ySecond) {
 		int rez = 0;
