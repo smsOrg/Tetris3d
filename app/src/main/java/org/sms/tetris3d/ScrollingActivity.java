@@ -33,73 +33,7 @@ import java.util.*;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class ScrollingActivity extends AppCompatActivity {
-/*
-    public class SimpleAdapter extends BaseAdapter {
 
-        private LayoutInflater layoutInflater;
-        ArrayList<Object[]> mList;
-        public SimpleAdapter(Context context,ArrayList<Object[]> list) {
-            layoutInflater = LayoutInflater.from(context);
-            mList = list;
-        }
-        public DialogPlus dp;
-        public DialogPlus getDialogPlus(){
-            return dp;
-        }
-        public SimpleAdapter setDialogPlus(DialogPlus mDP){
-            dp=mDP;
-            return this;
-        }
-
-        @Override
-        public int getCount() {
-            return mList!=null?mList.size():0;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return mList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            FancyButton view = (FancyButton)convertView;
-
-            if (view == null) {
-                view = (FancyButton) layoutInflater.inflate(R.layout.simple_list_item, parent, false);
-            }
-
-            Context context = parent.getContext();
-            Object[] obj =(Object[]) getItem(position);
-            final String title =  (String)obj[0];
-            view.setText(title);
-
-            if(title.equals("Close")||title.equals("close")||title.equals("Back")||title.equals("back")){
-                android.util.Log.e("str: ",String.format("%s pos: %d",title,position));
-                view.setBackgroundColor(Color.argb(0xff,0xff,0x5f,0x69));
-            }
-            view.setClickable(false);
-            view.setFocusable(false);
-            view.setFocusableInTouchMode(false);
-
-
-            return view;
-        }
-
-         class ViewHolder {
-            TextView textView;
-            ImageView imageView;
-            FancyButton img_button;
-        }
-    }
-    interface OnClickListener{
-        boolean onClick(View v,DialogPlus dp,Object arg);
-    }*/
     private void startGameActivity(){
         Intent it = new Intent();
         it.setClass(getApplicationContext(),MainGameActivity.class);
@@ -188,6 +122,17 @@ private SavePointManager spm=null;
                                 }
                             });
                         }
+                        else{
+                            lst.add(new Object[]{"Clear all SavePoint",new OnClickListener() {
+                                @Override
+                                public boolean onClick(View v,DialogPlus dp,Object arg) {
+                                    new SavePointManager(ScrollingActivity.this) .deleteAllSavePoints();
+                                    //Snackbar.make(v,"Deleted All SavePoints",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
+                                    return true;
+                                }
+                            }
+                            });
+                        }
                         //lst.add(new Object[]{"Start New Game reset"});
                         lst.add(new Object[]{"Close"});
                         DialogPlus dp_dialog = DialogPlus.newDialog(ScrollingActivity .this).
@@ -271,6 +216,15 @@ private SavePointManager spm=null;
         it.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT|Intent.FLAG_ACTIVITY_NEW_TASK);
         getApplicationContext().startActivity(it);
     }
+
+    @Override
+    protected void onDestroy() {
+        if(spm!=null){
+            spm.getRawClass().close();
+        }
+        super.onDestroy();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

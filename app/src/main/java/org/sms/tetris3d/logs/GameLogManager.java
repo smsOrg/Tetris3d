@@ -43,4 +43,7 @@ public class GameLogManager {
     public void clearAllLog(SQLiteDatabase writeable_db){
         writeable_db.execSQL("delete from log");
     }
+    public GameLogUtil getRawClass(){
+        return glu;
+    }
 }

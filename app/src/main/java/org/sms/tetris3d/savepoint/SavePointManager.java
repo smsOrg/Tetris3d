@@ -76,4 +76,7 @@ public class SavePointManager {
         clearAllSavePoint(getDataBase(true));
     }
 
+    public DBHelper getRawClass(){
+        return glu;
+    }
 }

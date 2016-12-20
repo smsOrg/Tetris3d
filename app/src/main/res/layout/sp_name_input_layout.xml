@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        >
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="pw를 입력하세요" />
+    </android.support.design.widget.TextInputLayout>
+</LinearLayout>

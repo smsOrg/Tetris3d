@@ -11,6 +11,7 @@ import android.content.*;
 
 import org.json.JSONObject;
 import org.sms.tetris3d.dialogs.DialogItem;
+import org.sms.tetris3d.dialogs.SavePointNameInputDialog;
 import org.sms.tetris3d.logs.GameLogManager;
 import org.sms.tetris3d.render.*;
 import org.sms.tetris3d.interfaces.*;
@@ -210,10 +211,82 @@ public class MainGameActivity extends Activity {
             overridePendingTransition(0, 0);
         }
     }
-
+SavePointNameInputDialog spnid=null;
     public void saveSavePoint(){
         synchronized (spm.getSync()) {
-            final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            if(spnid==null){
+                spnid = new SavePointNameInputDialog(this,new SavePointNameInputDialog.OnApplyListener(){
+                    @Override
+                    public void onApply(String name){
+                        final SweetAlertDialog pDialog = new SweetAlertDialog(MainGameActivity. this, SweetAlertDialog.PROGRESS_TYPE);
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Saving...");
+                        pDialog.setCancelable(false);
+                        pDialog.show();
+                        //Toast.makeText(getApplicationContext(),"saving...",Toast.LENGTH_LONG).show();
+                        final String sp_name = name; //"sp_"+((float)(System.currentTimeMillis()/10)/10.0f);
+                        final JSONObject jobj = new JSONObject();
+                        try {
+                            jobj.put("game_db_version", GameStatus.DB_FILE_VERSION);
+                            jobj.put("android_sdk_version", Build.VERSION.SDK_INT);
+                            jobj.put("device_time", new Date().toString());
+                            jobj.put("device_config_version", 1.0f);
+                        } catch (Exception e) {
+
+                        }
+                        Thread t = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    spm.addSavePoint(sp_name, jobj, SavePoint.createSavePoint());
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            pDialog.setTitleText("Saved!")
+                                                    .setContentText("Save Point was saved!")
+                                                    .setConfirmText("OK")
+
+                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        @Override
+                                                        public void onClick(SweetAlertDialog sDialog) {
+                                                            //GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
+                                                            sDialog.dismissWithAnimation();
+                                                        }
+                                                    })
+                                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                            pDialog.setCancelable(false);
+                                            //Toast.makeText(getApplicationContext(), "saved!", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }catch(Exception e){
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            pDialog.setTitleText("Save Error!")
+                                                    .setContentText("Save Point was not saved. :(")
+                                                    .setConfirmText("OK")
+
+                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        @Override
+                                                        public void onClick(SweetAlertDialog sDialog) {
+                                                            //GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
+                                                            sDialog.dismissWithAnimation();
+                                                        }
+                                                    })
+                                                    .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                            pDialog.setCancelable(false);
+                                            //Toast.makeText(getApplicationContext(), "saved!", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                        t.start();
+                    }
+                });
+            }
+            spnid.show();
+           /* final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
             pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
             pDialog.setTitleText("Saving...");
             pDialog.setCancelable(false);
@@ -244,7 +317,7 @@ public class MainGameActivity extends Activity {
                                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                             @Override
                                             public void onClick(SweetAlertDialog sDialog) {
-                                                GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
+                                                //GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
                                                 sDialog.dismissWithAnimation();
                                             }
                                         })
@@ -264,7 +337,7 @@ public class MainGameActivity extends Activity {
                                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                             @Override
                                             public void onClick(SweetAlertDialog sDialog) {
-                                                GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
+                                                //GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
                                                 sDialog.dismissWithAnimation();
                                             }
                                         })
@@ -276,7 +349,7 @@ public class MainGameActivity extends Activity {
                     }
                 }
             });
-            t.start();
+            t.start();*/
         }
     }
     @Override
@@ -309,13 +382,13 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
         @Override
         public boolean onClick(View v, DialogPlus dp, Object arg) {
             saveSavePoint();
-            return true;
+            return false;
         }
     }});
-    rst.add(new Object[]{"clear all point",new SimpleAdapter.OnClickListener() {
+    rst.add(new Object[]{"Item Store",new SimpleAdapter.OnClickListener() {
         @Override
         public boolean onClick(View v, DialogPlus dp, Object arg) {
-            spm.deleteAllSavePoints();
+            //spm.deleteAllSavePoints();
             return false;
         }
     }});
@@ -558,6 +631,7 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
                                             }
 
                                             glm.addLog(glm.getDataBase(true),config,GameStatus.getRemoveLineCount(),temp,dt.getTime());
+                                                glm.getRawClass().close();
                                         }
                                         }).start();
                                     }
