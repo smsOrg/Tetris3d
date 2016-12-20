@@ -281,14 +281,14 @@ public class MainGameActivity extends Activity {
     }
     @Override
     public void onBackPressed() {
-        GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
-        if (dialog!=null && dialog.isShowing()) {
-            //dialog.hide();
-            dialog.dismiss();
+        if(!GameStatus.isEnd()) {
+            GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
+            if (dialog != null && dialog.isShowing()) {
+                //dialog.hide();
+                dialog.dismiss();
+            } else
+                dialog.show();
         }
-
-        else
-        dialog.show();
     }
 private void changePauseState(){
     if(GameStatus.getGameStatus()== GameStatus.GAME_STATUS.PAUSE){
@@ -301,6 +301,7 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
     rst.add(new Object[]{getString(R.string.pausedialog_item_resume),new SimpleAdapter.OnClickListener() {
         @Override
         public boolean onClick(View v, DialogPlus dp, Object arg) {
+            changePauseState();
             return true;
         }
     }});
@@ -337,6 +338,10 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
 
     return rst;
 }
+    protected TextView tv_game_over,tv_rst_rm_ln,tv_rst_elap_tm;
+    protected FancyButton fb_restart,fb_exit;
+
+    protected ViewGroup result_layout;
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -352,9 +357,33 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
         }
 
         ItemViewLayout ivl = (ItemViewLayout)findViewById(R.id.item_layout);
+        result_layout = (ViewGroup)findViewById(R.id.game_rst_layout);
+        tv_rst_rm_ln =  (TextView)findViewById(R.id.tv_rm_ln);
+        tv_game_over = (TextView)findViewById(R.id.game_over_tv);
+        tv_rst_elap_tm = (TextView)findViewById(R.id.tv_elap_time);
+        Typeface tf =  Typeface.createFromAsset(getAssets(),"sanstaina.ttf");
+        float tmpsz = tv_game_over.getTextSize();
+        tv_game_over.setTypeface(Typeface.createFromAsset(getAssets(),"sanstaina.ttf"));
+        tv_game_over.setTextSize(tmpsz);
+        tv_rst_rm_ln.setText(GameStatus.getRemoveLineCount()+"");
+
+        tv_rst_elap_tm.setText("\n플레이 시간: "+DateUtils.formatElapsedTime(GameStatus.getPlayTime()));
         glm = new GameLogManager(getApplicationContext());
         dialog = getPauseDialog(getPauseDialogMenu());
-
+        fb_restart =  (FancyButton)findViewById(R.id.btn_game_restart);
+        fb_exit = (FancyButton)findViewById(R.id.btn_game_exit);
+        fb_restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restartActivity();
+            }
+        });
+        fb_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         /*dialog = getDialogAsBuilder(new DialogItem[]{new DialogItem(){
             @Override
             public void onClickItem(){
@@ -505,6 +534,10 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
                                 if (GameStatus.isEnd()) {
                                     tv.setText("GAME OVER :(");
                                     if(timerLoopAvailable) {
+                                        tv_rst_rm_ln.setText(GameStatus.getRemoveLineCount()+"");
+
+                                        tv_rst_elap_tm.setText("\n플레이 시간: "+DateUtils.formatElapsedTime(GameStatus.getPlayTime()));
+
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
@@ -529,12 +562,15 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
                                         }).start();
                                     }
                                     timerLoopAvailable = false;
-                                    if (!endDialog.isShowing()) {
+                                    if(result_layout.getVisibility()==View.GONE){
+                                        result_layout.setVisibility(View.VISIBLE);
+                                    }
+                                    /*if (!endDialog.isShowing()) {
                                         try {
                                             endDialog.show();
                                         }catch(Exception e){}
-                                    }
-android.support.design.widget.
+                                    }*/
+
                                 } else {
                                    // DateUtils.formatElapsedTime(temp);
 

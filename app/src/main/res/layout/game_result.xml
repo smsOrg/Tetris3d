@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="#222326"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:id="@+id/result_top_layout"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dip"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/game_over_tv"
         android:paddingTop="15dip"
@@ -15,6 +22,13 @@
         />
 <View android:layout_width="match_parent"
     android:layout_height="80dip" ></View>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/result_top_layout"
+        android:layout_above="@+id/result_bottom_layout"
+        android:layout_height="wrap_content">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -36,8 +50,18 @@
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmallInverse"
         android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:id="@+id/result_bottom_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dip"
+        android:layout_height="wrap_content">
+
     <View android:layout_width="match_parent"
         android:layout_height="40dip" ></View>
+
     <mehdi.sakout.fancybuttons.FancyButton
 
         android:id="@+id/btn_game_restart"
@@ -85,5 +109,5 @@
         fancy:fb_text="@string/game_over_dialg_ok"
         fancy:fb_textColor="#FFFFFF">
     </mehdi.sakout.fancybuttons.FancyButton>
-
 </LinearLayout>
+</RelativeLayout>
