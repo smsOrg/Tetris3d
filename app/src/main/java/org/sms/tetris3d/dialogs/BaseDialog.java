@@ -5,6 +5,12 @@ import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.*;
 /**
+ * 디버깅용 메세지 박스
+ *
+ * @author 이민수
+ */
+
+/**
  * Created by hsh on 2016. 11. 20..
  */
 

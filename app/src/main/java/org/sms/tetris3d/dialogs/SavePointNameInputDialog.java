@@ -3,6 +3,12 @@ package org.sms.tetris3d.dialogs;
 /**
  * Created by hsh on 2016. 12. 21..
  */
+/**
+ * 세이브 데이터를 저장하기전에 데이터가 어떤이름으로 저장될 것인지를 선택할 수 있게한다
+ *
+ * @author 황세현
+ */
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
@@ -16,7 +22,7 @@ import android.view.ViewGroup;
 import android.view.*;
 
 import org.sms.tetris3d.*;
-public class SavePointNameInputDialog extends AlertDialog implements DialogInterface.OnDismissListener,TextWatcher,DialogInterface.OnShowListener{
+public class SavePointNameInputDialog extends AlertDialog implements TextWatcher,DialogInterface.OnShowListener{
     TextInputLayout til;
     TextInputEditText tiet ;
    // private DataContainer dc;
@@ -51,10 +57,6 @@ public class SavePointNameInputDialog extends AlertDialog implements DialogInter
         //getButton(BUTTON_POSITIVE).setEnabled(false);
     }
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-       // dc.name= tiet.getText().toString();
-    }
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -66,6 +68,10 @@ public class SavePointNameInputDialog extends AlertDialog implements DialogInter
 
     }
 
+    /**
+     * 이름의 길이를 구해 이름으로 사용가능한 이름인지 확인한다
+     * @param s
+     */
     @Override
     public void afterTextChanged(Editable s) {
         String str = s.toString();
@@ -88,6 +94,10 @@ public class SavePointNameInputDialog extends AlertDialog implements DialogInter
         }
     }
 
+    /**
+     *  이름이 공백일수는 없으므로 초기화시 적용버튼을 누르지 못하게한다
+     * @param dialog
+     */
     @Override
     public void onShow(DialogInterface dialog) {
         if(getButton(BUTTON_POSITIVE)!=null)

@@ -3,6 +3,15 @@ package org.sms.tetris3d.drawables;
 import android.graphics.*;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.*;
+/**
+ *
+ * 순위나 랭크를 표현할때 랭크숫자를 그려주는 이미지 객체
+ *
+ * @version 1.1
+ *
+ * @author 황세현
+ *
+ */
 
 /**
  * Created by hsh on 2016. 11. 22..
@@ -16,6 +25,14 @@ public class NumberDrawable extends Drawable {
     boolean isInitializedFontSize = false;
     int numX = 0;
     int numY = 0;
+
+    /**
+     *  숫자는 정수범위로 입력하시오
+     *
+     * @param number
+     * @param textColor
+     * @param bgColor
+     */
     public NumberDrawable(int number,int textColor,int bgColor){
         num = number;
         circlePaint.setColor(bgColor);
@@ -25,6 +42,12 @@ public class NumberDrawable extends Drawable {
         numPaint.setTypeface(Typeface.DEFAULT);
 
     }
+
+    /**
+     *  원안에 숫자를 그립니다
+     *
+     * @param canvas
+     */
     @Override
     public void draw(Canvas canvas) {
         final int height = canvas.getHeight();

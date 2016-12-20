@@ -19,6 +19,15 @@ public class AvailableItems implements Serializable{
         public int removeCnt=0;
         public int offsetHeight=0;
     }*/
+
+    /**
+     * 아이템 객체를 지정된 아이디로 가져옵니다
+     *
+     * @param ctx
+     * @param id
+     * @param aa
+     * @return 아이템 객체
+     */
     public static BaseItem getItemByID(Context ctx,final int id,final ArgumentAdapter aa){
         switch (id){
             case ItemIDs.ResetIDs.ID_POSITION_RESET:
@@ -55,6 +64,14 @@ public class AvailableItems implements Serializable{
             default:return null;
         }
     }
+
+    /**
+     * 미리설정된 내려오는 블럭의 위치를 초기화하는 아이템 객체를 가져옵니다
+     *
+     *
+     * @param ctx
+     * @return 아이템 객체
+     */
     public static BaseItem getPositionResetItem(Context ctx){
         BaseItem item = new BaseItem(0){
             @Override
@@ -101,12 +118,26 @@ public class AvailableItems implements Serializable{
         }
         return item;
     }
+
+    /**
+     * 범위안의 임의의 정수값을 가져옵니다
+     * @param start
+     * @param end
+     * @return 범위안의 정수값
+     */
     protected static int randInt(int start,int end){
         if(start>end){
             return randInt(end,start);
         }else
         return ((int)(Math.random()*Math.pow(10, (int)Math.log10(end)+2))%(end-start+1))+start;
     }
+    /**
+     * 미리설정된 랜덤으로 설된된 갯수만큼의 층을 강제제거하는  아이템 객체를 가져옵니다
+     *
+     *
+     *
+     * @return 아이템 객체
+     */
     public static BaseItem getRandomLayersRemoverItem(){
 
         return getLayerRemoverItem(0,0).setItemListener(new ItemListener() {
@@ -161,6 +192,13 @@ public class AvailableItems implements Serializable{
         });
     }
 
+    /**
+     * 미리설정된 폭탄 아이템객체이지만 매개변수로 수동조절이가능하도록 구현한 메소드
+     *
+     * @param offsetHeight
+     * @param removeCnt
+     * @return 아이템 객체
+     */
 
     public static BaseItem getLayerRemoverItem(final int offsetHeight,final int removeCnt){
         BaseItem item = new BaseItem(1){
@@ -204,7 +242,13 @@ public class AvailableItems implements Serializable{
         }).setCoolTime(60*1000);
         return item;
     }
-
+    /**
+     * 미리설정된 현재 모양과 다음에 나타날 모양 블럭을 바꿔버리는 아이템 객체를 가져옵니다
+     *
+     *
+     * @param icon
+     * @return 아이템 객체
+     */
 
     public static BaseItem getBlockChangeItem(Drawable icon){
         return new BaseItem(2,icon){

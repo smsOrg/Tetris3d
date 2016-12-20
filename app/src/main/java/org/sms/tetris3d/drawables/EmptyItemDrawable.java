@@ -6,24 +6,28 @@ import android.graphics.drawable.*;
 import android.graphics.*;
 
 /**
+ *  아이템이아무것도 설정되지 않았을떄 그려지는 이미지 객체
+ *
+ *  @version 1.0
+ *
+ *  @author 황세현
+ *
+ */
+
+
+/**
  * Created by hsh on 2016. 12. 11..
  */
 
 public class EmptyItemDrawable extends Drawable {
     private final Paint p = new Paint();
-   /* private void drawRoundedStrokeLine(Canvas c,float dl){
-        final float height_ratio = 0.75f;
-        float height = dl*height_ratio;
-        float gap = (dl*(1-height_ratio))/2;
-        float width = dl*0.05f;
-        RectF r = new RectF(dl/2-width/2,gap,dl/2+width/2,dl-gap);
-        c.drawRect(r,p);
-        RectF r2 = new RectF(dl/2-width/2,gap-r.width()/2,dl/2+width/2,gap+r.width()/2);
-        c.drawArc(r2,-180,180,true,p);
-        r2.set(dl/2-width/2,dl-gap-r.width()/2,dl/2+width/2,dl-gap+r.width()/2);
-        c.drawArc(r2,0,180,true,p);
-    }
-    */
+
+    /**
+     * 아이템이 아닌 이미지를 그립니다
+     * 현재이미지는 원안에 X가 표시되어있는 이미지입니다
+     *
+     * @param canvas
+     */
     @Override
     public void draw(Canvas canvas) {
         p.setStyle(Paint.Style.STROKE);

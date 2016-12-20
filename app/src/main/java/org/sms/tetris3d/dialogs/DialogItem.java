@@ -1,6 +1,14 @@
 package org.sms.tetris3d.dialogs;
 
 /**
+ * 디버그용 클래스
+ *
+ * @version 0.1
+ *
+ * @author 이민수
+ */
+
+/**
  * Created by hsh on 2016. 11. 21..
  */
 
