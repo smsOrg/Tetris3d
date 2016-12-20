@@ -62,11 +62,11 @@ For more information, See https://github.com/smsOrg/Tetris3d/blob/master/LICENSE
 
 ##EXAMPLE
 
-```
-Preparing...
-```
-
-
+![ss0](https://raw.githubusercontent.com/smsOrg/Tetris3d/master/Newfuc/ss0.png)
+![ss1](https://raw.githubusercontent.com/smsOrg/Tetris3d/master/Newfuc/ss1.png)
+![ss2](https://raw.githubusercontent.com/smsOrg/Tetris3d/master/Newfuc/ss2.png)
+![ss3](https://raw.githubusercontent.com/smsOrg/Tetris3d/master/Newfuc/ss3.png)
+![ss4](https://raw.githubusercontent.com/smsOrg/Tetris3d/master/Newfuc/ss4.png)
 ##Our Next Plan...
  1. Implement Item Store
  2. Add more items
