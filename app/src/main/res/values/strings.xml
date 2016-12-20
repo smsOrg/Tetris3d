@@ -22,6 +22,8 @@
     <string name="startLog_title">게임 기록 보기</string>
     <string name="startLog_desc">이전에 게임 종료된 기록을 봅니다</string>
     <string name="sp_name_save_btn">설정및 저장</string>
+    <string name="sp_name_input_error">세이브 포인트의 이름을 제대로 입력해주세요.</string>
+    <string name="sp_name_input_hint">저장될 세이브 포인트의 이름을 입력해주세요.</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

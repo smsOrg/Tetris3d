@@ -32,9 +32,10 @@ public class SavePointNameInputDialog extends AlertDialog implements DialogInter
         setOnShowListener(this);
         til = (TextInputLayout)tlayout.findViewById(R.id.til_2);
         tiet = (TextInputEditText)tlayout.findViewById(R.id.et_2);
+        tiet.addTextChangedListener(this);
         til.setCounterEnabled(true);
         til.setCounterMaxLength(20);
-        tiet.addTextChangedListener(this);
+
         //setOnDismissListener(this);
         setCancelable(false);
         setButton(BUTTON_NEGATIVE,context.getString(android.R.string.cancel),(OnClickListener)null);
@@ -71,7 +72,7 @@ public class SavePointNameInputDialog extends AlertDialog implements DialogInter
         str=str.trim();
         if(str.length()<1)
         {
-            til.setError("error2");
+            til.setError(getContext().getString(R.string.sp_name_input_error));
             android.widget.Button btn = getButton(BUTTON_POSITIVE);
             if(btn!=null){
                 btn.setEnabled(false);

@@ -14,6 +14,6 @@
             android:id="@+id/et_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="pw를 입력하세요" />
+            android:hint="@string/sp_name_input_hint" />
     </android.support.design.widget.TextInputLayout>
 </LinearLayout>
