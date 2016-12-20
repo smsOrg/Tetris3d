@@ -15,6 +15,11 @@ import java.io.Serializable;
  * Created by hsh on 2016. 11. 16..
  */
 
+/**
+ * 현재 기기의 사용자로서 다뤄지는 객체
+ *
+ *
+ */
 public class DeviceUser extends User implements Serializable{
     protected transient Context mContext = null;
     protected transient   DeviceUserItemManager item_manager;// = new ItemManagerForEachUser();

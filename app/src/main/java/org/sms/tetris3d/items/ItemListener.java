@@ -9,6 +9,15 @@ import java.io.Serializable;
  * Created by hsh on 2016. 11. 20..
  */
 
+/**
+ * 아이템이 가져야할 메소드들을 정의해둔 헤더
+ * 코드간소화를 위해 직렬화 헤더를 상속
+ *
+ * @version 1.01
+ *
+ * @author 황세현
+ *
+ */
  public interface ItemListener extends Serializable{
     public void onActiveItem(User usr);
 

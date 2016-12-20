@@ -11,10 +11,24 @@ import javax.microedition.khronos.opengles.GL10;
  * Created by hsh on 2016. 11. 20..
  */
 
+/**
+ * opengl에서 텍스쳐를 이용한 렌더링대신 도형으로 도트개념을 응요한 10미만의 숫자들
+ *
+ * @version 1.3
+ *
+ * @author 황세현
+ *
+ */
 public class Number extends AbstractDraw implements IShape {
     String color = "#FF7400";
     User usr;
     boolean objectMatrix[][][];
+
+    /**
+     * 10미만의 숫자를 가져와 도형 매트릭스를 채우고 설정함
+     * @param user
+     * @param num
+     */
     public Number(User user,int num) {
 
         switch (num) {

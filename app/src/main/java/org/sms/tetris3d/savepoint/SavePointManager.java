@@ -14,6 +14,9 @@ import org.apache.commons.lang3.*;
  * Created by hsh on 2016. 12. 16..
  */
 
+/**
+ * 세이브 포인트를 관리하는 객체
+ */
 public class SavePointManager {
     protected DBHelper glu = null;
     protected final Object mSync = new Object();
@@ -24,6 +27,12 @@ public class SavePointManager {
     public SavePointManager(Context ctx ){
         glu = new DBHelper(ctx);
     }
+
+    /**
+     * 데이터베이스를 가져옵니다
+     * @param writeable
+     * @return
+     */
     public SQLiteDatabase getDataBase(boolean writeable){
         if(writeable){
             return glu.getWritableDatabase();
@@ -32,9 +41,26 @@ public class SavePointManager {
             return glu.getReadableDatabase();
         }
     }
+
+    /**
+     * 세이브 포인트를 추가합니다
+     * @param sp_name
+     * @param device_config
+     * @param sp
+     * @return
+     */
     public boolean addSavePoint(String sp_name,JSONObject device_config, SavePoint sp){
         return addSavePoint(getDataBase(true),sp_name, device_config,  sp);
     }
+
+    /**
+     * 세이브 포인트를 추가합니다
+     * @param writeable_db
+     * @param sp_name
+     * @param device_config
+     * @param sp
+     * @return
+     */
     protected boolean addSavePoint(SQLiteDatabase writeable_db,String sp_name,JSONObject device_config, SavePoint sp){
         if(sp!=null) {
             ContentValues cv = new ContentValues();
