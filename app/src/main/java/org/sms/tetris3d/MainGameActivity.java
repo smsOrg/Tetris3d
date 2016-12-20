@@ -35,7 +35,7 @@ public class MainGameActivity extends Activity {
     }
 
     AlertDialog.Builder getDialogAsBuilder(final DialogItem[] items){
-
+       
         CharSequence[] vals = new CharSequence[items.length];
         for(int i =0;i<vals.length;i++){
             vals[i] = items[i].toString();
