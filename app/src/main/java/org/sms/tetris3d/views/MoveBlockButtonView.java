@@ -14,6 +14,10 @@ import org.sms.tetris3d.players.*;
 import org.sms.tetris3d.*;
 import org.sms.tetris3d.controls.MovePanelAdapter;
 
+/**
+ * RotateButtonView와 98%흡사
+ * @see RotateButtonView
+ */
 public class MoveBlockButtonView extends View implements View.OnTouchListener,Runnable{
 protected final static int X_AXIS_BUTTON_COLOR = Color.argb(0xff,0x90,0,0);
 

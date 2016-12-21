@@ -15,14 +15,40 @@ import org.sms.tetris3d.R;
 import org.sms.tetris3d.controls.RotateControls;
 import org.sms.tetris3d.drawables.CoolDrawable;
 import org.sms.tetris3d.items.*;
-public class ItemView extends ImageView implements View.OnClickListener,View.OnTouchListener {
 
+/**
+ * 아이템 데이터 객체로부터 데이터들을 가져와 ui에 보여주도록하는 클래스
+ */
+public class ItemView extends ImageView implements View.OnClickListener,View.OnTouchListener {
+    /**
+     * 아이템 데이터 객체
+     */
     private BaseItem mItem=null;
+    /**
+     * 쿨타임이 작동될때 로딩이미지 객체
+     */
     private CoolDrawable mCoolDrawable = null;
+    /**
+     * 기본적인 아이템의 프레임
+     */
     private final  ItemBackgroundDrawable mBackgroundDrawable = new ItemBackgroundDrawable();
+    /**
+     * 지금 쿨타임이 작동중인지 체크하는 변수
+     */
     protected boolean coolState = false;
+    /**
+     * 쿨타임이 작동한후의 시간을 계산할때 사용되는 변수
+     */
     protected long coolStartTime,coolCurrentTime;
+    /**
+     * 쿨타임 애니메이션을 동작시킬 자식 프로세스 객체
+     */
     protected Thread mCoolThread=null;
+
+    /**
+     * 동적뷰로서 소스코드 안에서만 객체가 생성될 수 있음
+     * @param context
+     */
     public ItemView(Context context){
         super(context);
         setScaleType(ScaleType.FIT_XY);
@@ -44,6 +70,11 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
         return super.onTouchEvent(event);
     }*/
 
+    /**
+     *  동적뷰로서 소스코드 안에서만 객체가 생성될 수 있고 생성하면서 데이터를 설정
+     * @param context
+     * @param item
+     */
     public ItemView(Context context, BaseItem item){
         this(context);
          applyData(item);
@@ -55,6 +86,12 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
     public ItemView(Context context,AttributeSet attrs,int themResId){
         super(context,attrs,themResId);
     }*/
+
+    /**
+     * 아이템 데이터 저장 객체로부터 데이터를 가져와 설정
+     * @param mItem
+     * @return 현재 객체
+     */
     public ItemView applyData(BaseItem mItem){
        this. mItem=mItem;
 
@@ -66,6 +103,11 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
         invalidate();
         return this;
     }
+
+    /**
+     * 뷰의 UI를 알맞게 렌터링함
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         drawBackGround(canvas,false);
@@ -83,9 +125,20 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
+
+    /**
+     * 뷰의 배경을 그림
+     * @param c
+     * @param isEmpty
+     */
     protected void drawBackGround(Canvas c,boolean isEmpty){
         mBackgroundDrawable.draw(c);
     }
+
+    /**
+     * 쿨타임이 작동될떄 쿨타임애니매이션을 렌더링
+     * @param c
+     */
     protected void drawCoolingImage(Canvas c){
         if(mCoolDrawable==null){
             mCoolDrawable = new CoolDrawable();
@@ -96,6 +149,11 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
         }
 
     }
+
+    /**
+     * 뷰가 클릭되었을때 작동되는 함수
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         if(mItem!=null&&!coolState && mItem.getListener()!=null){
@@ -155,8 +213,21 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
         }else{}
     }
 
+    /**
+     * 터치된 영역이 유효한지 체크할때 사용되는 변수
+     */
     private final  Rect tmp_area = new Rect();
+    /**
+     * 최초로 뷰가 클릭됐을떄 터치좌표를 저장하는 변수
+     */
     float touch_x,touch_y;
+
+    /**
+     * 뷰가 터치가 될때 동작을 제어하는 함수
+     * @param v
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if(!GameStatus.isEnd()&&!GameStatus.isPaused()&&!GameStatus.isStarting()) {
@@ -194,16 +265,35 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
         return true;
     }
 
+    /**
+     * 배경이미지를 그리는 클래스
+     *
+     * @version 1.0
+     *
+     * @author  황세현
+     */
     protected class ItemBackgroundDrawable extends Drawable{
+        /**
+         * 사용되지 않는 변수
+         */
         public boolean isEmptyItem = false;
-
+        /**
+         * 배경의 색을 제어하는 변수
+         */
         private final Paint p = new Paint();
-
+        /**
+         * 뷰가 클릭됬는지 안됬는지 체크하는 변수
+         */
         private boolean mClickState = false;
 
         public ItemBackgroundDrawable(){
 
         }
+
+        /**
+         * 외부에서 뷰클릭상태를 지정하는 함수
+         * @param state
+         */
 
         public void setClickState(boolean state){
             mClickState = state;
@@ -221,6 +311,11 @@ public class ItemView extends ImageView implements View.OnClickListener,View.OnT
             r2.set(dl/2-width/2,dl-gap-r.width()/2,dl/2+width/2,dl-gap+r.width()/2);
             c.drawArc(r2,0,180,true,p);
         }*/
+
+        /**
+         * 배경을 그리는 함수
+         * @param canvas
+         */
         @Override
         public void draw(Canvas canvas) {
             p.setColor(Color.CYAN);
