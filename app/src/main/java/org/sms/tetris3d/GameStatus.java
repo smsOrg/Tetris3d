@@ -15,42 +15,93 @@ import org.sms.tetris3d.savepoint.SavePoint;
  * Created by hsh on 2016. 11. 16..
  */
 
+/**
+ * 메인 게임 데이터 관리객체
+ */
 public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
+    /**
+     * db파일 버전
+     */
     public static final int DB_FILE_VERSION = 3;
+    /**
+     * 게임에 필요한 사용자를 관리하는 객체
+     */
     protected static final  RegisteredPlayers players = new RegisteredPlayers(){
     };
-
+    /**
+     * 플레이된 시간을 관리하는 객체
+     */
     protected static long play_time=0;
 
+    /**
+     *
+     * @param val
+     */
     public static void setPlayTime(long val){play_time = val;}
 
+    /**
+     *
+     * @return
+     */
     public static long getPlayTime(){return play_time;}
 
+    /**
+     * 게임로그에 포함될 최소한의 게임 정보를 관리하는 객체
+     */
     protected static  JSONObject config_data = new JSONObject();
 
+    /**
+     * 게임 정보객체를 불러옵니다
+     * @return
+     */
     public static JSONObject getConfigData(){
         return config_data;
     }
 
+    /**
+     * 사용자 관리객체를 불러옵니다
+     * @return
+     */
     public static ArrayList<User> getPlayers(){
         return players;
     }
 
+    /**
+     * 카메라가 보고 있는 게임 보드의 높이를 담고있는 변수
+     */
     protected static float pivotZ ;
 
+    /**
+     * 카메라가 응시하고 있는 높이를 가져옵니다
+     * @return
+     */
     public static float getPivotZ(){
         return pivotZ;
     }
 
+    /**
+     * 카메라가 응시하고 있을 높이를 설정합니다
+     * @param pz
+     */
     public static void setPivotZ(float pz){
         if((float)getGameHeight()/4<=pz&&pz<=getGameHeight()+2) {
             pivotZ = pz;
         }
     }
+
+    /**
+     * 코드간략화를 위한 함수::디바이스 사용자 객체를 가져옵니다
+     * @return
+     */
     public static DeviceUser getDeviceUser(){
         return (DeviceUser) players.get(0);
     }
 
+    /**
+     * 매개변수로 들어온 사용자의 현재 블럭모양이 계속떨어질떄 상대적인 지면이될 높이를 가져옵니다
+     * @param who
+     * @return 놓아질 수 있는 높이
+     */
     public static int getAvailableZPos(final User who){
         int result = 0;
         synchronized (GameStatus.getGameBoolMatrix()) {
@@ -79,10 +130,19 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         return result;
     }
 
+    /**
+     * 게임을 리셋합니다
+     */
     public static void restartGame(){
         init(null);
     }
 
+    /**
+     * 어떤 1x1x1 블럭이 어떤 층에 하나라도 존재하는 지 확인합니다
+     * @param layer
+     * @see org.sms.tetris3d.items.AvailableItems
+     * @return 확인 여부
+     */
     public static  boolean isExistSomeBlockInLayer(int layer){
         if(0<=layer&&layer<=GameStatus.getGameHeight()){
             for(int i=0;i<GameStatus.getGameBoolMatrix().length;i++){
@@ -97,6 +157,12 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         return false;
     }
 
+    /**
+     * 층을 강제로 삭제합니다
+     * @param offsetHeight
+     * @param count
+     * @return
+     */
     public static boolean forceRemoveRows(final int offsetHeight,final int count){
 
         ArrayList<Integer> rows = new ArrayList<Integer>();
@@ -117,6 +183,11 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         }
         return false;
     }
+
+    /**
+     * 저장관리객체의 내부데이터들을 초기화합니다
+     * @param _c
+     */
     public static void init(Context _c) {
         config_data=new JSONObject();
 
@@ -145,6 +216,12 @@ public class GameStatus extends com.trippleit.android.tetris3d.GameStatus{
         }
     }
 
+    /**
+     * 저장관리객체의 내부데이터들을 매개변수로 들어온 세이브포인트 객체의 데이터를 기준으로 초기화합니다
+     * @param c
+     * @param sp
+     * @throws Exception
+     */
     public static void initFromSavePoint(Context c,SavePoint sp) throws Exception{
         if(sp.getGameMatrix()!=null&&sp.getUserData()!=null){
             config_data=new JSONObject();

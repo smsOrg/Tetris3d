@@ -29,10 +29,26 @@ import java.util.*;
  * Created by hsh on 2016. 11. 22..
  */
 
+/**
+ * 게임 기록을 보기위한 창(윈도우) 클래스
+ *
+ * @version 1.7
+ *
+ * @author  황세현
+ */
 public class GameLogViewActivity extends AppCompatActivity {
+    /**
+     * 게임 기록이 저장되어있는 데이터베이스 관리객체
+     */
     GameLogManager glm;
-    SavePointManager spm;
+
+    /**
+     * 목록 리스트뷰
+     */
     MaterialListView mlv;
+    /**
+     * 랭크의 색상이 지정되어있는 배열
+     */
     final int[] rankColors = {Color.BLUE,0xff800080,0xffff8c00,Color.GRAY};
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,17 +59,24 @@ public class GameLogViewActivity extends AppCompatActivity {
 
          mlv =(MaterialListView)findViewById(R.id.menu_listview);
          glm = new GameLogManager(this);
-        spm = new SavePointManager(this);
 
         addList();
     }
+
+    /**
+     * 로그모두삭제하는 함수
+     */
     public void clearAllLog(){
         glm.clearAllLog(glm.getDataBase(true));
         mlv.getAdapter().clearAll();
         addList();
     }
+
+    /**
+     * 모든 로그 데이터를 불러와 리스트뷰에 추가하는 함수
+     */
     public void addList(){
-int idx = 1;
+        int idx = 1;
         Cursor query = glm.getLog(glm.getDataBase(false));
         int cnt = query.getCount();
         if(cnt==0){
@@ -122,10 +145,18 @@ int idx = 1;
 
     }
 
-
+    /**
+     * 사용하지 않는 함수
+     */
     protected  void sortLog(){
 
     }
+
+    /**
+     * 메뉴지정함수
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -135,6 +166,11 @@ int idx = 1;
         return true;
     }
 
+    /**
+     * 메뉴 클릭시 동작함수
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

@@ -19,39 +19,86 @@ import org.sms.tetris3d.GameStatus;
 import org.sms.tetris3d.controls.RotateControls;
 import org.sms.tetris3d.players.DeviceUser;
 
+/**
+ * 원안에 파이차트같은 모양을 하고서 각각의 영역을 클릭하면 도형이 회전이 가능하다는 전제하에 해당하는 축을 기준으로 도형을 회전시켜주는 뷰
+ *
+ * @version 2.2
+ *
+ * @author 황세현
+ *
+ */
 public class RotateButtonView extends View implements View.OnTouchListener,Runnable{
+    /**
+     * X축 회전 뷰의 색상
+     */
     protected final static int X_AXIS_BUTTON_COLOR = Color.argb(0xff,0x90,0,0);
 
+    /**
+     * Y축 회전 뷰의 색상
+     */
     protected final static int Y_AXIS_BUTTON_COLOR = Color.argb(0xff,0,0x80,0);
 
+    /**
+     * Z축 회전 뷰의 색상
+     */
     protected final static int Z_AXIS_BUTTON_COLOR = Color.argb(0xff,0x30,0x30,0xa1);
-
+    /**
+     * 영역의 갯수
+     */
     public final static int AREA_COUNT = 3;
-
+    /**
+     *  360/영역의 갯수
+     */
     protected final static float AREA_DEGREE =360.0f/AREA_COUNT;
-
+    /**
+     * 한 영역당 할당된 각도
+     */
     protected final static float PREFIX_DEGREE = AREA_DEGREE/2;
-
+    /**
+     * 아무것도 클릭하지 않거나 알수 없는 곳을 클릭했을떄의 클릭 상태
+     */
     protected final static byte UNKNOWN_AXIS_CLICK_INDEX = -1;
-
+    /**
+     * X축 뷰를 클릭했을떄의 클릭상태
+     */
     protected final static byte X_AXIS_CLICK_INDEX = 2;
-
+    /**
+     * Y축 뷰를 클릭했을떄의 클릭상태
+     */
     protected final static byte Y_AXIS_CLICK_INDEX = 1;
-
+    /**
+     * Z축 뷰를 클릭했을떄의 클릭상태
+     */
     protected final static byte Z_AXIS_CLICK_INDEX = 0;
 
-
+    /**
+     * 뷰를 그리기위한 변수
+     */
     protected Paint x_pnt=null,y_pnt=null,z_pnt=null,txt_pnt,btnclk_pnt,rm_pnt;
-
+    /**
+     * 도형회전을 위한 변수
+     */
     protected RotateControls rc = null;
-
+    /**
+     *  클릭상태를 받아주는 변수
+     */
     protected byte mClickState =UNKNOWN_AXIS_CLICK_INDEX;
 
+    /**
+     *  뷰클릭 애니매이션과 도형 회전 뷰를 동시에 처리하기 위한 멀티 쓰레드작업을 하기 위한 변수
+     */
     protected final Handler mHandler = new Handler();
-
+    /**
+     * 쓰레드 동기화를 위한 변수
+     */
     private final Object mSync = new Object();
 
    // protected final Thread mMultiProcessThread = new Thread(new Runnable(){@Override public void run(){mHandler.post(RotateButtonView.this);}});
+
+    /**
+     * 동적생성가능
+     * @param ctx
+     */
     public RotateButtonView(Context ctx) {
         super(ctx);
         setOnTouchListener(this);
@@ -59,25 +106,43 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
 
     }
 
+    /**
+     * xml에서 배치할수 있는 생성자
+     * @param ctx
+     * @param attrs
+     */
     public RotateButtonView(Context ctx, AttributeSet attrs) {
          super(ctx,attrs);
         setOnTouchListener(this);
         initPaint();
     }
 
+    /**
+     * xml에서 배치할 수 있는 생성자
+     * @param ctx
+     * @param attrs
+     * @param themResId
+     */
     public RotateButtonView(Context ctx, AttributeSet attrs,int themResId){
         super(ctx,attrs,themResId);
         setOnTouchListener(this);
         initPaint();
     }
 
+    /**
+     * 뷰의 클릭 애니매이션 동작
+     */
     @Override
     public void run(){
+
         synchronized (mSync){
             invalidate();
         }
     }
 
+    /**
+     * 페인트 객체 초기화해주는 함수
+     */
     private void initPaint(){
         try {
             setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -107,15 +172,28 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
         txt_pnt.setColor(Color.WHITE);
         txt_pnt.setTextSize(45);
     }
+
+    /**
+     * 포문을 돌리기 위해서 배열로서 페인트 객체들을 가져옴
+     * @return
+     */
     Paint[] getPackedPaints(){
         final Paint[] rst = {z_pnt,y_pnt,x_pnt};
         return rst;
     }
-    String[] getAxisString(){
 
+    /**
+     * 포문을 돌리기 위해서 배열로서 페인트 객체들을 가져옴
+     * @return
+     */
+    String[] getAxisString(){
         return new String[]{"Z","y","X"};
     }
 
+    /**
+     * 뷰를 그리는 함수
+     * @param canvas
+     */
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -160,6 +238,14 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
         rct.set(area.width()/2-area.width()*0.05f,area.height()/2-area.height()*0.05f,area.width()/2+area.width()*0.05f,area.height()/2+area.height()*0.05f);
         canvas.drawArc(rct,0,360,true,rm_pnt);
     }
+
+    /**
+     * 클릭된 터치좌표로부터 각도를 계산해 반환하는 함수
+     * @param r
+     * @param relative_xPos
+     * @param relative_yPos
+     * @return 계산된 각도(라디안 아님)
+     */
     protected float getClickedDegree(float r,float relative_xPos,float relative_yPos){
         final float relative_r = (float)Math.sqrt(Math.pow(relative_xPos,2)+ Math.pow(relative_yPos,2));
         float currentDegree =Float.POSITIVE_INFINITY;
@@ -202,9 +288,21 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
         }
             return currentDegree;
     }
-    private float touch_x=0,touch_y = 0,currentDegree=0,move_x=0,move_y=0,moveDegree=0;
 
+    /**
+     *
+     */
+    private float touch_x=0,touch_y = 0,currentDegree=0,move_x=0,move_y=0,moveDegree=0;
+    /**
+     * 마지막으로 움직인 좌표가 유효한 영역에 존재하는지 체크할 때 사용하는 함수
+     */
     private final Rect tmp_area = new Rect();
+
+    /**
+     * 입력된 각도로부터 AREA_COUNT분면정보를 가져오는 함수
+     * @param deg
+     * @return
+     */
 
     public int getQuadrant(float deg){
         if(deg>=360){
@@ -221,6 +319,12 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
         return -1;
     }
 
+    /**
+     * 좌표가 유효한 영역에 존재하는 지판단
+     * @param ori_deg
+     * @param changed_deg
+     * @return
+     */
     protected boolean determineValidDeltaDegree(float ori_deg,float changed_deg){
         final int q = getQuadrant(ori_deg);
         final int p = getQuadrant(changed_deg);
@@ -229,6 +333,13 @@ public class RotateButtonView extends View implements View.OnTouchListener,Runna
         return q!=-1&&q==p;
     }
     //private boolean nowOutSide=false;
+
+    /**
+     * 뷰가 클릭했을때 작동하는 함수
+     * @param v
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         switch(event.getAction()){
