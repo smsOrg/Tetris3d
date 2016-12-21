@@ -26,6 +26,12 @@ int startcnt =30;
     }
     long beforeTime = System.currentTimeMillis();
     long curTime = System.currentTimeMillis();
+
+    /**
+     * 메인 게임을 렌더링합니다
+     * @param gl
+     * @param firstDraw
+     */
     @Override
     public void onDrawFrame(GL10 gl, boolean firstDraw) {
 
@@ -89,6 +95,13 @@ int startcnt =30;
         }
         gl.glPopMatrix();
     }
+
+    /**
+     * 숫자를 가져와 숫자 모양을 렌더링을 합니다
+     * @param gl
+     * @param usr
+     * @param limit
+     */
     public void drawNumberUnderTen(GL10 gl,User usr,int limit){
 
         if(timelim<=limit || timelim>9){

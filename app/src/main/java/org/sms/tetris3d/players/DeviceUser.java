@@ -177,6 +177,13 @@ public class DeviceUser extends User implements Serializable{
             }catch(Exception e){}
             return rst;
         }
+
+        /**
+         * 사용가능한 목록과 사용할 목록을 파싱할때 함수가 중복되어 따로 빼서 함수만 불리우게 구현
+         * @param ary
+         * @return
+         * @throws Exception
+         */
         private ItemID[] getListFromSomeSection(JSONArray ary) throws  Exception{
             final int leng = ary.length();
             ItemID[] rst = new ItemID[leng];
@@ -195,6 +202,11 @@ public class DeviceUser extends User implements Serializable{
             }
             return rst;
         }
+
+        /**
+         * xml에서 불러온 데이터중에서 현재 장착할 아이템의 리스트를 객체로 파싱헤서 불러옵니다
+         * @return ItemID객체 배열
+         */
         public ItemID[] getEquipedItemsIDList(){
             if(spref==null){
                 return null;
@@ -217,6 +229,10 @@ public class DeviceUser extends User implements Serializable{
             }
 
         }
+        /**
+         * xml에서 불러온 데이터중에서 현재 사용자가 소유하고 있는 모든 아이템의 리스트를 객체로 파싱헤서 불러옵니다
+         * @return ItemID객체 배열
+         */
         public ItemID[] getAcquiredItemsIDList(){
             if(spref==null){
                 return null;
@@ -240,6 +256,10 @@ public class DeviceUser extends User implements Serializable{
 
         }
 
+        /**
+         * context를 설정하고 장착할 아이템 리스트를 불러와 추가한다
+         * @param ctx
+         */
         public DeviceUserItemManager(Context ctx){
             super();
             setContext(ctx);

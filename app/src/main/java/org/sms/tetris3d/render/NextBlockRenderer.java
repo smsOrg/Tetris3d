@@ -12,6 +12,12 @@ import android.opengl.GLU;
 
 public class NextBlockRenderer extends com.trippleit.android.tetris3d.render.AbstractOpenGlRenderer {
     protected float cx,cy,cz,cr=-0.05f,rad=0;
+
+    /**
+     * 다음 모양을 가져와 렌더링을 합니다
+     * @param gl
+     * @param firstDraw
+     */
     @Override
     public void onDrawFrame(GL10 gl, boolean firstDraw) {
         if(!GameStatus.isEnd()&&!GameStatus.isStarting()) {
@@ -32,6 +38,12 @@ final int zSz = du.getNextObject().getZsize();
             gl.glPopMatrix();
         }
     }
+
+    /**
+     * 다음 블럭을 모양을 렌더링합니다
+     * @param gl
+     * @param who
+     */
     private void printCurrentObject(GL10 gl,User who){
         gl.glPushMatrix();
 

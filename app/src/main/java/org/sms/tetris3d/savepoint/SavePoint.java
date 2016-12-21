@@ -23,42 +23,88 @@ public class SavePoint implements Externalizable {
     public long play_second;
     public DeviceUser mUserData;
 
+    /**
+     *  static method로 생성할수 있도록 생성자의 접근을 제한
+     */
     protected  SavePoint(){
     }
 
-
+    /**
+     * 저장된 카메라의 높이를 가져옵니다
+     * @return 카메라의 높이
+     */
     public float getCameraH(){
         return cameraH;
     }
+    /**
+     * 저장된 카메라의 각도를 가져옵니다
+     * @return 카메라의 각도
+     */
     public float getCameraR(){
         return cameraR;
     }
+
+    /**
+     * 카메라의 각도를 저장합니다
+     * @param val
+     * @return 현재 객체
+     */
     public SavePoint setCameraR(float val){
         cameraR = val;
         return this;
     }
+    /**
+     * 카메라의 높이를 저장합니다
+     * @param val
+     * @return 현재 객체
+     */
     public SavePoint setCameraH(float val){
         cameraH = val;
         return this;
     }
+
+    /**
+     * 카메라의 높이와 각도를 한번에 설정합니다
+     * @param r
+     * @param h
+     * @return 현재 객체
+     */
     public SavePoint setCamera(float r,float h){
         return setCameraR(r).setCameraH(h);
     }
+
+    /**
+     * 카메라의 높이와 각도를 한번에 가져옵니다
+     * @return 실수배열
+     */
     public float[] getCamera(){
         float[] r = new float[2];
         r[0]=getCameraR();
         r[1]=getCameraH();
         return r;
     }
+
+    /**
+     * 게임 보드게임판의 높이(층)을 설정합니다
+     * @param height
+     * @return 현재객체
+     */
     public SavePoint setGameHeight(int height){
         gameHeight=height;
         return this;
     }
-
+    /**
+     * 게임 보드게임판의 높이(층)을 가져옵니다
+     */
     public int getGameHeight(){
         return gameHeight;
     }
 
+    /**
+     * 게임보드판의 한 면의 길이를 가져옵니다
+     * @param sz
+     * @return 현재객체
+     */
     public SavePoint setGridSize(int sz){
         gridSize=sz;
         return this;
