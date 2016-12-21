@@ -38,19 +38,43 @@ import com.orhanobut.dialogplus.DialogPlusBuilder;
  * Created by hsh on 2016. 11. 19..
  */
 
+/**
+ *  메인 게임을 보여주는 창(UI에서 게임을 진행하는 클래스)
+ *  @version 3.1
+ *
+ *  @author 황세현
+ */
 public class MainGameActivity extends Activity {
 
+    /**
+     * 게임경과시간을 알려주는 자식프로세스가 살아있는지 체크하는 상태 변수
+     */
     private boolean timerLoopAvailable = true;
-
+    /**
+     * 게임을 세이브 포인트로 저장할때 사용하는 데이터베이스 관리객체
+     */
     protected SavePointManager spm;
-
+    /**
+     *  게임이 일시정지됐을떄 보여지는 메뉴 대화상자
+     */
     DialogPlus dialog = null;
-
+    /**
+     * 게임이 종료될때 게임로그를 데이터베이스에 저장할때 사용하는 데이터베이스 관리객체
+     */
     GameLogManager glm;
-
+    /**
+     *  게임이 종료될때 뜨는 대화상자
+     *  파일버전 3.1에 와서 더이상 사용하지 않는다
+     */
     android.support.v7.app.AlertDialog endDialog = null;
 
-
+    /**
+     *  일시정지 대화상자의 메뉴뷰를 생성하고 관리하는 클래스
+     *
+     *  @version 1.4
+     *
+     *  @author 황세현
+     */
     public static class SimplePauseAdapter extends BaseAdapter {
         private LayoutInflater layoutInflater;
         private ArrayList<Object[]> mList;
@@ -87,6 +111,13 @@ public class MainGameActivity extends Activity {
             return position;
         }
 
+        /**
+         *  자식메뉴뷰를 만들어줌
+         * @param position
+         * @param convertView
+         * @param parent
+         * @return 자식메뉴뷰
+         */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = convertView;
@@ -132,6 +163,9 @@ public class MainGameActivity extends Activity {
             return view;
         }
 
+        /**
+         * 메뉴자식뷰를 만들떄 자식의 자식 뷰에 접근하기위해 사용
+         */
         class ViewHolder {
             TextView textView;
             ImageView imageView;
@@ -139,11 +173,20 @@ public class MainGameActivity extends Activity {
         }
     }
 
-
+    /**
+     * 지금은 사용하지 않는 함수
+     * @param items
+     * @return
+     */
     AlertDialog getDialog(final DialogItem[] items){
        return getDialogAsBuilder(items).create();
     }
 
+    /**
+     * 지금은 사용하지 않는 함수
+     * @param items
+     * @return
+     */
     AlertDialog.Builder getDialogAsBuilder(final DialogItem[] items){
 
         CharSequence[] vals = new CharSequence[items.length];
@@ -158,6 +201,12 @@ public class MainGameActivity extends Activity {
             }
         }).setCancelable(false);
     }
+
+    /**
+     * 일시정시 대화상자를 생성하는 함수
+     * @param lst
+     * @return DialogPlus객체
+     */
     protected DialogPlus getPauseDialog(ArrayList<Object[]> lst){
         final DialogPlus rst= getPauseDialogAsBuilder(lst).create();
         try {
@@ -175,6 +224,12 @@ public class MainGameActivity extends Activity {
         }
         return rst;
     }
+
+    /**
+     * 일시정시 대화상자를 완전한 상태로 생성하기전에 대화상자의 세부설정을 위한 함수이며 객체를 반환한다
+     * @param lst
+     * @return DialogPlusBuilder로 완전하지 않은 대화상자객체
+     */
     protected DialogPlusBuilder getPauseDialogAsBuilder(ArrayList<Object[]> lst){
         DialogPlusBuilder dpb = DialogPlus.newDialog(this);
                 dpb.setContentHolder(new com.orhanobut.dialogplus.ListHolder());
@@ -199,6 +254,10 @@ public class MainGameActivity extends Activity {
         dpb.setHeader(R.layout.dialogplus_header);
          return dpb;
     }
+
+    /**
+     *  귀찮으니 아예 윈도우를 종료했다가 다시 생성해서 생명주기로 인해 내부 게임 데이터들을 초기화시켜 게임을 재진행시키는 함수
+     */
     protected  void restartActivity(){
         if (Build.VERSION.SDK_INT >= 11) {
             recreate();
@@ -211,7 +270,15 @@ public class MainGameActivity extends Activity {
             overridePendingTransition(0, 0);
         }
     }
-SavePointNameInputDialog spnid=null;
+
+    /**
+     * 세이브 포인트를 저장하기전에 저장할 세이브포인트객체의 별칭을 정해두기위한 대화상자 변수
+     */
+    SavePointNameInputDialog spnid=null;
+
+    /**
+     * 현재까지의 게임 상황을 세이브 포인트객체에 저장하고 객체또한 데이터베이스에 저장시키는 함수
+     */
     public void saveSavePoint(){
         synchronized (spm.getSync()) {
             if(spnid==null){
@@ -352,6 +419,10 @@ SavePointNameInputDialog spnid=null;
             t.start();*/
         }
     }
+
+    /**
+     * 안드로이드에서 취소키가 눌리면 창이 종료되는 대신에 게임이 일시정지되고 일시정지 대화상자가 뜨게끔 함수를 재정의
+     */
     @Override
     public void onBackPressed() {
         if(!GameStatus.isEnd()) {
@@ -363,13 +434,22 @@ SavePointNameInputDialog spnid=null;
                 dialog.show();
         }
     }
-private void changePauseState(){
+
+    /**
+     * 게임을 진행함과 게임을 일시정지하는 상태를 toggle(서로 뒤바꿔주는,반전시키는)해주는 함수
+     */
+    private void changePauseState(){
     if(GameStatus.getGameStatus()== GameStatus.GAME_STATUS.PAUSE){
         GameStatus.setGameStatus(GameStatus.GAME_STATUS.ONGOING);
     }else
         GameStatus.setGameStatus(GameStatus.GAME_STATUS.PAUSE);
 }
-protected ArrayList<Object[]> getPauseDialogMenu(){
+
+    /**
+     * 기초적인 일시정지 대화상자의 자식 리스트를 반환
+     * @return ArrayList<Object[]> 로서 메뉴목록
+     */
+    protected ArrayList<Object[]> getPauseDialogMenu(){
     ArrayList<Object[]> rst = new ArrayList<Object[]>();
     rst.add(new Object[]{getString(R.string.pausedialog_item_resume),new SimpleAdapter.OnClickListener() {
         @Override
@@ -411,10 +491,24 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
 
     return rst;
 }
-    protected TextView tv_game_over,tv_rst_rm_ln,tv_rst_elap_tm;
-    protected FancyButton fb_restart,fb_exit;
 
+    /**
+     * 게임이 종료될때 관련된 뷰를 정의
+     */
+    protected TextView tv_game_over,tv_rst_rm_ln,tv_rst_elap_tm;
+    /**
+     * 게임이 종료될때 관련된 뷰를 정의
+     */
+    protected FancyButton fb_restart,fb_exit;
+    /**
+     * 게임이 종료될때 관련된 뷰를 정의
+     */
     protected ViewGroup result_layout;
+
+    /**
+     * 게임에 필요한 각가지 변수나 환경을 초기화
+     * @param onSavedInstanceState
+     */
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -660,10 +754,20 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
     }
 
     //add minsu-----------------------------(오류생기면이부분지우면)
+
+    /**
+     * 구현만 해두고 사용은 안함
+     * @param v
+     */
 	public void ssstop(View v) {
 		showDialog(1);
 	}
 
+    /**
+     * 구현만 해두고 사용은 안함
+     * @param id
+     * @return
+     */
 	@Override
 	@Deprecated
 	protected Dialog onCreateDialog(int id) {
@@ -688,7 +792,10 @@ protected ArrayList<Object[]> getPauseDialogMenu(){
 		return builder.create();
 	}
 //------------------------------------------
-    
+
+    /**
+     * 창이 종료될떄 자식쓰레드도 종료
+     */
     @Override
     protected void onDestroy() {
         timerLoopAvailable=false;

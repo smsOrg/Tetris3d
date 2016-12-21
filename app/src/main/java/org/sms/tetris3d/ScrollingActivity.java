@@ -32,8 +32,18 @@ import java.util.*;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
+/**
+ * 메인 메뉴 윈도우 클래스
+ *
+ * @version 2.5
+ *
+ * @author 황세현
+ *
+ */
 public class ScrollingActivity extends AppCompatActivity {
-
+    /**
+     * 새게임으로서 게임을 시작합니다
+     */
     private void startGameActivity(){
         Intent it = new Intent();
         it.setClass(getApplicationContext(),MainGameActivity.class);
@@ -42,7 +52,16 @@ public class ScrollingActivity extends AppCompatActivity {
         it.putExtra("check",(long)(('s'+'m'+'s')<<10)^'s');
         getApplicationContext().startActivity(it);
     }
-private SavePointManager spm=null;
+
+    /**
+     *
+     */
+    private SavePointManager spm=null;
+
+    /**
+     * 세이브 포인트 관리객체로부터 모든 세이브 포인트들을 가져와 데이터들을 길이가 2인 1차원 object배열로 파싱한뒤 가변배열해 추가해 반환한다
+     * @return ArrayList<Object[]>
+     */
     public ArrayList<Object[]> getSavePointsFromDB(){
         ArrayList<Object[]> rst = new ArrayList<Object[]>();
         if(spm==null){
@@ -95,7 +114,14 @@ private SavePointManager spm=null;
         return rst;
     }
 
+    /**
+     * 게임을 시작하기전에 새게임을 할껀지 세이브 포인트에서 게임을 불러와서 게임을 진행할껀지 물어보는 대화상자변수
+     */
     DialogPlus dp_dialog;
+
+    /**
+     * 세이브포인트에서 사용자가 게임을 진행하고 싶을때 세이브 포인트 목록에서 유저가 데이터를 선택해 게임을 진행하는 대화상자를 띄워주는 함수
+     */
     private void selectSavePoint(){
         if(dp_dialog!=null) {
             dp_dialog.dismiss();
@@ -165,6 +191,10 @@ private SavePointManager spm=null;
 
 
     }
+
+    /**
+     *  게임하기 리스트 자식을 클릭했을때 새 게임을 할껀지 세이브포인트에서 이어서 할껀지 물어보는 대화상자를 띄어주는 함수
+     */
     private void startGame(){
 
         ArrayList<Object[]> lst = new ArrayList<Object[]>();
@@ -210,6 +240,10 @@ private SavePointManager spm=null;
         dp_dialog.show();
 
     }
+
+    /**
+     * 게임기록을 보여주는 창을 띄워주는 함수
+     */
     private void viewLog(){
         Intent it = new Intent();
         it.setClass(getApplicationContext(),GameLogViewActivity.class);
@@ -217,6 +251,9 @@ private SavePointManager spm=null;
         getApplicationContext().startActivity(it);
     }
 
+    /**
+     * 이 창이 종료됨과 함께 db도 안전하게 닫아준다
+     */
     @Override
     protected void onDestroy() {
         if(spm!=null){
