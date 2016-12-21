@@ -17,12 +17,20 @@ import java.io.Serializable;
 
 /**
  * 현재 기기의 사용자로서 다뤄지는 객체
+ *  @version 2.1
  *
+ *  @author 황세현
  *
  */
 public class DeviceUser extends User implements Serializable{
     protected transient Context mContext = null;
     protected transient   DeviceUserItemManager item_manager;// = new ItemManagerForEachUser();
+
+    /**
+     * 아이템 관리 객체를 가져옵니다
+     *
+     * @return 아이템 관리 객체
+     */
     public DeviceUserItemManager getItemManager(){
         if(item_manager==null){
             item_manager=new DeviceUserItemManager(getContext());
@@ -30,29 +38,60 @@ public class DeviceUser extends User implements Serializable{
         return item_manager;
     }
 
+    /**
+     * 현재 객체를 반환합니다
+     * @return this class
+     */
     @Override
     protected DeviceUser myIdentity(){
         return this;
     }
    /* public DeviceUser(){super();
     }*/
+
+    /**
+     *  객체를 생성하고 context를 설정합니다
+     * @param ctx
+     */
     public DeviceUser(Context ctx){
         super();
         setContext(ctx);
         item_manager=new DeviceUserItemManager(ctx);
 
     }
+
+    /**
+     *  context를 설정하고 객체를 반환합니다
+     * @param ctx
+     * @return this
+     */
     public DeviceUser setContext(Context ctx){
         mContext = ctx;
         return this;
     }
+
+    /**
+     *  context를 가져옵니다
+     * @return context
+     */
     public Context getContext(){
         return mContext;
     }
+
+    /**
+     * 모양을 가져옵니다
+     *
+     * @param rand
+     * @return shape
+     */
     @Override
     public com.trippleit.android.tetris3d.shapes.IShape chooseObject(int rand){
         return super.chooseObject(rand);
     }
+
+    /**
+     * 현재 디바이스 사용자에게 다음 모양과 현재모양을 설정합니다
+     */
     public void newShape() {
         int objNum = randInt(0, 5);
         setCurrentObject(getNextObject()!=null?getNextObject():chooseObject(objNum));
@@ -60,6 +99,11 @@ public class DeviceUser extends User implements Serializable{
         setNextObject(chooseObject(objNum));
         setCurrentPosition(GameStatus.getStartX(), GameStatus.getStartY(), GameStatus.getGameHeight());
     }
+
+    /**
+     * 현재 모양을 1층씩 떨어트립니다
+     * @param ogr
+     */
     public void dropDown(final OpenGlRenderer ogr) {
         if (GameStatus.isEnd()) return;
         if (ogr.getOneSec() != 0) return;
@@ -82,6 +126,14 @@ public class DeviceUser extends User implements Serializable{
 
         }
     }
+
+    /**
+     * 디바이스 사용자의 등록아이템을 json을 이용해 xml에서 불러오고 저장합니다
+     *
+     * @version 1.2
+     *
+     * @author 황세현
+     */
     public class DeviceUserItemManager extends ItemManagerForEachUser{
         private Context mContext = null;
         private SharedPreferences spref;
@@ -91,10 +143,20 @@ public class DeviceUser extends User implements Serializable{
         public Context getContext(){
             return mContext;
         }
+
+        /**
+         * context 객체를 설정합니다
+         * @param ctx
+         */
         protected void setContext(Context ctx){
             mContext =ctx;
             spref = PreferenceManager.getDefaultSharedPreferences(getContext());
         }
+
+        /**
+         * 기본적인 아이템 리스트를 생성합니다
+         * @return jsonobj
+         */
         protected JSONObject getDefaultItemList(){
            final  JSONObject rst = new JSONObject();
             JSONArray ary = new JSONArray();
